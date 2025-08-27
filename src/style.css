@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@import "./normalize.css";
+@import "./reuse.css";
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+:root {
+  --bg: #222222;
+  --white: #ffffff;
+  --green: rgb(49, 238, 51);
+  --sc: #a855f7;
+  --black: #000000;
+}
+.font2 {
+  font-family: cursive;
+}
+body {
+  font-family: "Oswald", sans-serif;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+*,
+a,
+button,
+input,
+textarea,
+img {
+  cursor: url("./assets/mini1.png") 5 5, auto !important;
+}
+
+.containerr {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 576px) {
+  .containerr {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .containerr {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .containerr {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .containerr {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .containerr {
+    max-width: 1320px;
+  }
+}

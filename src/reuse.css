@@ -1,0 +1,71 @@
+/* main Button */
+.btn {
+  position: relative;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: var(--white);
+  cursor: pointer;
+  letter-spacing: -1px;
+  z-index: 1;
+  transition: 0.5s;
+  display: inline-block;
+}
+.btn2 {
+  width: 102%;
+  height: 102%;
+  position: absolute;
+  left: -1%;
+  top: 2%;
+  z-index: -1;
+  border-radius: 50px;
+  border: 1px solid var(--white);
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+.btnn {
+  display: inline-block;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+.btnn:hover {
+  transform: rotate3d(-2, -2, -2, 20deg);
+}
+.btnn:hover .btn {
+  transform: scale(1.1);
+  color: var(--white);
+  background-color: var(--bg);
+  border: 1px solid var(--white);
+}
+.btnn:hover .btn2 {
+  left: -3%;
+  top: 10%;
+}
+
+/* main heading */
+.heading {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.heading h1 {
+  width: 100%;
+  font-size: 90px;
+  color: var(--bg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
