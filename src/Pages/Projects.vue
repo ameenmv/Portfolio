@@ -63,6 +63,9 @@ export default {
       this.$router.push(`/projects/${name}`);
     },
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 
