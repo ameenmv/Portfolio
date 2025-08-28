@@ -119,12 +119,17 @@
         </div>
       </div>
       <router-link to="/projects">
-        <div class="w-[100%] flex justify-center items-center mt-30">
-          <div class="btnn ml-5 relative">
-            <div class="btn">
-              View More
-              <div class="btn2"></div>
-            </div>
+        <div class="w-[100%] flex justify-center items-center">
+          <div class="btnn ml-5 relative mt-20">
+            <div class="btn">View More</div>
+            <div class="btn2"></div>
+
+            <img src="../assets/star.svg" class="onesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="twosvg svgg" alt="" />
+            <img src="../assets/star.svg" class="threesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="foursvg svgg" alt="" />
+            <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
           </div>
         </div>
       </router-link>

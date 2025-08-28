@@ -6,27 +6,34 @@
       ><img class="w-[50px]" src="../assets/mv.png" alt=""
     /></router-link>
     <div class="flex gap-6 items-center">
-      <p
+      <!-- <p
         class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
       >
         About
-      </p>
-      <p
-        class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
+      </p> -->
+      <router-link to="/projects"
+        ><p
+          class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
+        >
+          Projects
+        </p></router-link
       >
-        Projects
-      </p>
 
-      <p
+      <!-- <p
         class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
       >
         Contact
-      </p>
+      </p> -->
       <div class="btnn ml-5 relative">
-        <div class="btn">
-          my cv ?
-          <div class="btn2"></div>
-        </div>
+        <div class="btn">my cv ?</div>
+        <div class="btn2"></div>
+
+        <img src="../assets/star.svg" class="onesvg svgg" alt="" />
+        <img src="../assets/star.svg" class="twosvg svgg" alt="" />
+        <img src="../assets/star.svg" class="threesvg svgg" alt="" />
+        <img src="../assets/star.svg" class="foursvg svgg" alt="" />
+        <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
+        <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
       </div>
     </div>
   </div>

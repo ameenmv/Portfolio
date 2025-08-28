@@ -68,7 +68,7 @@
       <div class="mt-30 flex gap-65 items-center">
         <div class="left flex flex-col gap-10 text-[var(--white)]">
           <img class="w-[200px]" src="../assets/callme.png" alt="" />
-          <div class="flex flex-col gap-3 mt-8">
+          <div class="flex flex-col gap-3">
             <p class="text-[40px] font-bold font2">Phone</p>
             <p class="font-bold opacity-[.8]">+201017025076</p>
           </div>

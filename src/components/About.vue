@@ -45,11 +45,16 @@
         </div>
       </div>
       <div class="w-[100%] flex justify-center">
-        <div class="btnn relative mt-10">
-          <div class="btn">
-            Preview my cv ?
-            <div class="btn2"></div>
-          </div>
+        <div class="btnn ml-5 relative mt-20">
+          <div class="btn">Preview My CV ?</div>
+          <div class="btn2"></div>
+
+          <img src="../assets/star.svg" class="onesvg svgg" alt="" />
+          <img src="../assets/star.svg" class="twosvg svgg" alt="" />
+          <img src="../assets/star.svg" class="threesvg svgg" alt="" />
+          <img src="../assets/star.svg" class="foursvg svgg" alt="" />
+          <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
+          <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
         </div>
       </div>
     </div>
@@ -238,5 +243,51 @@ video {
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.btn {
+  color: #000;
+}
+.btn2 {
+  border: 1px solid #000;
+}
+
+.btnn:hover .btn {
+  color: #000;
+  background-color: var(--bg);
+  border: 1px solid #000;
+}
+.btnn:hover .btn2 {
+  border: 2px solid #000;
+}
+.svgg {
+  filter: brightness(0) invert(1);
+}
+.btnn:hover .svgg {
+  filter: none;
+}
+
+/* الخلفية المتحركة */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0; /* هتدخل من الشمال */
+  width: 0%;
+  height: 100%;
+  background: var(--bg);
+  z-index: -1;
+  transition: width 0.5s ease;
+  border-radius: 50px;
+}
+
+/* وقت الـ hover */
+.btnn:hover .btn::before {
+  width: 100%;
+}
+
+/* النص فوق الخلفية */
+.btnn:hover .btn {
+  color: var(--white);
 }
 </style>
