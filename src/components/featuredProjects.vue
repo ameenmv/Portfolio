@@ -9,11 +9,11 @@
         </h1>
       </div>
       <div class="w-[100%] flex flex-col gap-40 projects">
-        <div class="project m-auto">
-          <img src="../assets/lib.png" alt="" />
-          <div class="name">MVLib</div>
+        <div @click="goToProject(project1.name)" class="project m-auto">
+          <img :src="project1.img" alt="" />
+          <div class="name">{{ project1.name }}</div>
           <div class="title flex justify-between">
-            Online Library Management System
+            {{ project1.title }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
               <path
@@ -27,11 +27,11 @@
           <div class="four"></div>
         </div>
 
-        <div class="project ml-[30%]">
-          <img src="../assets/mvlms.png" alt="" />
-          <div class="name">MV LMS</div>
+        <div @click="goToProject(project2.name)" class="project ml-[30%]">
+          <img :src="project2.img" alt="" />
+          <div class="name">{{ project2.name }}</div>
           <div class="title flex justify-between">
-            Learning Management System
+            {{ project2.title }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
               <path
@@ -45,11 +45,11 @@
           <div class="four"></div>
         </div>
         <div class="flex gap-10 items-center">
-          <div class="project">
-            <img class="h-[400px]" src="../assets/mvclinic.png" alt="" />
-            <div class="name">MVClinic</div>
+          <div @click="goToProject(project3.name)" class="project">
+            <img class="h-[400px]" :src="project3.img" alt="" />
+            <div class="name">{{ project3.name }}</div>
             <div class="title flex justify-between">
-              Clinic Appointment System
+              {{ project3.title }}
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                 <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                 <path
@@ -62,11 +62,14 @@
             <div class="three"></div>
             <div class="four"></div>
           </div>
-          <div class="project h-[fit-content]">
-            <img src="../assets/meditro.png" alt="" />
-            <div class="name">Meditro</div>
+          <div
+            @click="goToProject(project4.name)"
+            class="project h-[fit-content]"
+          >
+            <img :src="project4.img" alt="" />
+            <div class="name">{{ project4.name }}</div>
             <div class="title flex justify-between">
-              responsive medical website
+              {{ project4.title }}
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                 <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                 <path
@@ -80,11 +83,11 @@
             <div class="four"></div>
           </div>
         </div>
-        <div class="project m-auto">
-          <img src="../assets/kibs.png" alt="" />
-          <div class="name">KIIIBS</div>
+        <div @click="goToProject(project5.name)" class="project m-auto">
+          <img :src="project5.img" alt="" />
+          <div class="name">{{ project5.name }}</div>
           <div class="title flex justify-between">
-            responsive online store
+            {{ project5.title }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
               <path
@@ -97,11 +100,11 @@
           <div class="three"></div>
           <div class="four"></div>
         </div>
-        <div class="project mr-[30%]">
-          <img src="../assets/hidaya.png" alt="" />
-          <div class="name">Hidaaya</div>
+        <div @click="goToProject(project6.name)" class="project mr-[30%]">
+          <img :src="project6.img" alt="" />
+          <div class="name">{{ project6.name }}</div>
           <div class="title flex justify-between flex justify-between">
-            responsive Islamic website
+            {{ project6.title }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
               <path
@@ -134,8 +137,33 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+import { projects } from "../assets/projects";
+
 export default {
   name: "Projects",
+  data() {
+    return {
+      project1: null,
+      project2: null,
+      project3: null,
+      project4: null,
+      project5: null,
+      project6: null,
+    };
+  },
+  created() {
+    this.project1 = projects.find((p) => p.name === "MVLib");
+    this.project2 = projects.find((p) => p.name === "MV LMS");
+    this.project3 = projects.find((p) => p.name === "MVClinic");
+    this.project4 = projects.find((p) => p.name === "Meditro");
+    this.project5 = projects.find((p) => p.name === "KIIIBS");
+    this.project6 = projects.find((p) => p.name === "Hidaaya");
+  },
+  methods: {
+    goToProject(name) {
+      this.$router.push(`/projects/${name}`);
+    },
+  },
   mounted() {
     // header2 animation
     gsap.from(".header2", {

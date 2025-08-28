@@ -29,17 +29,17 @@
       <p class="mt-6 text-[45px] font-bold text-center text-[var(--sc)]">
         Some of Ameen's skills and Technologies
       </p>
-      <div class="flex gap-5 flex-wrap mt-10">
+      <div class="flex gap-5 flex-wrap mt-10 font2">
         <div v-for="skill in skills" :key="skill.id" class="box">
           {{ skill }}
         </div>
       </div>
-      <div class="flex gap-5 flex-wrap mt-10">
+      <div class="flex gap-5 flex-wrap mt-10 font2">
         <div v-for="skill in skills2" :key="skill.id" class="box">
           {{ skill }}
         </div>
       </div>
-      <div class="flex gap-5 flex-wrap mt-10">
+      <div class="flex gap-5 flex-wrap mt-10 font2">
         <div v-for="skill in skills3" :key="skill.id" class="box">
           {{ skill }}
         </div>
@@ -108,7 +108,7 @@ export default {
     // header animation
     gsap.from(".header", {
       y: 100,
-      opacity: 0.2,
+      opacity: 0.1,
       duration: 2,
       fontSize: "60px",
       ease: "power2.out",
@@ -234,7 +234,7 @@ video {
   border-radius: 20px;
   width: fit-content;
   background: var(--white);
-  font-weight: 600;
+
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
