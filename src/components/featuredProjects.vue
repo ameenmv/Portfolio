@@ -166,10 +166,10 @@ export default {
   },
   mounted() {
     // header2 animation
+
     gsap.from(".header2", {
       y: 100,
       opacity: 0.2,
-      duration: 2,
       fontSize: "60px",
       ease: "power2.out",
       scrollTrigger: {
@@ -180,16 +180,16 @@ export default {
       },
     });
 
+    // الأنيميشن التاني (طول ما انت بتسكرول جوه السيكشن)
     gsap.fromTo(
       ".header2",
       {
         y: 0,
         opacity: 1,
-        fontSize: "90px",
+        fontSize: "90px", // تبدأ من 90 زي ما كتبت
       },
       {
-        duration: 30,
-        y: () => document.querySelector(".section").offsetHeight,
+        y: () => document.querySelector(".section").offsetHeight - 1400,
         opacity: 0.7,
         fontSize: "75px",
         scrollTrigger: {
@@ -200,6 +200,8 @@ export default {
         },
       }
     );
+
+    // الأنيميشن بتاع الصورة زي ما هو
     gsap.fromTo(
       ".image",
       {
@@ -217,6 +219,7 @@ export default {
         },
       }
     );
+
     // gsap.to(".projects", {
     //   y: -3500,
     //   duration: 10,
