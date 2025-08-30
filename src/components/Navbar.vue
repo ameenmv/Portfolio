@@ -24,17 +24,19 @@
       >
         Contact
       </p> -->
-      <div class="btnn ml-5 relative">
-        <div class="btn">my cv ?</div>
-        <div class="btn2"></div>
+      <a
+        href="https://drive.google.com/uc?export=download&id=1z3-1ywBLo2t6o5o213GaHjmgw6wl73it"
+        ><div class="btnn ml-5 relative">
+          <div class="btn">my cv ?</div>
+          <div class="btn2"></div>
 
-        <img src="../assets/star.svg" class="onesvg svgg" alt="" />
-        <img src="../assets/star.svg" class="twosvg svgg" alt="" />
-        <img src="../assets/star.svg" class="threesvg svgg" alt="" />
-        <img src="../assets/star.svg" class="foursvg svgg" alt="" />
-        <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
-        <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
-      </div>
+          <img src="../assets/star.svg" class="onesvg svgg" alt="" />
+          <img src="../assets/star.svg" class="twosvg svgg" alt="" />
+          <img src="../assets/star.svg" class="threesvg svgg" alt="" />
+          <img src="../assets/star.svg" class="foursvg svgg" alt="" />
+          <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
+          <img src="../assets/star.svg" class="sixsvg svgg" alt="" /></div
+      ></a>
     </div>
   </div>
 </template>

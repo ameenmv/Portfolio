@@ -77,20 +77,81 @@
             <p class="font-bold opacity-[.8]">Egypt, Mansoura</p>
           </div>
         </div>
-        <div class="right flex flex-col gap-5 flex-1">
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <textarea type="text" placeholder="Message" />
-          <button>Send</button>
-        </div>
+        <form
+          @submit.prevent="handleSubmit"
+          class="right flex flex-col gap-5 flex-1"
+        >
+          <input v-model="form.name" type="text" placeholder="Name" />
+          <input v-model="form.email" type="email" placeholder="Email" />
+          <textarea v-model="form.message" type="text" placeholder="Message" />
+          <button type="submit">Send</button>
+          <p class="text-[white] font2 success" v-if="success">
+            ✅ Thank you! Your message has been sent successfully.
+          </p>
+          <p class="text-[white] font2 success" v-if="error">
+            ❌ Oops! Something went wrong. Plaease try again.
+          </p>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import gsap from "gsap";
 export default {
   name: "Contact",
+  data() {
+    return {
+      form: {
+        name: "",
+        email: "",
+        message: "",
+      },
+      success: false,
+      error: false,
+    };
+  },
+
+  methods: {
+    async handleSubmit() {
+      const formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("email", this.form.email);
+      formData.append("message", this.form.message);
+      formData.append("_captcha", "false"); // optional
+      formData.append("_subject", "New Contact Form Submission");
+
+      try {
+        const response = await fetch(
+          "https://formsubmit.co/ameeenmv@gmail.com",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (response.ok) {
+          this.success = true;
+          this.error = false;
+          this.form.name = "";
+          this.form.email = "";
+          this.form.message = "";
+          setTimeout(() => {
+            this.success = false;
+          }, 4000);
+        } else {
+          throw new Error("Failed");
+        }
+      } catch (err) {
+        this.success = false;
+        this.error = true;
+      }
+      setTimeout(() => {
+        this.error = false;
+      }, 4000);
+    },
+  },
 };
 </script>
 

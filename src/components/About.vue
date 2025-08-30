@@ -44,19 +44,22 @@
           {{ skill }}
         </div>
       </div>
-      <div class="w-[100%] flex justify-center">
-        <div class="btnn ml-5 relative mt-20">
-          <div class="btn">Preview My CV ?</div>
-          <div class="btn2"></div>
+      <a
+        href="https://drive.google.com/file/d/1z3-1ywBLo2t6o5o213GaHjmgw6wl73it/view?usp=drive_link"
+        target="_blank"
+        ><div class="w-[100%] flex justify-center">
+          <div class="btnn ml-5 relative mt-20">
+            <div class="btn">Preview My CV ?</div>
+            <div class="btn2"></div>
 
-          <img src="../assets/star.svg" class="onesvg svgg" alt="" />
-          <img src="../assets/star.svg" class="twosvg svgg" alt="" />
-          <img src="../assets/star.svg" class="threesvg svgg" alt="" />
-          <img src="../assets/star.svg" class="foursvg svgg" alt="" />
-          <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
-          <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
-        </div>
-      </div>
+            <img src="../assets/star.svg" class="onesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="twosvg svgg" alt="" />
+            <img src="../assets/star.svg" class="threesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="foursvg svgg" alt="" />
+            <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
+          </div></div
+      ></a>
     </div>
   </div>
 </template>
