@@ -10,7 +10,10 @@
       </div>
       <div class="w-[100%] flex flex-col gap-40 projects">
         <div @click="goToProject(project1.name)" class="project m-auto">
-          <img :src="project1.img" alt="" />
+          <div class="overflow-hidden">
+            <img class="projectimage" :src="project1.img" alt="" />
+          </div>
+
           <div class="name">{{ project1.name }}</div>
           <div class="title flex justify-between">
             {{ project1.title }}
@@ -28,7 +31,10 @@
         </div>
 
         <div @click="goToProject(project2.name)" class="project ml-[30%]">
-          <img :src="project2.img" alt="" />
+          <div class="overflow-hidden">
+            <img class="projectimage" :src="project2.img" alt="" />
+          </div>
+
           <div class="name">{{ project2.name }}</div>
           <div class="title flex justify-between">
             {{ project2.title }}
@@ -46,7 +52,10 @@
         </div>
         <div class="flex gap-10 items-center">
           <div @click="goToProject(project3.name)" class="project">
-            <img class="h-[400px]" :src="project3.img" alt="" />
+            <div class="overflow-hidden">
+              <img class="h-[400px] projectimage" :src="project3.img" alt="" />
+            </div>
+
             <div class="name">{{ project3.name }}</div>
             <div class="title flex justify-between">
               {{ project3.title }}
@@ -66,7 +75,10 @@
             @click="goToProject(project4.name)"
             class="project h-[fit-content]"
           >
-            <img :src="project4.img" alt="" />
+            <div class="overflow-hidden">
+              <img class="projectimage" :src="project4.img" alt="" />
+            </div>
+
             <div class="name">{{ project4.name }}</div>
             <div class="title flex justify-between">
               {{ project4.title }}
@@ -84,7 +96,10 @@
           </div>
         </div>
         <div @click="goToProject(project5.name)" class="project m-auto">
-          <img :src="project5.img" alt="" />
+          <div class="overflow-hidden">
+            <img class="projectimage" :src="project5.img" alt="" />
+          </div>
+
           <div class="name">{{ project5.name }}</div>
           <div class="title flex justify-between">
             {{ project5.title }}
@@ -101,7 +116,10 @@
           <div class="four"></div>
         </div>
         <div @click="goToProject(project6.name)" class="project mr-[30%]">
-          <img :src="project6.img" alt="" />
+          <div class="overflow-hidden">
+            <img class="projectimage" :src="project6.img" alt="" />
+          </div>
+
           <div class="name">{{ project6.name }}</div>
           <div class="title flex justify-between flex justify-between">
             {{ project6.title }}
@@ -118,8 +136,8 @@
           <div class="four"></div>
         </div>
       </div>
-      <router-link to="/projects">
-        <div class="w-[100%] flex justify-center items-center">
+      <div class="w-[100%] flex justify-center items-center">
+        <router-link to="/projects">
           <div class="btnn ml-5 relative mt-20">
             <div class="btn">View More</div>
             <div class="btn2"></div>
@@ -131,8 +149,8 @@
             <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
             <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
           </div>
-        </div>
-      </router-link>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -224,6 +242,23 @@ export default {
         },
       }
     );
+    gsap.utils.toArray(".projectimage").forEach((el) => {
+      gsap.fromTo(
+        el,
+        {
+          scale: 1.3,
+        },
+        {
+          scale: 1,
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom",
+            end: "top center",
+            scrub: true,
+          },
+        }
+      );
+    });
 
     // gsap.to(".projects", {
     //   y: -3500,

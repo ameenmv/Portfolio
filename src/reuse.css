@@ -55,7 +55,7 @@
 }
 .btnn:hover .btn2 {
   left: -7%;
-  top: 2%;
+  top: 4%;
   border: 2px solid var(--white);
 }
 .btnn:hover .svgg {

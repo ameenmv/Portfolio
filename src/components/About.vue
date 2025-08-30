@@ -41,15 +41,15 @@
           Tailwind CSS
         </div>
         <div
-          class="box font2 absolute right-[-150px] top-[-20px] !rotate-[2deg]"
+          class="box font2 absolute right-[-100px] top-[-20px] !rotate-[2deg]"
         >
           Gsap
         </div>
-        <div class="box font2 absolute right-[-150px] top-[45%] !rotate-[2deg]">
+        <div class="box font2 absolute right-[-100px] top-[45%] !rotate-[2deg]">
           PHP
         </div>
         <div
-          class="box font2 absolute right-[-150px] bottom-[-60px] !rotate-[2deg]"
+          class="box font2 absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
         >
           Laravel
         </div>
@@ -63,11 +63,12 @@
         </div>
       </div> -->
 
-      <a
-        href="https://drive.google.com/file/d/1z3-1ywBLo2t6o5o213GaHjmgw6wl73it/view?usp=drive_link"
-        target="_blank"
-        ><div class="w-[100%] flex justify-center">
-          <div class="btnn relative mt-20">
+      <div class="w-[100%] flex justify-center">
+        <div class="btnn relative mt-20">
+          <a
+            href="https://drive.google.com/file/d/1z3-1ywBLo2t6o5o213GaHjmgw6wl73it/view?usp=drive_link"
+            target="_blank"
+          >
             <div class="btn">Preview My CV ?</div>
             <div class="btn2"></div>
             <img src="../assets/star.svg" class="onesvg svgg" alt="" />
@@ -75,9 +76,10 @@
             <img src="../assets/star.svg" class="threesvg svgg" alt="" />
             <img src="../assets/star.svg" class="foursvg svgg" alt="" />
             <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
-            <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
-          </div></div
-      ></a>
+            <img src="../assets/star.svg" class="sixsvg svgg" alt=""
+          /></a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -255,6 +257,7 @@ video {
 }
 
 .box {
+  font-weight: bold;
   padding: 10px 20px;
   background: red;
   border-radius: 20px;
