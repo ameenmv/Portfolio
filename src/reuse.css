@@ -13,13 +13,14 @@
   z-index: 2;
   transition: 0.3s;
   display: inline-block;
+  overflow: hidden;
 }
 .btn2 {
   width: 102%;
-  height: 102%;
+  height: 96%;
   position: absolute;
-  left: -1%;
-  top: 2%;
+  left: -2%;
+  top: 0%;
   z-index: 1;
   border-radius: 50px;
   border: 1px solid var(--white);
@@ -53,8 +54,8 @@
   border: 1px solid var(--white);
 }
 .btnn:hover .btn2 {
-  left: -8%;
-  top: 10%;
+  left: -7%;
+  top: 2%;
   border: 2px solid var(--white);
 }
 .btnn:hover .svgg {
@@ -95,12 +96,13 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 0; /* هتدخل من الشمال */
+  left: 0;
+  /*هتدخلمنالشمال*/
   width: 0%;
   height: 100%;
   background: var(--bg);
   z-index: -1;
-  transition: width 0.5s ease;
+  transition: width 0.2s ease;
   border-radius: 50px;
 }
 

@@ -15,43 +15,61 @@
       ></video>
     </div>
     <div class="containerr content">
-      <p
-        ref="animatedText"
-        class="text-[26px] font-semibold mt-[200px] animated-text"
-      >
-        Front-End Developer with 1 year experience in Vue.js and solid knowledge
-        of React, along with expertise in JavaScript. I focus on building
-        efficient, scalable, and user-friendly web applications with clean and
-        maintainable code. I’m a fast learner and work closely with teams and
-        clients to deliver real-world digital solutions. Let’s collaborate to
-        bring your ideas to life.
-      </p>
-      <p class="mt-6 text-[45px] font-bold text-center text-[var(--sc)]">
+      <div class="relative trigger">
+        <p
+          ref="animatedText"
+          class="text-[26px] font-semibold mt-[200px] animated-text relative leading-[2] font2"
+        >
+          Front-End Developer with 1 year experience in Vue.js and solid
+          knowledge of React, along with expertise in JavaScript. I focus on
+          building efficient, scalable, and user-friendly web applications with
+          clean and maintainable code. I’m a fast learner and work closely with
+          teams and clients to deliver real-world digital solutions. Let’s
+          collaborate to bring your ideas to life.
+        </p>
+        <div
+          class="box font2 absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
+        >
+          Vue.js
+        </div>
+        <div class="box font2 absolute left-[-150px] top-[45%] !rotate-[-2deg]">
+          React.js
+        </div>
+        <div
+          class="box font2 absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
+        >
+          Tailwind CSS
+        </div>
+        <div
+          class="box font2 absolute right-[-150px] top-[-20px] !rotate-[2deg]"
+        >
+          Gsap
+        </div>
+        <div class="box font2 absolute right-[-150px] top-[45%] !rotate-[2deg]">
+          PHP
+        </div>
+        <div
+          class="box font2 absolute right-[-150px] bottom-[-60px] !rotate-[2deg]"
+        >
+          Laravel
+        </div>
+      </div>
+      <!-- <p class="mt-6 text-[45px] font-bold text-center text-[var(--sc)]">
         Some of Ameen's skills and Technologies
-      </p>
-      <div class="flex gap-5 flex-wrap mt-10 font2">
+      </p> -->
+      <!-- <div class="flex gap-5 flex-wrap mt-10 font2">
         <div v-for="skill in skills" :key="skill.id" class="box">
           {{ skill }}
         </div>
-      </div>
-      <div class="flex gap-5 flex-wrap mt-10 font2">
-        <div v-for="skill in skills2" :key="skill.id" class="box">
-          {{ skill }}
-        </div>
-      </div>
-      <div class="flex gap-5 flex-wrap mt-10 font2">
-        <div v-for="skill in skills3" :key="skill.id" class="box">
-          {{ skill }}
-        </div>
-      </div>
+      </div> -->
+
       <a
         href="https://drive.google.com/file/d/1z3-1ywBLo2t6o5o213GaHjmgw6wl73it/view?usp=drive_link"
         target="_blank"
         ><div class="w-[100%] flex justify-center">
-          <div class="btnn ml-5 relative mt-20">
+          <div class="btnn relative mt-20">
             <div class="btn">Preview My CV ?</div>
             <div class="btn2"></div>
-
             <img src="../assets/star.svg" class="onesvg svgg" alt="" />
             <img src="../assets/star.svg" class="twosvg svgg" alt="" />
             <img src="../assets/star.svg" class="threesvg svgg" alt="" />
@@ -199,7 +217,7 @@ export default {
         opacity: 1,
         stagger: 0.2,
         scrollTrigger: {
-          trigger: ".box", // التريجر هيبقى أول واحدة من .box
+          trigger: ".trigger",
           start: "top 90%",
           end: "bottom 70%",
           scrub: true,
@@ -250,9 +268,10 @@ video {
 
 .btn {
   color: #000;
+  border: 1px solid #000;
 }
 .btn2 {
-  border: 1px solid #000;
+  border: 1px solid #eee;
 }
 
 .btnn:hover .btn {
