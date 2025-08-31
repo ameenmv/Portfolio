@@ -54,14 +54,6 @@
           Laravel
         </div>
       </div>
-      <!-- <p class="mt-6 text-[45px] font-bold text-center text-[var(--sc)]">
-        Some of Ameen's skills and Technologies
-      </p> -->
-      <!-- <div class="flex gap-5 flex-wrap mt-10 font2">
-        <div v-for="skill in skills" :key="skill.id" class="box">
-          {{ skill }}
-        </div>
-      </div> -->
 
       <div class="w-[100%] flex justify-center">
         <div class="btnn relative mt-20">
@@ -213,7 +205,7 @@ export default {
     );
     // animate box opacity
     gsap.fromTo(
-      ".box", // هنا بيجيب كل العناصر اللي عندها class="box"
+      ".box",
       { opacity: 0 },
       {
         opacity: 1,

@@ -13,15 +13,15 @@ gsap.registerPlugin(ScrollSmoother);
 export default {
   name: "App",
   components: {
-    // Add your components here
+
   },
   data() {
     return {
-      // Define your data properties here
+
     };
   },
   methods: {
-    // Define your methods here
+
   },
   mounted() {
     ScrollSmoother.create({

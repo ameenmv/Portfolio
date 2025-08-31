@@ -6,11 +6,7 @@
       ><img class="w-[50px]" src="../assets/mv.png" alt=""
     /></router-link>
     <div class="flex gap-6 items-center">
-      <!-- <p
-        class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
-      >
-        About
-      </p> -->
+     
       <router-link to="/projects"
         ><p
           class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
@@ -19,11 +15,7 @@
         </p></router-link
       >
 
-      <!-- <p
-        class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
-      >
-        Contact
-      </p> -->
+      
       <a
         href="https://drive.google.com/uc?export=download&id=1z3-1ywBLo2t6o5o213GaHjmgw6wl73it"
         ><div class="btnn ml-5 relative">

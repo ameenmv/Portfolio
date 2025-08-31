@@ -1,18 +1,19 @@
 <template>
-  <div class="min-h-[100vh] bg-[var(--bg)]">
+  <div class="min-h-[100vh] bg-[var(--bg)] section2">
     <div class="containerr">
       <div class="pt-20 flex flex-col text-center">
-        <p class="text-[#ffffff80] font-semibold">got a project?</p>
-        <p
-          class="text-[var(--white)] text-[56px] font-semibold mt-3 tracking-[-3px]"
+        <p class="text-[#ffffff80] font-semibold gotproject">got a project?</p>
+        <div
+          class="text-[var(--white)] text-[56px] font-semibold mt-3 tracking-[-3px] flex justify-center"
         >
-          Let's Work <span class="text-[#ffffff80]">Together</span>
-        </p>
-        <p class="text-[18px] text-[#ffffff8f] mt-3">
+          <div class="letswork">Let's Work&#160;</div>
+          <div class="text-[#ffffff80] together">Together</div>
+        </div>
+        <p class="text-[18px] text-[#ffffff8f] mt-3 feelfree">
           Feel free to contact me if you have any questions.
         </p>
         <div
-          class="flex gap-8 mt-8 text-center justify-center text-[var(--white)] font2"
+          class="flex links gap-8 mt-8 text-center justify-center text-[var(--white)] font2"
         >
           <a target="_blank" href="https://wa.me/201017025076"
             ><p class="flex gap-2 items-center cursor-pointer">
@@ -99,6 +100,8 @@
 
 <script>
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 export default {
   name: "Contact",
   data() {
@@ -119,7 +122,7 @@ export default {
       formData.append("name", this.form.name);
       formData.append("email", this.form.email);
       formData.append("message", this.form.message);
-      formData.append("_captcha", "false"); // optional
+      formData.append("_captcha", "false"); 
       formData.append("_subject", "New Contact Form Submission");
 
       try {
@@ -151,6 +154,37 @@ export default {
         this.error = false;
       }, 4000);
     },
+  },
+  mounted() {
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section2",
+        start: "top 90%",
+        end: "top 60%",
+        scrub: true,
+      },
+    });
+
+    tl.fromTo(".gotproject", { y: 50, opacity: 0 }, { y: 0, opacity: 1 })
+      .fromTo(
+        ".together ",
+        { y: -50, x: 50, opacity: 0 },
+        { y: 0, x: 0, opacity: 1 },
+        "-=0.4"
+      )
+      .fromTo(
+        ".letswork ",
+        { y: 50, x: -25, opacity: 0 },
+        { y: 0, x: 0, opacity: 1 },
+        "-=0.4"
+      )
+      .fromTo(
+        ".feelfree ",
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1 },
+        "-=0.4"
+      )
+      .fromTo(".links ", { y: 50, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.4");
   },
 };
 </script>
