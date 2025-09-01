@@ -5,104 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/ameeen.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
     <title>Ameen</title>
-    <meta
-      name="description"
-      content="Ameen Mohamed is a passionate Front-end Developer specializing in Vue.js and modern web technologies. View my projects, skills, and get in touch for collaboration opportunities."
-    />
-    <meta
-      name="keywords"
-      content="Front-end Developer, Vue.js Developer, Web Developer, JavaScript, Portfolio, Ameen Mohamed"
-    />
-    <meta name="author" content="Ameen Mohamed" />
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Ameen" />
-    <meta
-      property="og:description"
-      content="Ameen Mohamed is a passionate Front-end Developer specializing in Vue.js and modern web technologies. View my projects, skills, and get in touch for collaboration opportunities."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourdomain.com" />
-    <meta property="og:image" content="/ameeen.png" />
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ameen" />
-    <meta
-      name="twitter:description"
-      content="Ameen Mohamed is a passionate Front-end Developer specializing in Vue.js and modern web technologies."
-    />
-    <meta name="twitter:image" content="/ameeen.png" />
-
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/src/main.js" as="script" />
-    <link rel="preload" href="/src/style.css" as="style" />
-
-    <!-- DNS prefetch for external domains -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
-
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-
-    <!-- Theme color for mobile browsers -->
-    <meta name="theme-color" content="#2ecc71" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Ameen Portfolio" />
-
-    <!-- Apple touch icons -->
-    <link rel="apple-touch-icon" href="/ameeen.png" />
-
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ameen Mohamed",
-        "jobTitle": "Front-end Developer",
-        "description": "Passionate Front-end Developer specializing in Vue.js and modern web technologies",
-        "url": "https://yourdomain.com",
-        "sameAs": [
-          "https://www.linkedin.com/in/ameeenmv",
-          "https://github.com/ameenmv",
-          "https://www.instagram.com/ameeen_mv",
-          "https://x.com/ameeen_mv"
-        ],
-        "image": "/ameeen.png",
-        "knowsAbout": [
-          "Vue.js",
-          "JavaScript",
-          "Front-end Development",
-          "Web Development"
-        ]
-      }
-    </script>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
-
-    <!-- Service Worker Registration -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-              console.log("SW registered: ", registration);
-            })
-            .catch((registrationError) => {
-              console.log("SW registration failed: ", registrationError);
-            });
-        });
-      }
-    </script>
   </body>
 </html>

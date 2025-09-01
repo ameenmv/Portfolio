@@ -10,10 +10,11 @@
 </template>
 
 <script>
+import gsap from "gsap";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import Intro from "./components/Intro.vue";
 
-// Lazy load GSAP plugins for better performance
-let ScrollSmoother = null;
+gsap.registerPlugin(ScrollSmoother);
 
 export default {
   name: "App",
@@ -28,7 +29,7 @@ export default {
   methods: {
     // Define your methods here
   },
-  async mounted() {
+  mounted() {
     // Scroll to top on page refresh
     window.scrollTo(0, 0);
     
@@ -44,22 +45,12 @@ export default {
       }
     });
     
-    // Lazy load GSAP ScrollSmoother for better performance
-    try {
-      const gsap = await import("gsap");
-      const ScrollSmootherModule = await import("gsap/ScrollSmoother");
-      gsap.default.registerPlugin(ScrollSmootherModule.default);
-      ScrollSmoother = ScrollSmootherModule.default;
-      
-      ScrollSmoother.create({
-        wrapper: ".smooth-wrapper",
-        content: ".smooth-content",
-        smooth: 1.5,
-        effects: true,
-      });
-    } catch (error) {
-      console.warn("GSAP ScrollSmoother failed to load:", error);
-    }
+    ScrollSmoother.create({
+      wrapper: ".smooth-wrapper",
+      content: ".smooth-content",
+      smooth: 1.5,
+      effects: true,
+    });
   },
 };
 </script>

@@ -16,7 +16,7 @@
         class="absolute top-[65%] w-[300px] rounded-[8px] left-[50%] card"
         ref="card"
         src="../assets/meee.jpg"
-        alt="Ameen Mohamed - Front-end Developer | Vue.js"
+        alt=""
         loading="lazy"
         decoding="async"
         fetchpriority="high"

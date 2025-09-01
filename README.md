@@ -98,32 +98,7 @@ After starting the development server:
 - **Responsive navigation** that adapts to different screen sizes
 - **Scroll-triggered animations** that enhance the user experience
 
-## 🚀 Performance & SEO Optimizations
 
-This portfolio has been optimized for maximum performance and search engine visibility:
-
-### Performance Features
-- ✅ **Lazy Loading** - Components and GSAP plugins load on-demand
-- ✅ **Code Splitting** - Automatic chunk optimization with Vite
-- ✅ **Service Worker** - Offline support and caching
-- ✅ **Image Optimization** - Lazy loading and proper alt tags
-- ✅ **Compression** - Gzip and Brotli compression enabled
-- ✅ **Performance Monitoring** - Core Web Vitals tracking
-- ✅ **Error Tracking** - Comprehensive error monitoring
-
-### SEO Features
-- ✅ **Meta Tags** - Complete Open Graph and Twitter Card support
-- ✅ **Structured Data** - Schema.org markup for better search results
-- ✅ **Sitemap** - XML sitemap for search engine crawling
-- ✅ **Robots.txt** - Search engine crawling instructions
-- ✅ **PWA Support** - Web app manifest for mobile experience
-- ✅ **Security Headers** - Enhanced security and trust signals
-
-### Build Optimizations
-- ✅ **Vite Configuration** - Optimized build process
-- ✅ **Chunk Splitting** - Vendor and library separation
-- ✅ **Minification** - Terser minification enabled
-- ✅ **CSS Code Splitting** - Optimized CSS delivery
 
 ## 🔮 Future Improvements
 
