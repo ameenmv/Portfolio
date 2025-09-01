@@ -12,21 +12,47 @@
   --sc: #a855f7;
   --black: #000000;
 }
+
 .kalam {
-  font-family: "Kalam", "Patrick Hand", cursive;
+  font-family: "Kalam", cursive;
 }
 
+/* angry font */
 @font-face {
   font-family: "angry";
-  src: url("./fonts/Angry.otf") format("otf"),
-    url("./fonts/Angry.woff2") format("woff2");
+  src: url("./fonts/Angry.woff2") format("woff2"),
+    url("./fonts/Angry.otf") format("opentype");
   font-weight: normal;
+  font-style: normal;
+}
+
+/* Kalam custom self-hosted */
+@font-face {
+  font-family: "Kalam";
+  src: url("./fonts/Kalam-Regular.woff2") format("woff2"),
+    url("./fonts/Kalam-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Kalam";
+  src: url("./fonts/Kalam-Bold.woff2") format("woff2"),
+    url("./fonts/Kalam-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Kalam";
+  src: url("./fonts/Kalam-Light.woff2") format("woff2"),
+    url("./fonts/Kalam-Light.ttf") format("truetype");
+  font-weight: 300;
   font-style: normal;
 }
 
 body {
   font-family: "Oswald", sans-serif;
 }
+
 html,
 body {
   height: 100%;
