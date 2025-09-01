@@ -10,17 +10,13 @@
   --sc: #a855f7;
   --black: #000000;
 }
-
+.font2 {
+  font-family: "angry" !important;
+}
 @font-face {
   font-family: "angry";
   src: url("./fonts/Angry.otf") format("otf"),
     url("./fonts/Angry.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "font2";
-  src: url("./fonts/comic-sans-bold.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
 }

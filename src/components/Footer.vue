@@ -1,11 +1,11 @@
 <template>
   <div class="bg-[var(--bg)] h-[10vh] flex justify-center items-center footer">
-    <p class="text-[16px] font2 text-[var(--white)] left">
+    <p class="text-[16px] angry text-[var(--white)] left">
       Ameen Mohamed © All Rights Reserved - 2025
       &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     </p>
     <div
-      class="flex gap-6 text-center justify-center text-[var(--white)] font2 right"
+      class="flex gap-6 text-center justify-center text-[var(--white)] angry right"
     >
       <a target="_blank" href="https://wa.me/201017025076"
         ><p class="flex gap-2 items-center cursor-pointer">

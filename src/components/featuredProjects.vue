@@ -297,7 +297,7 @@ export default {
     margin-top: 10px;
     padding-bottom: 15px;
     margin-left: 20px;
-    font-family: cursive;
+    font-family: angry;
     svg {
       width: 25px;
       height: 25px;
@@ -375,9 +375,6 @@ export default {
 .project:hover,
 .project:hover * {
   cursor: url("../assets/mini3.png") 64 64, pointer !important;
-}
-.project img {
-  height: 100%;
 }
 
 @media (max-width: 1024px) {

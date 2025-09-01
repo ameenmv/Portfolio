@@ -13,7 +13,7 @@
           Feel free to contact me if you have any questions.
         </p>
         <div
-          class="flex links gap-8 mt-8 text-center justify-center text-[var(--white)] font2"
+          class="flex links gap-8 mt-8 text-center justify-center text-[var(--white)] angry"
         >
           <a target="_blank" href="https://wa.me/201017025076"
             ><p class="flex gap-2 items-center cursor-pointer">
@@ -70,11 +70,11 @@
         <div class="left flex flex-col gap-10 text-[var(--white)]">
           <img class="w-[200px] alo" src="../assets/callme.png" alt="" />
           <div class="flex flex-col aloo gap-3">
-            <p class="text-[40px] font-bold font2">Phone</p>
+            <p class="text-[40px] font-bold angry">Phone</p>
             <p class="font-bold opacity-[.8]">+201017025076</p>
           </div>
           <div class="flex flex-col aloo gap-3">
-            <p class="text-[40px] font-bold font2">Address</p>
+            <p class="text-[40px] font-bold angry">Address</p>
             <p class="font-bold opacity-[.8]">Egypt, Mansoura</p>
           </div>
         </div>
@@ -86,10 +86,10 @@
           <input v-model="form.email" type="email" placeholder="Email" />
           <textarea v-model="form.message" type="text" placeholder="Message" />
           <button type="submit">Send</button>
-          <p class="text-[white] font2 success" v-if="success">
+          <p class="text-[white] angry success" v-if="success">
             ✅ Thank you! Your message has been sent successfully.
           </p>
-          <p class="text-[white] font2 success" v-if="error">
+          <p class="text-[white] angry success" v-if="error">
             ❌ Oops! Something went wrong. Plaease try again.
           </p>
         </form>
@@ -208,8 +208,8 @@ export default {
   width: 100%;
 }
 
-.font2 {
-  font-family: cursive;
+.angry {
+  font-family: angry;
 }
 
 .right {
@@ -270,7 +270,7 @@ export default {
   .left img {
     width: 180px;
   }
-  .aloo .font2 {
+  .aloo .angry {
     font-size: 38px;
   }
 }

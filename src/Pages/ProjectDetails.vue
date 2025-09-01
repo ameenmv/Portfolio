@@ -3,7 +3,7 @@
     <Navbar />
     <div class="containerr min-h-[100vh] !pt-[160px] !pb-[100px]">
       <div class="w-[100%] flex justify-center flex flex-col items-center main">
-        <p class="font2 text-[70px] font-bold text-[var(--white)]">
+        <p class="angry text-[70px] font-bold text-[var(--white)]">
           {{ project.name }}
         </p>
         <p
@@ -27,15 +27,15 @@
         <img class="mt-15" :src="project.img" alt="" />
         <div class="flex mt-20 gap-10 w-[100%] textt">
           <div class="left w-[60%]">
-            <p class="font-bold text-[30px] text-[var(--sc)] font2">
+            <p class="font-bold text-[30px] text-[var(--sc)] angry">
               {{ project.type }}
             </p>
-            <p class="font2 mt-4 leading-[1.6]">
+            <p class="angry mt-4 leading-[1.6]">
               {{ project.Description }}
             </p>
             <div class="flex mt-8 gap-5">
               <a target="_blank" v-if="project.website" :href="project.website"
-                ><button class="font2">
+                ><button class="angry">
                   Visit Website
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@
               ></a>
 
               <a :href="project.github" v-if="project.github" target="_blank"
-                ><button class="font2">
+                ><button class="angry">
                   View Code
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                     <path
@@ -62,7 +62,7 @@
             <p class="font-bold mt-8 text-[20px] text-[var(--sc)]">
               Technologies Used
             </p>
-            <p class="font2 mt-4 leading-[1.6]">
+            <p class="angry mt-4 leading-[1.6]">
               {{ project.Technologies }}
             </p>
           </div>
@@ -73,7 +73,7 @@
             <p
               v-for="(Highlight, index) in project.Highlights"
               :key="index"
-              class="mt-4 pb-4 border-b border-[#3741517d] font2 leading-[1.6]"
+              class="mt-4 pb-4 border-b border-[#3741517d] angry leading-[1.6]"
             >
               {{ Highlight }}
             </p>

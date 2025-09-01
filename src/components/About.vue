@@ -18,7 +18,7 @@
       <div class="relative trigger">
         <p
           ref="animatedText"
-          class="text-[26px] text font-semibold mt-[200px] animated-text relative leading-[2] font2"
+          class="text-[26px] text font-semibold mt-[200px] animated-text relative leading-[2] angry"
         >
           Front-End Developer with 1 year experience in Vue.js and solid
           knowledge of React, along with expertise in JavaScript. I focus on
@@ -28,32 +28,32 @@
           collaborate to bring your ideas to life.
         </p>
         <div
-          class="box box1 font2 absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
+          class="box box1 angry absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
         >
           Vue.js
         </div>
         <div
-          class="box box2 font2 absolute left-[-150px] top-[45%] !rotate-[-2deg]"
+          class="box box2 angry absolute left-[-150px] top-[45%] !rotate-[-2deg]"
         >
           React.js
         </div>
         <div
-          class="box box3 font2 absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
+          class="box box3 angry absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
         >
           Tailwind CSS
         </div>
         <div
-          class="box box4 font2 absolute right-[-100px] top-[-20px] !rotate-[2deg]"
+          class="box box4 angry absolute right-[-100px] top-[-20px] !rotate-[2deg]"
         >
           Gsap
         </div>
         <div
-          class="box box5 font2 absolute right-[-100px] top-[45%] !rotate-[2deg]"
+          class="box box5 angry absolute right-[-100px] top-[45%] !rotate-[2deg]"
         >
           PHP
         </div>
         <div
-          class="box box6 font2 absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
+          class="box box6 angry absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
         >
           Laravel
         </div>
