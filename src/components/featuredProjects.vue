@@ -376,6 +376,9 @@ export default {
 .project:hover * {
   cursor: url("../assets/mini3.png") 64 64, pointer !important;
 }
+.project img {
+  height: 100%;
+}
 
 @media (max-width: 1024px) {
   .project {
