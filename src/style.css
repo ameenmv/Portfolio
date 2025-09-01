@@ -2,8 +2,8 @@
 @import "./normalize.css";
 @import "./reuse.css";
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 :root {
   --bg: #222222;
@@ -13,7 +13,7 @@
   --black: #000000;
 }
 .kalam {
-  font-family: "Kalam", cursive;
+  font-family: "Kalam", "Patrick Hand", cursive;
 }
 
 @font-face {
