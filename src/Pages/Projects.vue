@@ -3,7 +3,7 @@
     <Navbar />
     <div class="containerr min-h-[100vh] !pt-[150px]">
       <div class="w-[100%] flex justify-center flex flex-col items-center main">
-        <p class="angry text-[60px] font-bold text-[var(--white)]">
+        <p class="kalam text-[60px] font-bold text-[var(--white)]">
           My Projects
         </p>
         <p

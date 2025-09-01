@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Disallow admin or private areas if any
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all other content
+Allow: /projects/
+Allow: /about/
+Allow: /contact/

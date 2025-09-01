@@ -8,7 +8,7 @@
     <div class="flex gap-2 items-center sm:gap-6">
       <router-link to="/projects"
         ><p
-          class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
+          class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[16px] kalam"
         >
           Projects
         </p></router-link

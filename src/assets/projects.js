@@ -15,10 +15,9 @@ import xo from "../assets/xo.png";
 import movie from "../assets/movie.png";
 import interior from "../assets/interior.png";
 import hangman from "../assets/hangman.png";
-// import food from "../assets/food.png";
+import food from "../assets/food.png";
 import bootstrap from "../assets/bootstrap.png";
 import ameen from "../assets/ameen.png";
-//dasdasdsadasd
 export const projects = [
   {
     id: 1,
@@ -305,7 +304,7 @@ export const projects = [
   },
   {
     id: 15,
-    // img: food,
+    img: food,
     name: "Food Lover",
     title: "Responsive Food Website",
     type: "Food Website",

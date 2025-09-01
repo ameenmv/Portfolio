@@ -51,7 +51,7 @@
         <div class="flex gap-10 items-center">
           <div @click="goToProject(project3.name)" class="project">
             <div class="overflow-hidden">
-              <img class="h-[400px] projectimage" :src="project3.img" alt="" />
+              <img class="projectimage" :src="project3.img" alt="" />
             </div>
 
             <div class="name">{{ project3.name }}</div>
@@ -382,9 +382,14 @@ export default {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-  .project img {
-    height: fit-content;
+  
+  .projectimage {
+    height: auto !important;
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
   }
+  
   .flex.gap-10 {
     flex-direction: column;
     gap: 150px;
@@ -394,24 +399,86 @@ export default {
 @media (max-width: 991px) {
   .header2 {
     font-size: 60px !important;
+    letter-spacing: -1px !important;
+  }
+  
+  .projectimage {
+    max-height: 350px;
   }
 }
+
 @media (max-width: 767px) {
   .header2 {
     font-size: 32px !important;
-    letter-spacing: 4px;
+    letter-spacing: 2px !important;
   }
+  
   .image {
     width: 160px !important;
   }
+  
+  .projectimage {
+    max-height: 300px;
+  }
+  
+  .projects {
+    gap: 80px !important;
+  }
+  .flex.gap-10{
+    gap: 80px !important;
+  }
+  .title{
+    font-size: 24px !important;
+  }
 }
+
 @media (max-width: 600px) {
   .header2 {
-    font-size: 22px !important;
+    font-size: 26px !important;
+    letter-spacing: 1px !important;
   }
+  
   .image {
     width: 130px !important;
     right: -70px !important;
   }
+  
+  .projectimage {
+    max-height: 250px;
+  }
+  
+  .projects {
+    gap: 60px !important;
+  }
+  .flex.gap-10{
+    gap: 40px !important;
+  }
+  .title{
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header2 {
+    font-size: 24px !important;
+    letter-spacing: 0.5px !important;
+  }
+  
+  .image {
+    width: 100px !important;
+    right: -50px !important;
+  }
+  
+  .projectimage {
+    max-height: 200px;
+  }
+  
+  .projects {
+    gap: 40px !important;
+  }
+  .title{
+    font-size: 20px !important;
+  }
+  
 }
 </style>

@@ -16,7 +16,10 @@
         class="absolute top-[65%] w-[300px] rounded-[8px] left-[50%] card"
         ref="card"
         src="../assets/meee.jpg"
-        alt=""
+        alt="Ameen Mohamed - Front-end Developer | Vue.js"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="high"
       />
       <div class="cont">
         <div
@@ -106,6 +109,21 @@ export default {
     };
   },
   mounted() {
+   
+    window.scrollTo(0, 0);
+    
+
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+    
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        window.scrollTo(0, 0);
+      }
+    });
+    
     window.addEventListener("mousemove", this.handleMouseMove);
     window.addEventListener("mouseleave", this.resetCard);
   },

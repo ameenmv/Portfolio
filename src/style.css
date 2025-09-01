@@ -2,6 +2,8 @@
 @import "./normalize.css";
 @import "./reuse.css";
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+
 
 :root {
   --bg: #222222;
@@ -10,9 +12,10 @@
   --sc: #a855f7;
   --black: #000000;
 }
-.font2 {
-  font-family: "angry" !important;
+.kalam {
+  font-family: "Kalam", cursive;
 }
+
 @font-face {
   font-family: "angry";
   src: url("./fonts/Angry.otf") format("otf"),

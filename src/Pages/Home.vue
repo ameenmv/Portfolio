@@ -13,7 +13,7 @@ import Landing from "../components/Landing.vue";
 import About from "../components/About.vue";
 import Projects from "../components/featuredProjects.vue";
 
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 import Contact from "../components/Contact.vue";
 import Footer from "../components/Footer.vue";

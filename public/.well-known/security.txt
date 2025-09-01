@@ -1,0 +1,5 @@
+Contact: mailto:your-email@domain.com
+Expires: 2025-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://yourdomain.com/.well-known/security.txt
+Policy: https://yourdomain.com/security-policy

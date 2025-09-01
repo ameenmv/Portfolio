@@ -7,53 +7,53 @@
     </div>
     <div class="videocont flex items-center justify-center relative">
       <video
-        class="video w-[50%] rounded-[20px]"
+        class="video rounded-[20px]"
         src="../assets/me.mp4"
         loop
         muted
         autoplay
       ></video>
     </div>
-    <div class="containerr content p-[0 50px]">
+    <div class="containerr content">
       <div class="relative trigger">
         <p
           ref="animatedText"
-          class="text-[26px] text font-semibold mt-[200px] animated-text relative leading-[2] angry"
+          class="text-[26px] text font-semibold mt-[100px] animated-text relative leading-[2] kalam"
         >
           Front-End Developer with 1 year experience in Vue.js and solid
           knowledge of React, along with expertise in JavaScript. I focus on
           building efficient, scalable, and user-friendly web applications with
-          clean and maintainable code. I’m a fast learner and work closely with
-          teams and clients to deliver real-world digital solutions. Let’s
+          clean and maintainable code. I'm a fast learner and work closely with
+          teams and clients to deliver real-world digital solutions. Let's
           collaborate to bring your ideas to life.
         </p>
         <div
-          class="box box1 angry absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
+          class="box box1 kalam absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
         >
           Vue.js
         </div>
         <div
-          class="box box2 angry absolute left-[-150px] top-[45%] !rotate-[-2deg]"
+          class="box box2 kalam absolute left-[-150px] top-[45%] !rotate-[-2deg]"
         >
           React.js
         </div>
         <div
-          class="box box3 angry absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
+          class="box box3 kalam absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
         >
           Tailwind CSS
         </div>
         <div
-          class="box box4 angry absolute right-[-100px] top-[-20px] !rotate-[2deg]"
+          class="box box4 kalam absolute right-[-100px] top-[-20px] !rotate-[2deg]"
         >
           Gsap
         </div>
         <div
-          class="box box5 angry absolute right-[-100px] top-[45%] !rotate-[2deg]"
+          class="box box5 kalam absolute right-[-100px] top-[45%] !rotate-[2deg]"
         >
           PHP
         </div>
         <div
-          class="box box6 angry absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
+          class="box box6 kalam absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
         >
           Laravel
         </div>
@@ -243,10 +243,24 @@ export default {
 video {
   scale: 1;
 }
+
+.videocont {
+  padding: 0 20px;
+}
+
+.video {
+  width: 50%;
+  max-width: 600px;
+  min-width: 300px;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+
 .content {
   line-height: 1.6;
   padding: 0 100px;
 }
+
 :deep(.animated-text span) {
   opacity: 0.5;
   display: inline-block;
@@ -260,7 +274,6 @@ video {
   border-radius: 20px;
   width: fit-content;
   background: var(--white);
-
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
@@ -270,6 +283,7 @@ video {
   color: #000;
   border: 1px solid #000;
 }
+
 .btn2 {
   border: 1px solid #eee;
 }
@@ -279,22 +293,24 @@ video {
   background-color: var(--bg);
   border: 1px solid #000;
 }
+
 .btnn:hover .btn2 {
   border: 2px solid #000;
 }
+
 .svgg {
   filter: brightness(0) invert(1);
 }
+
 .btnn:hover .svgg {
   filter: none;
 }
 
-/* الخلفية المتحركة */
 .btn::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 0; /* هتدخل من الشمال */
+  left: 0;
   width: 0%;
   height: 100%;
   background: var(--bg);
@@ -303,57 +319,223 @@ video {
   border-radius: 50px;
 }
 
-/* وقت الـ hover */
 .btnn:hover .btn::before {
   width: 100%;
 }
 
-/* النص فوق الخلفية */
 .btnn:hover .btn {
   color: var(--white);
 }
 
 @media (max-width: 1500px) {
   .content {
-    padding: 0 100px;
+    padding: 0 80px;
   }
 }
+
+@media (max-width: 1200px) {
+  .content {
+    padding: 0 60px;
+  }
+
+  .video {
+    width: 60%;
+  }
+}
+
+@media (max-width: 991px) {
+  .content {
+    padding: 0 40px;
+  }
+
+  .video {
+    width: 70%;
+  }
+
+  .header {
+    font-size: 70px !important;
+    letter-spacing: -2px !important;
+  }
+}
+
 @media (max-width: 800px) {
-  .content.containerr {
+  .content {
     padding: 0 30px !important;
     margin: 0 auto !important;
     width: 100% !important;
   }
+
+  .video {
+    width: 85%;
+    min-width: 280px;
+  }
+
   .content p {
-    font-size: 18px;
+    font-size: 20px;
     margin-top: -10px;
   }
+
   .btnn {
     margin-top: 200px;
   }
+
+  .header {
+    font-size: 50px !important;
+    letter-spacing: -1px !important;
+  }
+
   .box1 {
     top: 105%;
     left: 0;
+    transform: rotate(-2deg) scale(0.9);
   }
+
   .box2 {
     top: 120%;
     left: 0%;
+    transform: rotate(-2deg) scale(0.9);
   }
+
   .box3 {
     bottom: -14%;
     left: 30%;
+    transform: rotate(-2deg) scale(0.9);
   }
+
   .box4 {
     top: 120%;
     left: 41%;
+    transform: rotate(2deg) scale(0.9);
   }
+
   .box5 {
-    top: 105%;
+    top: 100%;
     left: 80%;
+    transform: rotate(2deg) scale(0.9);
   }
+
   .box6 {
     bottom: -30%;
     right: 0%;
+    transform: rotate(2deg) scale(0.9);
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: 0 20px !important;
+  }
+
+  .video {
+    width: 90%;
+    min-width: 250px;
+  }
+
+  .content p {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .header {
+    font-size: 40px !important;
+  }
+
+  .btnn {
+    margin-top: 150px;
+  }
+
+  .box1 {
+    top: 110%;
+    left: 2%;
+    transform: rotate(-2deg) scale(0.85);
+  }
+
+  .box2 {
+    top: 125%;
+    left: 2%;
+    transform: rotate(-2deg) scale(0.85);
+  }
+
+  .box3 {
+    bottom: -18%;
+    left: 32%;
+    transform: rotate(-2deg) scale(0.85);
+  }
+
+  .box4 {
+    top: 125%;
+    left: 42%;
+    transform: rotate(2deg) scale(0.85);
+  }
+
+  .box5 {
+    top: 100%;
+    left: 78%;
+    transform: rotate(2deg) scale(0.85);
+  }
+
+  .box6 {
+    bottom: -40%;
+    right: 2%;
+    transform: rotate(2deg) scale(0.85);
+  }
+
+  .box {
+    padding: 10px 18px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 0 15px !important;
+  }
+
+  .video {
+    width: 95%;
+    min-width: 220px;
+  }
+
+  .content p {
+    font-size: 18px !important;
+  }
+
+  .header {
+    font-size: 32px !important;
+  }
+
+  .btnn {
+    margin-top: 120px;
+  }
+
+  .box2 {
+    top: 125%;
+    left: 5%;
+    transform: rotate(-2deg) scale(0.8);
+  }
+
+  .box3 {
+    bottom: -20%;
+    left: 35%;
+    transform: rotate(-2deg) scale(0.8);
+  }
+
+  .box4 {
+    top: 125%;
+    left: 45%;
+    transform: rotate(2deg) scale(0.8);
+  }
+
+  .box5 {
+    top: 110%;
+    left: 75%;
+    transform: rotate(2deg) scale(0.8);
+  }
+
+  .box6 {
+    bottom: -40%;
+    right: 5%;
+    transform: rotate(2deg) scale(0.8);
   }
 }
 </style>
