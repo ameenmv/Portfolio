@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sm:pl-10 sm:pr-10 pl-4 pr-4 flex justify-between items-center fixed top-0 left-0 right-0 h-[80px] z-50 h-[8vh]"
+    class="sm:pl-10 sm:pr-10 pl-4 pr-4 flex justify-between items-center absolute top-0 left-0 right-0 h-[80px] z-50 h-[8vh]"
   >
     <router-link to="/"
       ><img class="w-[50px]" src="../assets/mv.png" alt=""
