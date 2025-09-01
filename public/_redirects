@@ -1,1 +1,9 @@
+# Main SPA routing
 /*    /index.html   200
+
+# Block access to deleted performance files
+/sw.js /404.html 404
+/manifest.json /404.html 404
+/robots.txt /404.html 404
+/sitemap.xml /404.html 404
+/.well-known/security.txt /404.html 404
