@@ -17,9 +17,6 @@
         ref="card"
         src="../assets/meee.jpg"
         alt=""
-        loading="lazy"
-        decoding="async"
-        fetchpriority="high"
       />
       <div class="cont">
         <div
