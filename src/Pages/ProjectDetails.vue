@@ -2,7 +2,7 @@
   <div class="bg-[var(--bg)] min-h-[100vh] text-[var(--white)]">
     <Navbar />
     <div class="containerr min-h-[100vh] !pt-[160px] !pb-[100px]">
-      <div class="w-[100%] flex justify-center flex flex-col items-center">
+      <div class="w-[100%] flex justify-center flex flex-col items-center main">
         <p class="font2 text-[70px] font-bold text-[var(--white)]">
           {{ project.name }}
         </p>
@@ -11,18 +11,21 @@
         >
           {{ project.title }}
         </p>
-        <iframe
+        <div
           v-if="project.video"
-          class="mt-10"
-          :src="project.video"
-          height="599"
-          width="80%"
-          frameborder="0"
-          allowfullscreen=""
-          title="Embedded post"
-        ></iframe>
+          class="relative w-5/5 mx-auto pb-[56.25%] mt-10"
+        >
+          <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            :src="project.video"
+            frameborder="0"
+            allowfullscreen
+            title="Embedded post"
+          ></iframe>
+        </div>
+
         <img class="mt-15" :src="project.img" alt="" />
-        <div class="flex mt-20 gap-10 w-[100%]">
+        <div class="flex mt-20 gap-10 w-[100%] textt">
           <div class="left w-[60%]">
             <p class="font-bold text-[30px] text-[var(--sc)] font2">
               {{ project.type }}
@@ -138,7 +141,24 @@ export default {
     transform: rotate(0deg);
   }
 }
-as {
-  border-color: #3741517d;
+
+@media (max-width: 991px) {
+  .textt {
+    flex-direction: column;
+  }
+  .left,
+  .right {
+    width: 100%;
+  }
+  .right {
+    padding: 0;
+  }
+  .main p:nth-child(1) {
+    font-size: 40px;
+  }
+  .main p:nth-child(2) {
+    font-size: 15px;
+    width: 100%;
+  }
 }
 </style>

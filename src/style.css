@@ -11,8 +11,9 @@
   --black: #000000;
 }
 .font2 {
-  font-family: cursive;
+  font-family: "Comic Sans MS", "Apple Chancery", cursive;
 }
+
 @font-face {
   font-family: "angry";
   src: url("./fonts/Angry.otf") format("otf"),

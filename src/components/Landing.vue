@@ -13,7 +13,7 @@
         Avilable for work
       </p>
       <img
-        class="absolute top-[40%] w-[350px] rounded-[8px] left-[50%] card"
+        class="absolute top-[65%] w-[300px] rounded-[8px] left-[50%] card"
         ref="card"
         src="../assets/meee.jpg"
         alt=""
@@ -188,13 +188,14 @@ export default {
   transform: translate(-50%, -50%);
 }
 .center {
-  font-size: 200px;
+  font-size: 170px;
   font-weight: 500;
   letter-spacing: 20px;
   text-transform: uppercase;
   color: var(--white);
   text-align: center;
   font-family: "angry", sans-serif;
+  margin-top: 40px;
 }
 .work {
   left: 15px;
@@ -253,7 +254,6 @@ export default {
   }
   .card {
     width: 260px;
-    top: 50%;
   }
   .cont {
     top: 30%;
@@ -262,10 +262,10 @@ export default {
 @media (max-width: 700px) {
   .center {
     font-size: 40px;
+    margin-top: 0;
   }
   .card {
-    width: 200px;
-    top: 55%;
+    width: 180px;
   }
   .cont {
     top: 35%;

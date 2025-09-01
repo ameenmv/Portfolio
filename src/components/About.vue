@@ -14,7 +14,7 @@
         autoplay
       ></video>
     </div>
-    <div class="containerr content">
+    <div class="containerr content p-[0 50px]">
       <div class="relative trigger">
         <p
           ref="animatedText"
@@ -245,6 +245,7 @@ video {
 }
 .content {
   line-height: 1.6;
+  padding: 0 100px;
 }
 :deep(.animated-text span) {
   opacity: 0.5;
@@ -355,6 +356,4 @@ video {
     right: 0%;
   }
 }
-
-
 </style>

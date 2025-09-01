@@ -27,15 +27,13 @@ router.afterEach((to, from) => {
   const smoother = ScrollSmoother.get();
   if (!smoother) return;
 
-
   if (to.name === "Home" && from.name && window.history.state.back) {
-
     return;
   }
 
 
   setTimeout(() => {
-    smoother.scrollTo(0, true); 
+    smoother.scrollTo(0, true);
   }, 50);
 });
 

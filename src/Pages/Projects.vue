@@ -2,7 +2,7 @@
   <div class="bg-[var(--bg)] min-h-[100vh] color-[var(--white)] pb-[70px]">
     <Navbar />
     <div class="containerr min-h-[100vh] !pt-[150px]">
-      <div class="w-[100%] flex justify-center flex flex-col items-center">
+      <div class="w-[100%] flex justify-center flex flex-col items-center main">
         <p class="font2 text-[60px] font-bold text-[var(--white)]">
           My Projects
         </p>
@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 .project {
-  width: 400px;
+  max-width: 400px;
   border-radius: 20px;
   background: var(--black);
   color: var(--white);
@@ -182,5 +182,15 @@ export default {
 .project:hover,
 .project:hover * {
   cursor: url("../assets/mini3.png") 64 64, pointer !important;
+}
+
+@media (max-width: 991px) {
+  .main p:nth-child(1) {
+    font-size: 40px;
+  }
+  .main p:nth-child(2) {
+    font-size: 15px;
+    width: 100%;
+  }
 }
 </style>

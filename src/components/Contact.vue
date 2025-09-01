@@ -66,7 +66,7 @@
           ></a>
         </div>
       </div>
-      <div class="mt-30 flex gap-65 items-center form">
+      <div class="mt-30 pb-5 flex gap-65 items-center form">
         <div class="left flex flex-col gap-10 text-[var(--white)]">
           <img class="w-[200px] alo" src="../assets/callme.png" alt="" />
           <div class="flex flex-col aloo gap-3">
