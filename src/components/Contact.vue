@@ -66,14 +66,14 @@
           ></a>
         </div>
       </div>
-      <div class="mt-30 flex gap-65 items-center">
+      <div class="mt-30 flex gap-65 items-center form">
         <div class="left flex flex-col gap-10 text-[var(--white)]">
-          <img class="w-[200px]" src="../assets/callme.png" alt="" />
-          <div class="flex flex-col gap-3">
+          <img class="w-[200px] alo" src="../assets/callme.png" alt="" />
+          <div class="flex flex-col aloo gap-3">
             <p class="text-[40px] font-bold font2">Phone</p>
             <p class="font-bold opacity-[.8]">+201017025076</p>
           </div>
-          <div class="flex flex-col gap-3">
+          <div class="flex flex-col aloo gap-3">
             <p class="text-[40px] font-bold font2">Address</p>
             <p class="font-bold opacity-[.8]">Egypt, Mansoura</p>
           </div>
@@ -122,7 +122,7 @@ export default {
       formData.append("name", this.form.name);
       formData.append("email", this.form.email);
       formData.append("message", this.form.message);
-      formData.append("_captcha", "false"); 
+      formData.append("_captcha", "false");
       formData.append("_subject", "New Contact Form Submission");
 
       try {
@@ -238,6 +238,40 @@ export default {
   button:hover * {
     cursor: url("../assets/mini2.png") 64 64, pointer !important;
     background: #ffffff34;
+  }
+}
+
+@media (max-width: 1200px) {
+  .form {
+    gap: 150px;
+  }
+}
+@media (max-width: 991px) {
+  .form {
+    flex-direction: column;
+    gap: 80px;
+    padding-bottom: 50px;
+    margin-top: 60px;
+  }
+  .left,
+  .right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .letswork,
+  .together {
+    font-size: 40px !important;
+  }
+  .feelfree {
+    font-size: 16px;
+  }
+  .left img {
+    width: 180px;
+  }
+  .aloo .font2 {
+    font-size: 38px;
   }
 }
 </style>

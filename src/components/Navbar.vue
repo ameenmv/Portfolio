@@ -1,12 +1,11 @@
 <template>
   <div
-    class="pl-10 pr-10 flex justify-between items-center fixed top-0 left-0 right-0 h-[80px] z-50 h-[8vh]"
+    class="sm:pl-10 sm:pr-10 pl-4 pr-4 flex justify-between items-center fixed top-0 left-0 right-0 h-[80px] z-50 h-[8vh]"
   >
     <router-link to="/"
       ><img class="w-[50px]" src="../assets/mv.png" alt=""
     /></router-link>
-    <div class="flex gap-6 items-center">
-     
+    <div class="flex gap-2 items-center sm:gap-6">
       <router-link to="/projects"
         ><p
           class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[15px]"
@@ -15,7 +14,6 @@
         </p></router-link
       >
 
-      
       <a
         href="https://drive.google.com/uc?export=download&id=1z3-1ywBLo2t6o5o213GaHjmgw6wl73it"
         ><div class="btnn ml-5 relative">

@@ -18,7 +18,7 @@
       <div class="relative trigger">
         <p
           ref="animatedText"
-          class="text-[26px] font-semibold mt-[200px] animated-text relative leading-[2] font2"
+          class="text-[26px] text font-semibold mt-[200px] animated-text relative leading-[2] font2"
         >
           Front-End Developer with 1 year experience in Vue.js and solid
           knowledge of React, along with expertise in JavaScript. I focus on
@@ -28,28 +28,32 @@
           collaborate to bring your ideas to life.
         </p>
         <div
-          class="box font2 absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
+          class="box box1 font2 absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
         >
           Vue.js
         </div>
-        <div class="box font2 absolute left-[-150px] top-[45%] !rotate-[-2deg]">
+        <div
+          class="box box2 font2 absolute left-[-150px] top-[45%] !rotate-[-2deg]"
+        >
           React.js
         </div>
         <div
-          class="box font2 absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
+          class="box box3 font2 absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
         >
           Tailwind CSS
         </div>
         <div
-          class="box font2 absolute right-[-100px] top-[-20px] !rotate-[2deg]"
+          class="box box4 font2 absolute right-[-100px] top-[-20px] !rotate-[2deg]"
         >
           Gsap
         </div>
-        <div class="box font2 absolute right-[-100px] top-[45%] !rotate-[2deg]">
+        <div
+          class="box box5 font2 absolute right-[-100px] top-[45%] !rotate-[2deg]"
+        >
           PHP
         </div>
         <div
-          class="box font2 absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
+          class="box box6 font2 absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
         >
           Laravel
         </div>
@@ -307,4 +311,50 @@ video {
 .btnn:hover .btn {
   color: var(--white);
 }
+
+@media (max-width: 1500px) {
+  .content {
+    padding: 0 100px;
+  }
+}
+@media (max-width: 800px) {
+  .content.containerr {
+    padding: 0 30px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+  .content p {
+    font-size: 18px;
+    margin-top: -10px;
+  }
+  .btnn {
+    margin-top: 200px;
+  }
+  .box1 {
+    top: 105%;
+    left: 0;
+  }
+  .box2 {
+    top: 120%;
+    left: 0%;
+  }
+  .box3 {
+    bottom: -14%;
+    left: 30%;
+  }
+  .box4 {
+    top: 120%;
+    left: 41%;
+  }
+  .box5 {
+    top: 105%;
+    left: 80%;
+  }
+  .box6 {
+    bottom: -30%;
+    right: 0%;
+  }
+}
+
+
 </style>

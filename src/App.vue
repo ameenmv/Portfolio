@@ -1,6 +1,7 @@
 <template>
   <div class="smooth-wrapper">
     <div class="smooth-content">
+      <Intro />
       <router-view></router-view>
     </div>
   </div>
@@ -9,20 +10,17 @@
 <script>
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import Intro from "./components/Intro.vue";
 gsap.registerPlugin(ScrollSmoother);
 export default {
   name: "App",
   components: {
-
+    Intro,
   },
   data() {
-    return {
-
-    };
+    return {};
   },
-  methods: {
-
-  },
+  methods: {},
   mounted() {
     ScrollSmoother.create({
       wrapper: ".smooth-wrapper",

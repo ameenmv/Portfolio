@@ -9,7 +9,7 @@
         <p class="two">Mohamed</p>
       </div>
       <p class="absolute work text-[13px]">
-        <span> </span>
+        <span class="w-3 h-3 rounded-full bg-[#2ecc71] animate-pulse"></span>
         Avilable for work
       </p>
       <img
@@ -27,7 +27,10 @@
           @mouseleave="resetIcon(index)"
           ref="socialIcons"
         >
-          <a :href="icon.link" target="_blank"
+          <a
+            class="flex justify-center items-center"
+            :href="icon.link"
+            target="_blank"
             ><svg
               v-html="icon.svg"
               xmlns="http://www.w3.org/2000/svg"
@@ -142,12 +145,11 @@ export default {
       const offsetX = e.clientX - centerX;
       const offsetY = e.clientY - centerY;
 
+      const rotateY = offsetX / 40;
+      const rotateX = -offsetY / 40;
 
-      const rotateY = offsetX / 40; 
-      const rotateX = -offsetY / 40; 
-
-      const moveX = offsetX / 15; 
-      const moveY = offsetY / 15; 
+      const moveX = offsetX / 15;
+      const moveY = offsetY / 15;
 
       gsap.to(this.$refs.card, {
         rotateX,
@@ -210,21 +212,71 @@ export default {
     display: block;
     border-radius: 50%;
     margin-right: 10px;
-    animation: span 1.5s infinite;
   }
 }
-@keyframes span {
-  0%,
-  100% {
-    width: 12px;
-    height: 12px;
-    opacity: 1;
+
+@media (max-width: 1500px) {
+  .center {
+    font-size: 180px;
   }
-  50% {
-    width: 15px;
-    height: 15px;
-    opacity: 0.3;
-    scale: 1.2;
+  .card {
+    width: 320px;
+  }
+  .icon-container {
+    width: 55px;
+    height: 55px;
+    a {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .center {
+    font-size: 150px;
+  }
+  .card {
+    width: 300px;
+  }
+  .icon-container {
+    width: 55px;
+    height: 55px;
+    a {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .center {
+    font-size: 100px;
+  }
+  .card {
+    width: 260px;
+    top: 50%;
+  }
+  .cont {
+    top: 30%;
+  }
+}
+@media (max-width: 700px) {
+  .center {
+    font-size: 40px;
+  }
+  .card {
+    width: 200px;
+    top: 55%;
+  }
+  .cont {
+    top: 35%;
+  }
+  .icon-container {
+    width: 45px;
+    height: 45px;
+    svg {
+      width: 25px;
+      height: 25px;
+    }
   }
 }
 </style>

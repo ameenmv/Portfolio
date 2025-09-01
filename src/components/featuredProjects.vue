@@ -197,13 +197,12 @@ export default {
       },
     });
 
-    
     gsap.fromTo(
       ".header2",
       {
         y: 0,
         opacity: 1,
-        fontSize: "90px", 
+        fontSize: "90px",
       },
       {
         y: () => document.querySelector(".section").offsetHeight - 1400,
@@ -218,7 +217,6 @@ export default {
       }
     );
 
-    
     gsap.fromTo(
       ".image",
       {
@@ -253,8 +251,6 @@ export default {
         }
       );
     });
-
-   
   },
 };
 </script>
@@ -270,7 +266,7 @@ export default {
   }
 }
 .project {
-  width: 750px;
+  max-width: 750px;
   border-radius: 50px;
   background: var(--black);
   color: var(--white);
@@ -379,5 +375,43 @@ export default {
 .project:hover,
 .project:hover * {
   cursor: url("../assets/mini3.png") 64 64, pointer !important;
+}
+
+@media (max-width: 1024px) {
+  .project {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .project img {
+    height: fit-content;
+  }
+  .flex.gap-10 {
+    flex-direction: column;
+    gap: 150px;
+  }
+}
+
+@media (max-width: 991px) {
+  .header2 {
+    font-size: 60px !important;
+  }
+}
+@media (max-width: 767px) {
+  .header2 {
+    font-size: 32px !important;
+    letter-spacing: 4px;
+  }
+  .image {
+    width: 160px !important;
+  }
+}
+@media (max-width: 600px) {
+  .header2 {
+    font-size: 22px !important;
+  }
+  .image {
+    width: 130px !important;
+    right: -70px !important;
+  }
 }
 </style>

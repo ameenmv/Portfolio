@@ -1,11 +1,11 @@
 <template>
   <div class="bg-[var(--bg)] h-[10vh] flex justify-center items-center footer">
-    <p class="text-[16px] font2 text-[var(--white)]">
+    <p class="text-[16px] font2 text-[var(--white)] left">
       Ameen Mohamed © All Rights Reserved - 2025
       &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     </p>
     <div
-      class="flex gap-6 text-center justify-center text-[var(--white)] font2"
+      class="flex gap-6 text-center justify-center text-[var(--white)] font2 right"
     >
       <a target="_blank" href="https://wa.me/201017025076"
         ><p class="flex gap-2 items-center cursor-pointer">
@@ -133,5 +133,36 @@ export default {
 }
 .link:hover::after {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    flex-direction: column;
+    height: 12vh;
+  }
+  .left {
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  .right {
+    gap: 15px;
+    font-size: 14px;
+  }
+  .left {
+    font-size: 14px;
+  }
+  .right {
+    flex-wrap: wrap;
+  }
+  .right svg {
+    width: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .footer {
+    height: 16vh;
+  }
 }
 </style>
