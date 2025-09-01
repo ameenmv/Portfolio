@@ -159,7 +159,7 @@ export const projects = [
     video:
       "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7328019292556333058?compact=1",
     type: "Portfolio Website",
-    website: "https://ameeenmv.netlify.app/",
+    website: "https://ameeenmvmvmv.netlify.app/",
     github: "https://github.com/ameenmv/mv",
     Description:
       "Finally, I finished the first version of my personal portfolio website! I built it completely with Vue.js and Bootstrap, making it fully responsive across all devices. The site includes a contact form that directly sends submitted messages to my email. I consider this version the starting point, and I plan to update it later with a new structure and design improvements.",

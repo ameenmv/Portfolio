@@ -484,6 +484,9 @@ video {
     padding: 10px 18px;
     font-size: 16px;
   }
+  .btnn {
+    margin-top: 150px !important;
+  }
 }
 
 @media (max-width: 480px) {
