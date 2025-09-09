@@ -365,6 +365,10 @@ video {
     width: 100% !important;
   }
 
+  .heading {
+    height: 60vh;
+  }
+
   .video {
     width: 85%;
     min-width: 280px;
@@ -426,6 +430,10 @@ video {
     padding: 0 20px !important;
   }
 
+  .heading {
+    height: 45vh;
+  }
+
   .video {
     width: 90%;
     min-width: 250px;
@@ -485,7 +493,7 @@ video {
     font-size: 16px;
   }
   .btnn {
-    margin-top: 150px !important;
+    margin-top: 160px !important;
   }
 }
 
@@ -512,7 +520,7 @@ video {
   }
 
   .box2 {
-    top: 125%;
+    top: 130%;
     left: 5%;
     transform: rotate(-2deg) scale(0.8);
   }
@@ -530,7 +538,7 @@ video {
   }
 
   .box5 {
-    top: 110%;
+    top: 104%;
     left: 75%;
     transform: rotate(2deg) scale(0.8);
   }

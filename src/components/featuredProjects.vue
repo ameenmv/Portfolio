@@ -382,14 +382,14 @@ export default {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-  
+
   .projectimage {
     height: auto !important;
     max-height: 400px;
     width: 100%;
     object-fit: cover;
   }
-  
+
   .flex.gap-10 {
     flex-direction: column;
     gap: 150px;
@@ -401,7 +401,7 @@ export default {
     font-size: 60px !important;
     letter-spacing: -1px !important;
   }
-  
+
   .projectimage {
     max-height: 350px;
   }
@@ -412,22 +412,26 @@ export default {
     font-size: 32px !important;
     letter-spacing: 2px !important;
   }
-  
+
+  .heading {
+    height: 50vh;
+  }
+
   .image {
     width: 160px !important;
   }
-  
+
   .projectimage {
     max-height: 300px;
   }
-  
+
   .projects {
     gap: 80px !important;
   }
-  .flex.gap-10{
+  .flex.gap-10 {
     gap: 80px !important;
   }
-  .title{
+  .title {
     font-size: 24px !important;
   }
 }
@@ -437,48 +441,49 @@ export default {
     font-size: 26px !important;
     letter-spacing: 1px !important;
   }
-  
+  .heading {
+    height: 40vh;
+  }
   .image {
     width: 130px !important;
     right: -70px !important;
   }
-  
+
   .projectimage {
     max-height: 250px;
   }
-  
+
   .projects {
     gap: 60px !important;
   }
-  .flex.gap-10{
+  .flex.gap-10 {
     gap: 40px !important;
   }
-  .title{
+  .title {
     font-size: 20px !important;
   }
 }
 
 @media (max-width: 480px) {
   .header2 {
-    font-size: 24px !important;
+    font-size: 26px !important;
     letter-spacing: 0.5px !important;
   }
-  
+
   .image {
     width: 100px !important;
     right: -50px !important;
   }
-  
+
   .projectimage {
     max-height: 200px;
   }
-  
+
   .projects {
     gap: 40px !important;
   }
-  .title{
+  .title {
     font-size: 20px !important;
   }
-  
 }
 </style>

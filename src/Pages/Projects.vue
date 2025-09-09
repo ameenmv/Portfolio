@@ -25,7 +25,7 @@
         >
           <img :src="project.img" alt="" />
           <div class="name">{{ project.name }}</div>
-          <div class="title flex justify-between">
+          <div class="title !kalam flex justify-between">
             {{ project.title }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <path

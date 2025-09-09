@@ -1,6 +1,6 @@
 self.addEventListener("install", (event) => {
   console.log("Service Worker: Installed");
-  self.skipWaiting(); // يخلّي SW يشتغل فورًا
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
@@ -8,6 +8,5 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  // يسيب كل الـ requests تروح عادي للشبكة
   return;
 });
