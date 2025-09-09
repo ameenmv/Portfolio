@@ -25,7 +25,7 @@
         >
           <img :src="project.img" alt="" />
           <div class="name">{{ project.name }}</div>
-          <div class="title !kalam flex justify-between">
+          <div class="title flex justify-between">
             {{ project.title }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <path
@@ -104,7 +104,7 @@ export default {
     margin-top: 10px;
     padding-bottom: 15px;
     margin-left: 20px;
-    font-family: cursive;
+    font-family: "Kalam", cursive;
     svg {
       width: 25px;
       height: 25px;
