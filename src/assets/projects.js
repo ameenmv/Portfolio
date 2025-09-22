@@ -20,6 +20,7 @@ import bootstrap from "../assets/bootstrap.png";
 import ameen from "../assets/ameen.png";
 import exclusive from "../assets/exclusive.png";
 import portfolio from "../assets/portfolio.png";
+// #######
 export const projects = [
   {
     id: 60,
