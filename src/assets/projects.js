@@ -18,8 +18,8 @@ import hangman from "../assets/hangman.png";
 // import food from "../assets/food.png";
 import bootstrap from "../assets/bootstrap.png";
 import ameen from "../assets/ameen.png";
-import exclusive from "../assets/exclusive.png";
-import portfolio from "../assets/portfolio.png";
+import exclusive from "../assets/exclusivee.png";
+import portfolio from "../assets/portfolioo.png";
 // #######
 export const projects = [
   {
