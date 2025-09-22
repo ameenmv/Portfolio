@@ -18,7 +18,53 @@ import hangman from "../assets/hangman.png";
 // import food from "../assets/food.png";
 import bootstrap from "../assets/bootstrap.png";
 import ameen from "../assets/ameen.png";
+import exclusive from "../assets/exclusive.png";
+import portfolio from "../assets/portfolio.png";
 export const projects = [
+  {
+    id: 60,
+    img: exclusive,
+    name: "Exclusive",
+    title: "Full-Stack E-Commerce Web Application",
+    video:
+      "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7375646599873736704?compact=1",
+    type: "E-Commerce Web Application",
+    github: "https://github.com/ameenmv/store",
+    Description:
+      "Exclusive is a complete e-commerce platform built from scratch to serve three types of users: User for shopping and managing profiles, Company for managing products and company profiles, and Admin for full control over the platform. The goal was to create a scalable, secure, and user-friendly e-commerce system that delivers a smooth shopping and management experience. The project implements full CRUD operations for product management, with a role-based authentication system to ensure security and precise access control for each user type. The frontend was developed using Vue.js and Tailwind CSS, designed to be fully responsive across devices. To enhance the user experience, I integrated GSAP animations and transitions for a modern, engaging interface. From the technical perspective, Axios was used for real API integration, while Vuelidate ensured data validation and reliable form handling. On the backend side, I collaborated with a developer who built a secure Laravel RESTful API, ensuring smooth communication between the frontend and backend, as well as scalability for future features like payment gateways and advanced analytics. This project allowed me to gain solid hands-on experience in developing a full-stack e-commerce system, covering UI/UX, frontend logic, backend collaboration, and API integration, while keeping scalability and security at the core.",
+    Technologies: "Vue.js, Tailwind CSS, Axios, Vuelidate, GSAP",
+    Highlights: [
+      "Built a complete multi-role e-commerce platform (User, Company, Admin) with role-based authentication & permissions.",
+      "Developed full CRUD operations for product and profile management.",
+      "Designed a responsive modern UI with smooth animations and transitions using GSAP.",
+      "Implemented form validation with Vuelidate to ensure reliable and secure user input.",
+      "Integrated real API communication with Axios for seamless data handling.",
+      "Collaborated with a backend developer to connect with a secure and scalable Laravel RESTful API.",
+      "Secured backend with Laravel Sanctum, ORM, and RESTful API to connect with the frontend",
+      "Designed the system with future scalability in mind (payment gateways, notifications, analytics).",
+    ],
+  },
+  {
+    id: 70,
+    img: portfolio,
+    name: "MV",
+    title: "Current Personal Portfolio",
+    video:
+      "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7368318418053173249?compact=1",
+    type: "Portfolio Website",
+    github: "https://github.com/ameenmv/portfolio",
+    website: "https://ameeenmv.netlify.app/",
+    Description:
+      "The second version of my personal portfolio was a complete rebuild from scratch. While the first version gave me a starting point, I realized it wasn’t as practical or polished as I needed. In this version, I focused on improving the overall design, usability, and performance, while also experimenting with advanced GSAP animations to deliver a smoother and more professional user experience. This project was both a creative and technical journey—from rethinking layouts and interactions to ensuring responsiveness and accessibility across all devices. It highlights my growth as a Frontend Developer, showcasing not only my technical skills but also my ability to iterate, reflect, and improve on previous work. I already see this as a stepping stone toward an even better 3rd version in the future.",
+    Technologies: "Vue.js, Tailwind CSS, Axios, Vuelidate, GSAP",
+    Highlights: [
+      "Rebuilt my personal portfolio from scratch with a modern and responsive design.",
+      "Enhanced usability and performance, making navigation smoother and more intuitive.",
+      "Integrated advanced GSAP animations and transitions for a polished user experience.",
+      "Applied clean code practices and a scalable structure for easier future updates.",
+      "Designed as a living portfolio that evolves with my skills and professional journey.",
+    ],
+  },
   {
     id: 1,
     img: libimg,
@@ -154,7 +200,7 @@ export const projects = [
   {
     id: 7,
     img: ameen,
-    name: "MV",
+    name: "PerviousMV",
     title: "Previous Portfolio Website",
     video:
       "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7328019292556333058?compact=1",

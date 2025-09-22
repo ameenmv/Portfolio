@@ -169,10 +169,11 @@ export default {
     };
   },
   created() {
-    this.project1 = projects.find((p) => p.name === "MVLib");
-    this.project2 = projects.find((p) => p.name === "MV LMS");
-    this.project3 = projects.find((p) => p.name === "MVClinic");
-    this.project4 = projects.find((p) => p.name === "Meditro");
+    this.project1 = projects.find((p) => p.name === "Exclusive");
+    this.project2 = projects.find((p) => p.name === "MVLib");
+    this.project3 = projects.find((p) => p.name === "MV LMS");
+    this.project4 = projects.find((p) => p.name === "MVClinic");
+
     this.project5 = projects.find((p) => p.name === "KIIIBS");
     this.project6 = projects.find((p) => p.name === "Hidaaya");
   },

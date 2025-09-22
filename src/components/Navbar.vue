@@ -13,9 +13,8 @@
           Projects
         </p></router-link
       >
-
       <a
-        href="https://drive.google.com/uc?export=download&id=1z3-1ywBLo2t6o5o213GaHjmgw6wl73it"
+        href="https://drive.google.com/uc?export=download&id=1m6MF1BJyxhEAiT4FDg9s4VQtQaUOwY71"
         ><div class="btnn ml-5 relative">
           <div class="btn">my cv ?</div>
           <div class="btn2"></div>
