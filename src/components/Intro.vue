@@ -2,8 +2,9 @@
   <div v-if="showIntro" class="intro-screen">
     <img src="/mv.png" alt="Logo" class="logo" />
   </div>
+  
 </template>
-
+//alo
 <script>
 import gsap from "gsap";
 
