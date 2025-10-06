@@ -36,5 +36,5 @@ router.afterEach((to, from) => {
     smoother.scrollTo(0, true);
   }, 50);
 });
-
+// s
 export default router;
