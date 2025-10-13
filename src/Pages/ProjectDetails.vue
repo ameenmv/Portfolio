@@ -86,6 +86,7 @@
 </template>
 
 <script>
+// imports
 import Navbar from "../components/Navbar.vue";
 import Contact from "../components/Contact.vue";
 import Footer from "../components/Footer.vue";
