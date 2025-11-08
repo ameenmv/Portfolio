@@ -23,22 +23,19 @@ export default {
   },
   data() {
     return {
-      // Define your data properties here
+
     };
   },
   methods: {
-    // Define your methods here
   },
   mounted() {
-    // Scroll to top on page refresh
+
     window.scrollTo(0, 0);
     
-    // Force scroll to top after a brief delay to ensure it works
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
     
-    // Listen for page visibility changes (when user returns to tab)
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) {
         window.scrollTo(0, 0);

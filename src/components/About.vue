@@ -62,7 +62,7 @@
       <div class="w-[100%] flex justify-center">
         <div class="btnn relative mt-20">
           <a
-            href="https://drive.google.com/file/d/1m6MF1BJyxhEAiT4FDg9s4VQtQaUOwY71/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1ka64aGMrpVLL2XMh7FFTvvwckzTFXyij/view?usp=drive_link"
             target="_blank"
           >
             <div class="btn">Preview My CV ?</div>
