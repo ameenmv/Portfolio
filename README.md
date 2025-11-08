@@ -3,8 +3,8 @@
 A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Frontend Developer. Built with Vue.js 3, enhanced with smooth animations, and designed for performance and scalability.
 
 ---
-
-## ✨ Features
+ 
+## ✨ Features 
 
 - **Modern Landing Page** – Eye-catching hero section with 3D text effects and smooth animations
 - **Professional About Section** – Personal introduction with video background and comprehensive skill showcase
@@ -87,7 +87,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 npm run build
 # or
 yarn build
-```
+``
 
 ### Preview Production Build
 
@@ -140,8 +140,4 @@ Contributions and suggestions are welcome!
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
----
 
-## 📄 License
-
-This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
