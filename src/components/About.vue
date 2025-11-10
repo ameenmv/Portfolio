@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[white] pb-[70px] about">
     <div class="containerr">
-      <div class="heading">
+      <div class="heading"> 
         <h1 class="header">about ameen</h1>
       </div>
     </div>
