@@ -2,14 +2,14 @@
   <div class="bg-[var(--bg)] min-h-[100vh] color-[var(--white)] pb-[70px]">
     <Navbar />
     <div class="containerr min-h-[100vh] !pt-[150px]">
-      <div class="w-[100%] flex justify-center flex flex-col items-center main">
+      <div class="w-[100%] flex justify-center  flex-col items-center main">
         <p class="kalam text-[60px] font-bold text-[var(--white)]">
           My Projects
         </p>
         <p
           class="mt-7 font-bold text-[17px] text-[var(--white)] opacity-[.8] w-[70%] text-center leading-[1.5]"
         >
-          I’ve worked on full-featured apps, from online stores to management
+          I've worked on full-featured apps, from online stores to management
           systems, using Vue.js. I enjoy solving complex problems while keeping
           the user experience smooth. Here are some of my top projects
         </p>
@@ -19,11 +19,16 @@
       >
         <div
           @click="goToProject(project.name)"
-          v-for="project in projects"
+          v-for="project in displayedProjects"
           :key="project.id"
           class="project"
         >
-          <img :src="project.img" alt="" />
+          <img
+            :src="project.img"
+            :alt="project.name"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="name">{{ project.name }}</div>
           <div class="title flex justify-between">
             {{ project.title }}
@@ -38,6 +43,41 @@
           <div class="three"></div>
           <div class="four"></div>
         </div>
+      </div>
+
+      <!-- Load More / GitHub Button -->
+      <div class="w-[100%] flex justify-center items-center">
+        <a v-if="!showAll" @click="loadMore" class="cursor-pointer">
+          <div class="btnn ml-5 relative mt-20">
+            <div class="btn">More Projects</div>
+            <div class="btn2"></div>
+
+            <img src="../assets/star.svg" class="onesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="twosvg svgg" alt="" />
+            <img src="../assets/star.svg" class="threesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="foursvg svgg" alt="" />
+            <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
+          </div>
+        </a>
+        <a
+          v-else
+          href="https://github.com/ameenmv?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="btnn ml-5 relative mt-20">
+            <div class="btn">View All Projects </div>
+            <div class="btn2"></div>
+
+            <img src="../assets/star.svg" class="onesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="twosvg svgg" alt="" />
+            <img src="../assets/star.svg" class="threesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="foursvg svgg" alt="" />
+            <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
+            <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -58,11 +98,23 @@ export default {
   data() {
     return {
       projects: projects,
+      showAll: false,
+      initialCount: 9,
     };
+  },
+  computed: {
+    displayedProjects() {
+      return this.showAll
+        ? this.projects
+        : this.projects.slice(0, this.initialCount);
+    },
   },
   methods: {
     goToProject(name) {
       this.$router.push(`/projects/${name}`);
+    },
+    loadMore() {
+      this.showAll = true;
     },
   },
   mounted() {
@@ -183,6 +235,10 @@ export default {
 .project:hover * {
   cursor: url("../assets/mini3.png") 64 64, pointer !important;
 }
+
+
+
+
 
 @media (max-width: 991px) {
   .main p:nth-child(1) {

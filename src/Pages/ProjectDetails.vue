@@ -2,7 +2,7 @@
   <div class="bg-[var(--bg)] min-h-[100vh] text-[var(--white)]">
     <Navbar />
     <div class="containerr min-h-[100vh] !pt-[160px] !pb-[100px]">
-      <div class="w-[100%] flex justify-center flex flex-col items-center main">
+      <div class="w-[100%] flex justify-center  flex-col items-center main">
         <p class="kalam text-[70px] font-bold text-[var(--white)]">
           {{ project.name }}
         </p>

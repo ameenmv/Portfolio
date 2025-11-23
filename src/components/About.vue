@@ -1,17 +1,19 @@
 <template>
   <div class="bg-[white] pb-[70px] about">
     <div class="containerr">
-      <div class="heading"> 
+      <div class="heading">
         <h1 class="header">about ameen</h1>
       </div>
     </div>
     <div class="videocont flex items-center justify-center relative">
       <video
+        ref="videoEl"
         class="video rounded-[20px]"
-        src="../assets/me.mp4"
+        :src="videoSrc"
         loop
         muted
-        autoplay
+        playsinline
+        preload="none"
       ></video>
     </div>
     <div class="containerr content">
@@ -81,14 +83,16 @@
 </template>
 <script>
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Draggable from "gsap/Draggable";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import meVideo from "../assets/me.mp4";
 gsap.registerPlugin(ScrollTrigger, Draggable);
 
 export default {
   name: "About",
   data: function () {
     return {
+      videoSrc: null,
       skills: [
         "Vue.js",
         "React.js",
@@ -129,6 +133,35 @@ export default {
     };
   },
   mounted() {
+    // Lazy-load the video when it approaches viewport to reduce initial load
+    const vidEl = this.$refs.videoEl;
+    if (vidEl && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.videoSrc = meVideo;
+              this.$nextTick(() => {
+                vidEl.load();
+                const playPromise = vidEl.play();
+                if (playPromise && typeof playPromise.catch === "function") {
+                  playPromise.catch(() => {
+                    /* autoplay blocked — fine to leave muted or user can play */
+                  });
+                }
+              });
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { root: null, rootMargin: "200px", threshold: 0.1 }
+      );
+      observer.observe(vidEl);
+    } else if (vidEl) {
+      // Fallback: load immediately on older browsers
+      this.videoSrc = meVideo;
+    }
+
     // header animation
     gsap.from(".header", {
       y: 100,

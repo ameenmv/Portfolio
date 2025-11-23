@@ -2,21 +2,27 @@
   <div class="h-[100vh] bg-[var(--bg)]">
     <navbar />
     <div
-      class="h-[100vh] w-[100%] flex justify-center items-center relative perspective-[5000px] pt-[8vh]"
+      class="h-screen w-[100%] flex justify-center items-center relative perspective-[5000px] pt-20"
     >
       <div class="center">
         <p class="one">Ameen</p>
         <p class="two">Mohamed</p>
       </div>
-      <p class="absolute work text-[13px]">
+      <p class="absolute work text-[12px]">
         <span class="w-3 h-3 rounded-full bg-[#2ecc71] animate-pulse"></span>
         Avilable for work
       </p>
+      <link rel="preload" as="image" :href="imageSrc" />
       <img
-        class="absolute top-[65%] w-[300px] rounded-[8px] left-[50%] card"
+        class="absolute top-[65%] w-[300px] rounded-lg left-1/2 card"
         ref="card"
-        src="../assets/meee.jpg"
-        alt=""
+        :src="imageSrc"
+        fetchpriority="high"
+        decoding="async"
+        width="300"
+        height="400"
+        alt="Ameen Mohamed - Frontend Developer"
+        @load="onImageLoad"
       />
       <div class="cont">
         <div
@@ -31,6 +37,7 @@
             class="flex justify-center items-center"
             :href="icon.link"
             target="_blank"
+            rel="noopener noreferrer"
             ><svg
               v-html="icon.svg"
               xmlns="http://www.w3.org/2000/svg"
@@ -45,9 +52,9 @@
 </template>
 
 <script>
-import Navbar from "./Navbar.vue";
-
 import { gsap } from "gsap";
+import profileImage from "../assets/meee.jpg";
+import Navbar from "./Navbar.vue";
 
 export default {
   name: "Landing",
@@ -56,6 +63,8 @@ export default {
   },
   data() {
     return {
+      imageSrc: profileImage,
+      imageLoaded: false,
       icons: [
         {
           link: "https://www.linkedin.com/in/ameeenmv",
@@ -106,21 +115,18 @@ export default {
     };
   },
   mounted() {
-   
     window.scrollTo(0, 0);
-    
 
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
-    
 
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
         window.scrollTo(0, 0);
       }
     });
-    
+
     window.addEventListener("mousemove", this.handleMouseMove);
     window.addEventListener("mouseleave", this.resetCard);
   },
@@ -129,6 +135,15 @@ export default {
     window.removeEventListener("mouseleave", this.resetCard);
   },
   methods: {
+    onImageLoad() {
+      this.imageLoaded = true;
+      // Optional: Add fade-in animation after image loads
+      gsap.from(this.$refs.card, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    },
     magneticEffect(e, index) {
       const icon = this.$refs.socialIcons[index];
       const bounds = icon.getBoundingClientRect();
@@ -154,6 +169,8 @@ export default {
     },
 
     handleMouseMove(e) {
+      if (!this.imageLoaded) return; // Wait for image to load before animations
+
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
 
