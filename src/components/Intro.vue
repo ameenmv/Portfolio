@@ -2,7 +2,6 @@
   <div v-if="showIntro" class="intro-screen">
     <img src="/mv.png" alt="Logo" class="logo" />
   </div>
-  
 </template>
 //alo
 <script>
@@ -16,9 +15,23 @@ export default {
     };
   },
   mounted() {
-    this.playIntro();
+    // Wait until the document DOM is ready before running the intro animation.
+    // Use DOMContentLoaded to keep the intro visible until the DOM is parsed.
+    if (
+      document.readyState === "complete" ||
+      document.readyState === "interactive"
+    ) {
+      // DOM already loaded
+      this.playIntro();
+    } else {
+      window.addEventListener("DOMContentLoaded", this.onAppDomLoaded);
+    }
   },
   methods: {
+    onAppDomLoaded() {
+      window.removeEventListener("DOMContentLoaded", this.onAppDomLoaded);
+      this.playIntro();
+    },
     playIntro() {
       document.body.style.overflow = "hidden";
 
@@ -47,6 +60,11 @@ export default {
       this.showIntro = true;
       this.playIntro();
     },
+  },
+
+  unmounted() {
+    // cleanup listener if component is destroyed before DOMContentLoaded
+    window.removeEventListener("DOMContentLoaded", this.onAppDomLoaded);
   },
 
   watch: {

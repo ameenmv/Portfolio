@@ -1,14 +1,14 @@
 <template>
   <div
-    class="sm:pl-10 sm:pr-10 pl-4 pr-4 flex justify-between items-center absolute top-0 left-0 right-0 h-[80px] z-50 h-[8vh]"
+    class="sm:pl-10 sm:pr-10 pl-4 pr-4 flex justify-between items-center absolute top-0 left-0 right-0 h-20 z-50 "
   >
     <router-link to="/"
-      ><img class="w-[60px]" src="../assets/mv.png" alt=""
+      ><img class="w-15" src="../assets/mv.png" alt=""
     /></router-link>
     <div class="flex gap-2 items-center sm:gap-6">
       <router-link to="/projects"
         ><p
-          class="text-[var(--white)] opacity-[.8] tracking-[-.5px] font-semibold text-[16px] kalam"
+          class="text-[var(--white)] opacity-80 tracking-[-.5px] font-semibold text-base kalam"
         >
           Projects
         </p></router-link
