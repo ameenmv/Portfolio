@@ -2,13 +2,11 @@
   <div class="smooth-wrapper">
     <!-- Intro component - shows on all pages -->
     <Intro />
-    
     <div class="smooth-content">
       <router-view></router-view>
     </div>
   </div>
 </template>
-
 <script>
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -23,15 +21,12 @@ export default {
   },
   data() {
     return {
-
     };
   },
   methods: {
   },
   mounted() {
-
     window.scrollTo(0, 0);
-    
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
