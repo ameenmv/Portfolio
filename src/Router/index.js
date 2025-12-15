@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../Pages/Home.vue";
 import Projects from "../Pages/Projects.vue";
 import ProjectDetails from "../Pages/ProjectDetails.vue";
-import gsap from "gsap";
+import gsap from "gsap"; 
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 gsap.registerPlugin(ScrollSmoother);
