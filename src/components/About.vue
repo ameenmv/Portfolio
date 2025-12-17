@@ -22,12 +22,12 @@
           ref="animatedText"
           class="text-[26px] text font-semibold mt-[100px] animated-text relative leading-[2] kalam"
         >
-          Front-End Developer with 1 year experience in Vue.js and solid
-          knowledge of React, along with expertise in JavaScript. I focus on
-          building efficient, scalable, and user-friendly web applications with
-          clean and maintainable code. I'm a fast learner and work closely with
-          teams and clients to deliver real-world digital solutions. Let's
-          collaborate to bring your ideas to life.
+          Front-End Developer with 1+ year of experience specializing in Vue.js
+          and Nuxt.js, with a solid foundation in modern JavaScript. I focus on
+          building scalable, high-performance, and user-friendly web
+          applications using clean, maintainable code. I enjoy working in
+          collaborative environments and turning real business requirements into
+          reliable digital solutions.
         </p>
         <div
           class="box box1 kalam absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
@@ -63,10 +63,7 @@
 
       <div class="w-[100%] flex justify-center">
         <div class="btnn relative mt-20">
-          <a
-            href="https://drive.google.com/file/d/1ka64aGMrpVLL2XMh7FFTvvwckzTFXyij/view?usp=drive_link"
-            target="_blank"
-          >
+          <a href="https://ameenmv.github.io/CV/" target="_blank">
             <div class="btn">Preview My CV ?</div>
             <div class="btn2"></div>
             <img src="../assets/star.svg" class="onesvg svgg" alt="" />
