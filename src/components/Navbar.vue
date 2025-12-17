@@ -14,7 +14,7 @@
         </p></router-link
       >
       <a
-        href="https://drive.google.com/uc?export=download&id=1ka64aGMrpVLL2XMh7FFTvvwckzTFXyij"
+        href="https://github.com/ameenmv/CV/raw/main/ameen.pdf"
         ><div class="btnn ml-5 relative">
           <div class="btn">my cv ?</div>
           <div class="btn2"></div>
