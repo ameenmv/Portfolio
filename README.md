@@ -1,5 +1,5 @@
 # Ameen Mohamed - Frontend Developer Portfolio 
-  
+   
 A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Frontend Developer. Built with Vue.js 3, enhanced with smooth animations, and designed for performance and scalability.
 
 ---
