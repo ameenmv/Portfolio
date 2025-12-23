@@ -3,7 +3,7 @@
 A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Frontend Developer. Built with Vue.js 3, enhanced with smooth animations, and designed for performance and scalability.
 
 ---
- 
+  
 ## ✨ Features 
 
 - **Modern Landing Page** – Eye-catching hero section with 3D text effects and smooth animations
