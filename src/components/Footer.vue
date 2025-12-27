@@ -119,6 +119,9 @@ export default {
 .link {
   position: relative;
   height: fit-content;
+  min-height: 44px; /* Better touch target */
+  display: flex;
+  align-items: center;
 }
 
 .link::after {
@@ -138,31 +141,62 @@ export default {
 @media (max-width: 1024px) {
   .footer {
     flex-direction: column;
-    height: 12vh;
+    height: auto;
+    min-height: 12vh;
+    padding: 20px 10px;
   }
   .left {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 }
 
 @media (max-width: 767px) {
   .right {
-    gap: 15px;
+    gap: 12px;
     font-size: 14px;
   }
   .left {
     font-size: 14px;
+    text-align: center;
   }
   .right {
     flex-wrap: wrap;
+    justify-content: center;
   }
   .right svg {
     width: 15px;
   }
 }
+
 @media (max-width: 600px) {
   .footer {
-    height: 16vh;
+    height: auto;
+    min-height: 18vh;
+    padding: 24px 16px;
+  }
+  
+  .right {
+    gap: 16px;
+  }
+  
+  .left {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px 12px;
+  }
+  
+  .right {
+    gap: 14px;
+    font-size: 13px;
+  }
+  
+  .left {
+    font-size: 12px;
   }
 }
 </style>

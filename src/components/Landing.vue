@@ -65,6 +65,7 @@ export default {
     return {
       imageSrc: profileImage,
       imageLoaded: false,
+      isMobile: false,
       icons: [
         {
           link: "https://www.linkedin.com/in/ameeenmv",
@@ -127,12 +128,22 @@ export default {
       }
     });
 
-    window.addEventListener("mousemove", this.handleMouseMove);
-    window.addEventListener("mouseleave", this.resetCard);
+    // Detect mobile for performance optimization
+    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+      || window.innerWidth < 768;
+
+    // Only add mouse move listeners on desktop
+    if (!this.isMobile) {
+      window.addEventListener("mousemove", this.handleMouseMove);
+      window.addEventListener("mouseleave", this.resetCard);
+    }
   },
   beforeUnmount() {
-    window.removeEventListener("mousemove", this.handleMouseMove);
-    window.removeEventListener("mouseleave", this.resetCard);
+    // Only remove listeners if they were added (desktop only)
+    if (!this.isMobile) {
+      window.removeEventListener("mousemove", this.handleMouseMove);
+      window.removeEventListener("mouseleave", this.resetCard);
+    }
   },
   methods: {
     onImageLoad() {
@@ -301,6 +312,7 @@ export default {
   }
   .cont {
     top: 35%;
+    gap: 12px; /* Better spacing on mobile */
   }
   .icon-container {
     width: 45px;
@@ -311,4 +323,44 @@ export default {
     }
   }
 }
+
+/* Additional mobile improvements */
+@media (max-width: 480px) {
+  .center {
+    font-size: 36px;
+    letter-spacing: 10px;
+  }
+  .card {
+    width: 160px;
+  }
+  .cont {
+    top: 38%;
+    gap: 10px;
+  }
+  .icon-container {
+    width: 42px;
+    height: 42px;
+    margin-right: 0 !important;
+  }
+  .work {
+    font-size: 11px;
+    left: 10px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .center {
+    font-size: 32px;
+    letter-spacing: 8px;
+  }
+  .card {
+    width: 140px;
+  }
+  .icon-container {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 </style>

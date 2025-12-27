@@ -13,7 +13,7 @@
           Feel free to contact me if you have any questions.
         </p>
         <div
-          class="flex links gap-8 mt-8 text-center justify-center text-[var(--white)] kalam"
+          class="flex links gap-4 sm:gap-8 mt-8 text-center justify-center text-[var(--white)] kalam flex-wrap"
         >
           <a target="_blank" href="https://wa.me/201017025076"
             ><p class="flex gap-2 items-center cursor-pointer">
@@ -193,6 +193,9 @@ export default {
 .link {
   position: relative;
   height: fit-content;
+  min-height: 44px; /* Better touch target */
+  display: flex;
+  align-items: center;
 }
 .link::after {
   content: "";
@@ -219,6 +222,7 @@ export default {
     color: var(--white);
     width: 100%;
     border-radius: 10px;
+    font-size: 16px; /* Prevent zoom on iOS */
   }
   textarea {
     min-height: 200px;
@@ -231,11 +235,28 @@ export default {
     color: #ffffffc1;
     background: #ffffff23;
     transition: all 0.3s ease-in-out;
+    min-height: 48px; /* Better touch target */
+    font-size: 16px;
   }
   button:hover,
   button:hover * {
     cursor: url("../assets/mini2.png") 64 64, pointer !important;
     background: #ffffff34;
+  }
+}
+
+/* Mobile improvements */
+@media (max-width: 600px) {
+  .right {
+    input,
+    textarea {
+      padding: 16px;
+    }
+    
+    button {
+      padding: 16px;
+      min-height: 52px;
+    }
   }
 }
 

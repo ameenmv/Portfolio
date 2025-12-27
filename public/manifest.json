@@ -1,11 +1,11 @@
 {
-  "name": "Ameen App",
-  "short_name": "Ameen",
+  "name": "Ameen Mohamed - Frontend Developer Portfolio",
+  "short_name": "Ameen Portfolio",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "description": "My web app built with Vite/Vue",
+  "background_color": "#222222",
+  "theme_color": "#222222",
+  "description": "Portfolio of Ameen Mohamed - Frontend Developer specializing in Vue.js, Nuxt.js, and modern JavaScript. Showcasing creative web applications with stunning animations and responsive design.",
   "icons": [
     {
       "src": "/ameeen.png",
