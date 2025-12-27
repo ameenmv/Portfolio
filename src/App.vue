@@ -37,12 +37,19 @@ export default {
       }
     });
     
-    ScrollSmoother.create({
-      wrapper: ".smooth-wrapper",
-      content: ".smooth-content",
-      smooth: 1.5,
-      effects: true,
-    });
+    // Detect if device is mobile/tablet for performance optimization
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+      || window.innerWidth < 768;
+    
+    // Only enable ScrollSmoother on desktop for better performance
+    if (!isMobile) {
+      ScrollSmoother.create({
+        wrapper: ".smooth-wrapper",
+        content: ".smooth-content",
+        smooth: 1.5,
+        effects: true,
+      });
+    }
   },
 };
 </script>

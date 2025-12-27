@@ -71,6 +71,20 @@ img {
   cursor: url("./assets/mini1.png") 5 5, auto !important;
 }
 
+/* Disable custom cursor on touch devices for better performance */
+@media (hover: none) and (pointer: coarse) {
+  html,
+  body,
+  *,
+  a,
+  button,
+  input,
+  textarea,
+  img {
+    cursor: auto !important;
+  }
+}
+
 .containerr {
   width: 100%;
   margin: 0 auto;
