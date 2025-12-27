@@ -17,7 +17,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 - **PWA Support** – Installable as a Progressive Web App with manifest and service worker
 
 ---
-
+ 
 ## 🛠️ Tech Stack
 
 **Frontend Framework**
