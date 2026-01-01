@@ -63,7 +63,7 @@
 
       <div class="w-[100%] flex justify-center">
         <div class="btnn relative mt-20">
-          <a href="https://ameenmv.github.io/CV/" target="_blank">
+          <a href="https://drive.google.com/file/d/1jIH_XrTvsft4a1tsWeX8O_it6idT6OJF/view?usp=drive_link" target="_blank">
             <div class="btn">Preview My CV ?</div>
             <div class="btn2"></div>
             <img src="../assets/star.svg" class="onesvg svgg" alt="" />
