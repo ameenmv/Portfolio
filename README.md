@@ -6,7 +6,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
   
 ## ✨ Features  
 
-- **Modern Landing Page** – Eye-catching hero section with 3D text effects and smooth animations
+- **Modern Landing Page** – Eye-catching hero section with 3D text effects and smooth animations 
 - **Professional About Section** – Personal introduction with video background and comprehensive skill showcase
 - **Featured Projects Gallery** – Interactive project showcase with hover effects and detailed information
 - **Project Details Pages** – In-depth view for each project, including technologies and highlights
