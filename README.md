@@ -22,7 +22,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 
 **Frontend Framework**
 
-- [Vue.js 3](https://vuejs.org/) (Composition API)
+- [Vue.js 3](https://vuejs.org/) (Composition API) 
 - [Vue Router 4](https://router.vuejs.org/)
 
 **Build Tools & Development**
