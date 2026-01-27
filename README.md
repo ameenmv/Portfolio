@@ -12,7 +12,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 - **Project Details Pages** – In-depth view for each project, including technologies and highlights
 - **Contact Form** – Professional contact section for potential clients and collaborators
 - **Responsive Design** – Fully responsive layout that works seamlessly on all devices
-- **Smooth Scrolling** – GSAP-powered smooth scrolling and scroll-triggered animations
+- **Smooth Scrolling** – GSAP-powered smooth scrolling and scroll-triggered animations 
 - **Performance Optimized** – Built with Vite for fast development and optimized builds 
 - **PWA Support** – Installable as a Progressive Web App with manifest and service worker
 
