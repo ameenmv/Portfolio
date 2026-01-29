@@ -9,7 +9,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 - **Modern Landing Page** – Eye-catching hero section with 3D text effects and smooth animations 
 - **Professional About Section** – Personal introduction with video background and comprehensive skill showcase
 - **Featured Projects Gallery** – Interactive project showcase with hover effects and detailed information
-- **Project Details Pages** – In-depth view for each project, including technologies and highlights
+- **Project Details Pages** – In-depth view for each project, including technologies and highlights 
 - **Contact Form** – Professional contact section for potential clients and collaborators
 - **Responsive Design** – Fully responsive layout that works seamlessly on all devices 
 - **Smooth Scrolling** – GSAP-powered smooth scrolling and scroll-triggered animations 
