@@ -21,7 +21,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 ## 🛠️ Tech Stack 
 
 **Frontend Framework**
-
+ 
 - [Vue.js 3](https://vuejs.org/) (Composition API) 
 - [Vue Router 4](https://router.vuejs.org/)
 
