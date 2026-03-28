@@ -1,27 +1,17 @@
 <template>
-  <div class="bg-[white] pb-[70px] about">
+  <div class="bg-[white] pb-[70px] about overflow-x-hidden">
     <div class="containerr">
       <div class="heading">
         <h1 class="header">about ameen</h1>
       </div>
     </div>
     <div class="videocont flex items-center justify-center relative">
-      <video
-        ref="videoEl"
-        class="video rounded-[20px]"
-        :src="videoSrc"
-        loop
-        muted
-        playsinline
-        preload="none"
-      ></video>
+      <video ref="videoEl" class="video rounded-[20px]" :src="videoSrc" loop muted playsinline preload="none"></video>
     </div>
     <div class="containerr content">
       <div class="relative trigger">
-        <p
-          ref="animatedText"
-          class="text-[26px] text font-semibold mt-[100px] animated-text relative leading-[2] kalam"
-        >
+        <p ref="animatedText"
+          class="text-[26px] text font-semibold mt-[100px] animated-text relative leading-[2] kalam">
           Front-End Developer with 1+ year of experience specializing in Vue.js
           and Nuxt.js, with a solid foundation in modern JavaScript. I focus on
           building scalable, high-performance, and user-friendly web
@@ -29,41 +19,30 @@
           collaborative environments and turning real business requirements into
           reliable digital solutions.
         </p>
-        <div
-          class="box box1 kalam absolute left-[-150px] top-[-20px] !rotate-[-2deg]"
-        >
+        <div class="box box1 kalam absolute left-[-150px] top-[-20px] !rotate-[-2deg]">
           Vue.js
         </div>
-        <div
-          class="box box2 kalam absolute left-[-150px] top-[45%] !rotate-[-2deg]"
-        >
+        <div class="box box2 kalam absolute left-[-150px] top-[45%] !rotate-[-2deg]">
           React.js
         </div>
-        <div
-          class="box box3 kalam absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]"
-        >
+        <div class="box box3 kalam absolute left-[-150px] bottom-[-60px] !rotate-[-2deg]">
           Tailwind CSS
         </div>
-        <div
-          class="box box4 kalam absolute right-[-100px] top-[-20px] !rotate-[2deg]"
-        >
+        <div class="box box4 kalam absolute right-[-100px] top-[-20px] !rotate-[2deg]">
           Gsap
         </div>
-        <div
-          class="box box5 kalam absolute right-[-100px] top-[45%] !rotate-[2deg]"
-        >
+        <div class="box box5 kalam absolute right-[-100px] top-[45%] !rotate-[2deg]">
           PHP
         </div>
-        <div
-          class="box box6 kalam absolute right-[-100px] bottom-[-60px] !rotate-[2deg]"
-        >
+        <div class="box box6 kalam absolute right-[-100px] bottom-[-60px] !rotate-[2deg]">
           Laravel
         </div>
       </div>
 
       <div class="w-[100%] flex justify-center">
         <div class="btnn relative mt-20">
-          <a href="https://drive.google.com/file/d/1jIH_XrTvsft4a1tsWeX8O_it6idT6OJF/view?usp=drive_link" target="_blank">
+          <a href="https://drive.google.com/file/d/1jIH_XrTvsft4a1tsWeX8O_it6idT6OJF/view?usp=drive_link"
+            target="_blank">
             <div class="btn">Preview My CV ?</div>
             <div class="btn2"></div>
             <img src="../assets/star.svg" class="onesvg svgg" alt="" />
@@ -71,8 +50,8 @@
             <img src="../assets/star.svg" class="threesvg svgg" alt="" />
             <img src="../assets/star.svg" class="foursvg svgg" alt="" />
             <img src="../assets/star.svg" class="fivesvg svgg" alt="" />
-            <img src="../assets/star.svg" class="sixsvg svgg" alt=""
-          /></a>
+            <img src="../assets/star.svg" class="sixsvg svgg" alt="" />
+          </a>
         </div>
       </div>
     </div>
@@ -281,7 +260,7 @@ video {
 .video {
   width: 50%;
   max-width: 600px;
-  min-width: 300px;
+  min-width: 280px;
   height: auto;
   aspect-ratio: 16/9;
 }
@@ -390,27 +369,27 @@ video {
 
 @media (max-width: 800px) {
   .content {
-    padding: 0 30px !important;
+    padding: 0 20px !important;
     margin: 0 auto !important;
     width: 100% !important;
   }
 
   .heading {
-    height: 60vh;
+    height: 50vh;
   }
 
   .video {
     width: 85%;
-    min-width: 280px;
+    min-width: 260px;
   }
 
   .content p {
     font-size: 20px;
-    margin-top: -10px;
+    margin-top: 50px;
   }
 
   .btnn {
-    margin-top: 200px;
+    margin-top: 40px;
   }
 
   .header {
@@ -418,118 +397,88 @@ video {
     letter-spacing: -1px !important;
   }
 
-  .box1 {
-    top: 105%;
-    left: 0;
-    transform: rotate(-2deg) scale(0.9);
+  /* Stack boxes below text on mobile - 2 per row */
+  .trigger {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
 
-  .box2 {
-    top: 120%;
-    left: 0%;
-    transform: rotate(-2deg) scale(0.9);
+  .trigger>p {
+    width: 100%;
+    flex-shrink: 0;
   }
 
-  .box3 {
-    bottom: -14%;
-    left: 30%;
-    transform: rotate(-2deg) scale(0.9);
+  .box {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: calc(50% - 8px);
+    text-align: center;
+    box-sizing: border-box;
   }
 
-  .box4 {
-    top: 120%;
-    left: 41%;
-    transform: rotate(2deg) scale(0.9);
-  }
-
-  .box5 {
-    top: 100%;
-    left: 80%;
-    transform: rotate(2deg) scale(0.9);
-  }
-
+  .box1,
+  .box2,
+  .box3,
+  .box4,
+  .box5,
   .box6 {
-    bottom: -30%;
-    right: 0%;
-    transform: rotate(2deg) scale(0.9);
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: rotate(0deg) !important;
   }
 }
 
 @media (max-width: 600px) {
   .content {
-    padding: 0 20px !important;
+    padding: 0 15px !important;
   }
 
   .heading {
-    height: 45vh;
+    height: 40vh;
   }
 
   .video {
-    width: 90%;
-    min-width: 250px;
+    width: 92%;
+    min-width: 240px;
   }
 
   .content p {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.8;
+    margin-top: 40px;
   }
 
   .header {
-    font-size: 40px !important;
+    font-size: 38px !important;
   }
 
   .btnn {
-    margin-top: 150px;
-  }
-
-  .box1 {
-    top: 110%;
-    left: 2%;
-    transform: rotate(-2deg) scale(0.85);
-  }
-
-  .box2 {
-    top: 125%;
-    left: 2%;
-    transform: rotate(-2deg) scale(0.85);
-  }
-
-  .box3 {
-    bottom: -18%;
-    left: 32%;
-    transform: rotate(-2deg) scale(0.85);
-  }
-
-  .box4 {
-    top: 125%;
-    left: 42%;
-    transform: rotate(2deg) scale(0.85);
-  }
-
-  .box5 {
-    top: 100%;
-    left: 78%;
-    transform: rotate(2deg) scale(0.85);
-  }
-
-  .box6 {
-    bottom: -40%;
-    right: 2%;
-    transform: rotate(2deg) scale(0.85);
+    margin-top: 30px !important;
   }
 
   .box {
-    padding: 10px 18px;
-    font-size: 16px;
-  }
-  .btnn {
-    margin-top: 160px !important;
+    padding: 8px 16px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .content {
-    padding: 0 15px !important;
+    padding: 0 12px !important;
   }
 
   .video {
@@ -538,7 +487,7 @@ video {
   }
 
   .content p {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
 
   .header {
@@ -546,37 +495,26 @@ video {
   }
 
   .btnn {
-    margin-top: 120px;
+    margin-top: 25px;
   }
 
-  .box2 {
-    top: 130%;
-    left: 5%;
-    transform: rotate(-2deg) scale(0.8);
+  .box {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .header {
+    font-size: 28px !important;
   }
 
-  .box3 {
-    bottom: -20%;
-    left: 35%;
-    transform: rotate(-2deg) scale(0.8);
+  .heading {
+    height: 35vh;
   }
 
-  .box4 {
-    top: 125%;
-    left: 45%;
-    transform: rotate(2deg) scale(0.8);
-  }
-
-  .box5 {
-    top: 104%;
-    left: 75%;
-    transform: rotate(2deg) scale(0.8);
-  }
-
-  .box6 {
-    bottom: -40%;
-    right: 5%;
-    transform: rotate(2deg) scale(0.8);
+  .content p {
+    font-size: 15px !important;
   }
 }
 </style>
