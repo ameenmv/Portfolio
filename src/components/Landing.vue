@@ -53,8 +53,11 @@
 
 <script>
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import profileImage from "../assets/meee.jpg";
 import Navbar from "./Navbar.vue";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: "Landing",
@@ -129,8 +132,19 @@ export default {
     });
 
     // Detect mobile for performance optimization
-    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-      || window.innerWidth < 768;
+    this.isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      ) || window.innerWidth < 768;
+
+    // Split text into individual characters for reveal animation
+    this.splitText();
+
+    // Set initial hidden state for all hero elements
+    this.setInitialStates();
+
+    // Play cinematic entrance after intro finishes (~2.8s)
+    this.playHeroEntrance();
 
     // Only add mouse move listeners on desktop
     if (!this.isMobile) {
@@ -144,16 +158,227 @@ export default {
       window.removeEventListener("mousemove", this.handleMouseMove);
       window.removeEventListener("mouseleave", this.resetCard);
     }
+    // Kill all GSAP animations scoped to this component
+    ScrollTrigger.getAll().forEach((t) => t.kill());
   },
   methods: {
+    /* ── Split each <p> text into wrapped <span> chars ── */
+    splitText() {
+      const nameOne = this.$el.querySelector(".one");
+      const nameTwo = this.$el.querySelector(".two");
+      if (nameOne) this.wrapChars(nameOne);
+      if (nameTwo) this.wrapChars(nameTwo);
+    },
+
+    wrapChars(el) {
+      const text = el.textContent;
+      el.innerHTML = "";
+      text.split("").forEach((char) => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        span.style.display = "inline-block";
+        span.style.willChange = "transform, opacity";
+        // Preserve spaces
+        if (char === " ") span.style.width = "0.3em";
+        el.appendChild(span);
+      });
+    },
+
+    /* ── Set everything invisible before the timeline starts ── */
+    setInitialStates() {
+      // Hide name chars
+      gsap.set(".one span, .two span", {
+        opacity: 0,
+        y: 80,
+        rotateX: -90,
+        transformOrigin: "50% 100%",
+      });
+
+      // Hide card
+      gsap.set(this.$refs.card, {
+        opacity: 0,
+        scale: 0.6,
+        y: 60,
+      });
+
+      // Hide social icons
+      gsap.set(".icon-container", {
+        opacity: 0,
+        scale: 0,
+        rotation: -180,
+      });
+
+      // Hide "Available for work"
+      gsap.set(".work", {
+        opacity: 0,
+        x: -40,
+      });
+    },
+
+    /* ── Cinematic entrance timeline ── */
+    playHeroEntrance() {
+      const master = gsap.timeline({
+        delay: 2.6, // Wait for intro animation to finish
+        defaults: { ease: "expo.out" },
+      });
+
+      // ── Step 1: First name chars from below with 3D rotateX ──
+      master.to(".one span", {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 1.4,
+        stagger: {
+          each: 0.07,
+          from: "start",
+        },
+        ease: "expo.out",
+      });
+
+      // ── Step 2: Second name chars (overlapping slightly) ──
+      master.to(
+        ".two span",
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          duration: 1.4,
+          stagger: {
+            each: 0.06,
+            from: "end", // Opposite direction for cinematic contrast
+          },
+          ease: "expo.out",
+        },
+        "-=1.0" // Overlap with first name
+      );
+
+      // ── Step 3: Card scales in with spring ──
+      master.to(
+        this.$refs.card,
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1.6,
+          ease: "elastic.out(1, 0.5)",
+        },
+        "-=0.9"
+      );
+
+      // ── Step 4: Social icons pop in with rotation ──
+      master.to(
+        ".icon-container",
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 0.9,
+          stagger: 0.1,
+          ease: "back.out(2.5)",
+        },
+        "-=1.0"
+      );
+
+      // ── Step 5: "Available for work" slides in ──
+      master.to(
+        ".work",
+        {
+          opacity: 0.7, // Match the original opacity
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+        },
+        "-=0.6"
+      );
+
+      // ── After entrance: start subtle continuous animations ──
+      master.call(() => {
+        this.startIdleAnimations();
+      });
+    },
+
+    /* ── Continuous idle micro-animations (award-level polish) ── */
+    startIdleAnimations() {
+      // Card subtle float
+      gsap.to(this.$refs.card, {
+        y: "+=8",
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      // Name chars gentle wave (desktop only)
+      if (!this.isMobile) {
+        gsap.to(".one span", {
+          y: -3,
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: {
+            each: 0.15,
+            from: "center",
+          },
+        });
+        gsap.to(".two span", {
+          y: -3,
+          duration: 2.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: {
+            each: 0.12,
+            from: "center",
+          },
+          delay: 0.5,
+        });
+      }
+
+      // Social icon subtle breathing
+      gsap.to(".icon-container", {
+        scale: 1.05,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.3,
+          from: "random",
+        },
+      });
+
+      // Scroll-triggered parallax exit
+      ScrollTrigger.create({
+        trigger: this.$el,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.5,
+        onUpdate: (self) => {
+          const p = self.progress;
+          gsap.set(".center", {
+            y: p * -120,
+            opacity: 1 - p * 2,
+            scale: 1 - p * 0.15,
+          });
+          gsap.set(this.$refs.card, {
+            y: p * 80,
+            opacity: 1 - p * 1.5,
+          });
+          gsap.set(".cont", {
+            y: p * -60,
+            opacity: 1 - p * 2.5,
+          });
+          gsap.set(".work", {
+            x: p * -60,
+            opacity: 0.7 - p * 1.5,
+          });
+        },
+      });
+    },
+
     onImageLoad() {
       this.imageLoaded = true;
-      // Optional: Add fade-in animation after image loads
-      gsap.from(this.$refs.card, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      });
     },
     magneticEffect(e, index) {
       const icon = this.$refs.socialIcons[index];
@@ -180,7 +405,7 @@ export default {
     },
 
     handleMouseMove(e) {
-      if (!this.imageLoaded) return; // Wait for image to load before animations
+      if (!this.imageLoaded) return;
 
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
@@ -194,6 +419,7 @@ export default {
       const moveX = offsetX / 15;
       const moveY = offsetY / 15;
 
+      // 3D card tilt
       gsap.to(this.$refs.card, {
         rotateX,
         rotateY,
@@ -201,12 +427,43 @@ export default {
         y: moveY,
         duration: 0.5,
         ease: "power2.out",
+        overwrite: "auto",
+      });
+
+      // Subtle parallax on the name text
+      gsap.to(".center", {
+        x: offsetX / 50,
+        y: offsetY / 60,
+        duration: 0.8,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+
+      // Subtle parallax on social icons
+      gsap.to(".cont", {
+        x: -offsetX / 70,
+        y: -offsetY / 80,
+        duration: 0.8,
+        ease: "power2.out",
+        overwrite: "auto",
       });
     },
     resetCard() {
       gsap.to(this.$refs.card, {
         rotateX: 0,
         rotateY: 0,
+        x: 0,
+        y: 0,
+        duration: 1,
+        ease: "elastic.out(1, 0.4)",
+      });
+      gsap.to(".center", {
+        x: 0,
+        y: 0,
+        duration: 1,
+        ease: "elastic.out(1, 0.4)",
+      });
+      gsap.to(".cont", {
         x: 0,
         y: 0,
         duration: 1,
@@ -224,11 +481,13 @@ export default {
   top: 22%;
   left: 50%;
   transform: translate(-50%, -50%);
+  will-change: transform, opacity;
 }
 .card {
   display: block;
   transform-style: preserve-3d;
   transform: translate(-50%, -50%);
+  will-change: transform, opacity;
 }
 .center {
   font-size: 170px;
@@ -239,6 +498,11 @@ export default {
   text-align: center;
   font-family: "angry", sans-serif;
   margin-top: 40px;
+  perspective: 600px;
+  will-change: transform, opacity;
+  p {
+    overflow: hidden;
+  }
 }
 .work {
   left: 15px;
