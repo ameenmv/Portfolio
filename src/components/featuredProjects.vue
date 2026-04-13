@@ -251,41 +251,101 @@ export default {
       }
     );
 
-    // Premium Card Animations
+    // Ultimate Awwwards-Tier Scroll Velocity Skew Wobble
+    let proxy = { skew: 0 };
+    let skewSetter = gsap.quickSetter(".project", "skewY", "deg");
+    let clamp = gsap.utils.clamp(-3.5, 3.5); // Max bend angle
+
+    ScrollTrigger.create({
+      onUpdate: (self) => {
+        let skew = clamp(self.getVelocity() / -150);
+        // Only trigger the wobble if the momentum is stronger than the current skew
+        if (Math.abs(skew) > Math.abs(proxy.skew)) {
+          proxy.skew = skew;
+          gsap.to(proxy, {
+            skew: 0,
+            duration: 1.2,
+            ease: "elastic.out(1.2, 0.4)", // Jelly snap-back
+            overwrite: true,
+            onUpdate: () => skewSetter(proxy.skew),
+          });
+        }
+      },
+    });
+
+    // Premium Card Animations - Mask Expansion + Nested Timelines
     gsap.utils.toArray(".project").forEach((project) => {
-      // 1. The Card Entrance (3D Slide up)
-      gsap.from(project, {
-        y: 80,
-        opacity: 0,
-        rotationX: 15,
-        transformPerspective: 1000,
-        transformOrigin: "center top",
-        duration: 1.2,
-        ease: "power3.out",
+      const img = project.querySelector(".projectimage");
+      const name = project.querySelector(".name");
+      const title = project.querySelector(".title");
+
+      // Set initial state for nested text elements so we can animate them
+      if (name) gsap.set(name, { y: 20, opacity: 0 });
+      if (title) gsap.set(title, { y: 20, opacity: 0 });
+
+      // Master entrance timeline for the card
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: project,
-          start: "top 85%", // Trigger right before it comes into full view
+          start: "top 85%", // Trigger when card enters the viewport
         },
       });
 
-      // 2. The Internal Image Parallax + Scrub
-      const img = project.querySelector(".projectimage");
+      // 1. The Super Dramatic Card Base Entrance (Expands + Rotates)
+      tl.fromTo(
+        project,
+        {
+          y: 120,
+          opacity: 0,
+          rotationX: 12,
+          scale: 0.9,
+          clipPath: "inset(15% 10% 15% 10% round 50px)", // Squeezed and masked
+          transformPerspective: 1500,
+          transformOrigin: "center top",
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotationX: 0,
+          scale: 1,
+          clipPath: "inset(0% 0% 0% 0% round 50px)", // Fully open mask
+          duration: 1.4,
+          ease: "expo.out",
+        }
+      );
+
+      // 2. Text Reveal (Name and Title) sweeping up right after card opens
+      if (name || title) {
+        tl.to(
+          [name, title],
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power4.out",
+          },
+          "-=1.1" // overlap animation with the card opening
+        );
+      }
+
+      // 3. The Deep Internal Image Parallax + Scrub
       if (img) {
         gsap.fromTo(
           img,
           {
-            scale: 1.25,
-            yPercent: -5,
+            scale: 1.35,
+            yPercent: -8,
           },
           {
-            scale: 1,
-            yPercent: 5,
-            ease: "none",
+            scale: 1.05, // keep a slight scale for visual tension
+            yPercent: 8,
+            ease: "none", // essential for smooth scrub
             scrollTrigger: {
               trigger: project,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1,
+              scrub: 1.2,
             },
           }
         );
@@ -297,13 +357,13 @@ export default {
     if (btnContainer) {
       gsap.from(btnContainer, {
         opacity: 0,
-        y: 30,
+        y: 40,
         scale: 0.9,
-        duration: 1,
-        ease: "power3.out",
+        duration: 1.2,
+        ease: "expo.out",
         scrollTrigger: {
           trigger: btnContainer,
-          start: "top 90%",
+          start: "top 95%",
         },
       });
     }
