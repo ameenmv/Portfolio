@@ -183,18 +183,27 @@ export default {
     },
   },
   mounted() {
-    // header2 animation
+    const isMobile = window.innerWidth < 800;
+
+    // header2 animation - Reading computed font sizes for responsive override safety
+    const headerEl = this.$el.querySelector(".header2");
+    const computedSize = headerEl
+      ? window.getComputedStyle(headerEl).fontSize
+      : "90px";
+    const startSize = Math.round(parseInt(computedSize) * 0.6) + "px";
+    const endSize = computedSize;
+    const shrinkSize = Math.round(parseInt(computedSize) * 0.8) + "px";
 
     gsap.from(".header2", {
-      y: 100,
+      y: isMobile ? 50 : 100,
       opacity: 0.2,
-      fontSize: "60px",
+      fontSize: startSize,
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".header2",
         start: "top 100%",
         end: "top 70%",
-        scrub: true,
+        scrub: 1, // Smooth scrub
       },
     });
 
@@ -203,55 +212,101 @@ export default {
       {
         y: 0,
         opacity: 1,
-        fontSize: "90px",
+        fontSize: endSize,
       },
       {
-        y: () => document.querySelector(".section").offsetHeight - 1400,
-        opacity: 0.7,
-        fontSize: "75px",
+        y: () => document.querySelector(".section").offsetHeight - (isMobile ? 500 : 1400),
+        opacity: 0.5,
+        fontSize: shrinkSize,
         scrollTrigger: {
           trigger: ".section",
           start: "top top",
           end: "bottom bottom",
-          scrub: true,
+          scrub: 1.5,
         },
       }
     );
 
+    // Hat image animation - giving it a bit more spin/bounce character
     gsap.fromTo(
       ".image",
       {
-        y: -1000,
-        opacity: 0.2,
+        y: isMobile ? -300 : -800,
+        opacity: 0,
+        rotation: 0,
+        scale: 0.5,
       },
       {
         y: 0,
         opacity: 1,
+        rotation: 22,
+        scale: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: ".section",
           start: "top 90%",
-          end: "top top",
-          scrub: true,
+          end: "top 10%",
+          scrub: 1.5,
         },
       }
     );
-    gsap.utils.toArray(".projectimage").forEach((el) => {
-      gsap.fromTo(
-        el,
-        {
-          scale: 1.3,
+
+    // Premium Card Animations
+    gsap.utils.toArray(".project").forEach((project) => {
+      // 1. The Card Entrance (3D Slide up)
+      gsap.from(project, {
+        y: 80,
+        opacity: 0,
+        rotationX: 15,
+        transformPerspective: 1000,
+        transformOrigin: "center top",
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: project,
+          start: "top 85%", // Trigger right before it comes into full view
         },
-        {
-          scale: 1,
-          scrollTrigger: {
-            trigger: el,
-            start: "top bottom",
-            end: "top center",
-            scrub: true,
+      });
+
+      // 2. The Internal Image Parallax + Scrub
+      const img = project.querySelector(".projectimage");
+      if (img) {
+        gsap.fromTo(
+          img,
+          {
+            scale: 1.25,
+            yPercent: -5,
           },
-        }
-      );
+          {
+            scale: 1,
+            yPercent: 5,
+            ease: "none",
+            scrollTrigger: {
+              trigger: project,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          }
+        );
+      }
     });
+
+    // View More Button Reveal
+    const btnContainer = this.$el.querySelector(".btnn.relative.mt-20");
+    if (btnContainer) {
+      gsap.from(btnContainer, {
+        opacity: 0,
+        y: 30,
+        scale: 0.9,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: btnContainer,
+          start: "top 90%",
+        },
+      });
+    }
   },
 };
 </script>
