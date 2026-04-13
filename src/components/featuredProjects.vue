@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--bg)] pb-10 section h-[fit-content] overflow-x-hidden">
+  <div class="bg-[var(--bg)] pb-10 section relative overflow-hidden">
     <div class="containerr">
       <div class="heading">
         <h1 class="!text-[var(--white)]">
@@ -185,7 +185,7 @@ export default {
   mounted() {
     const isMobile = window.innerWidth < 800;
 
-    // Fluid Header Parallax
+    // Fast Header Parallax
     const headerEl = this.$el.querySelector(".header2");
     const computedSize = headerEl ? window.getComputedStyle(headerEl).fontSize : "90px";
     const startSize = Math.round(parseInt(computedSize) * 0.6) + "px";
@@ -193,16 +193,16 @@ export default {
     const shrinkSize = Math.round(parseInt(computedSize) * 0.8) + "px";
 
     gsap.from(".header2", {
-      y: isMobile ? 50 : 150,
+      y: isMobile ? 50 : 100,
       opacity: 0,
       fontSize: startSize,
-      ease: "power4.out",
-      duration: 3,
+      ease: "power3.out",
+      duration: 1.2,
       scrollTrigger: {
         trigger: ".header2",
         start: "top 100%",
         end: "top 60%",
-        scrub: 2, // Extremely smooth scrub
+        scrub: 1, 
       },
     });
 
@@ -218,33 +218,33 @@ export default {
           trigger: ".section",
           start: "top top",
           end: "bottom bottom",
-          scrub: 3, // High scrub for buttery floating
+          scrub: 1.2, 
         },
       }
     );
 
-    // Buttery Hat Animation
+    // Fast Hat Animation
     gsap.fromTo(
       ".image",
-      { y: isMobile ? -200 : -500, opacity: 0, rotation: -40, scale: 0.5 },
+      { y: isMobile ? -200 : -400, opacity: 0, rotation: -30, scale: 0.6 },
       {
         y: 0,
         opacity: 1,
         rotation: 22,
         scale: 1,
-        ease: "power4.out",
-        duration: 3.5,
+        ease: "back.out(1.2)",
+        duration: 1.2,
         scrollTrigger: {
           trigger: ".section",
           start: "top 95%",
-          end: "top 15%",
-          scrub: 2.5,
+          end: "top 20%",
+          scrub: 1,
         },
       }
     );
 
     // ===============================================
-    // EXTREME FLUID PREMIUM CARDS ENGINE
+    // EXTREME FAST PREMIUM CARDS ENGINE
     // ===============================================
     gsap.utils.toArray(".project").forEach((project, index) => {
       const img = project.querySelector(".projectimage");
@@ -252,20 +252,20 @@ export default {
       const title = project.querySelector(".title");
       const borders = project.querySelectorAll(".one, .two, .three, .four");
 
-      if (name) gsap.set(name, { y: 60, opacity: 0 });
-      if (title) gsap.set(title, { y: 60, opacity: 0 });
+      if (name) gsap.set(name, { y: 20, opacity: 0 });
+      if (title) gsap.set(title, { y: 20, opacity: 0 });
       if (borders.length) gsap.set(borders, { scale: 0.5, opacity: 0 });
 
-      // Incredibly smooth asymmetrical float
+      // Faster asymmetrical float
       if (!isMobile) {
         gsap.to(project, {
-          yPercent: index % 2 === 0 ? -10 : -35,
+          yPercent: index % 2 === 0 ? -5 : -15, // Reduced severity to prevent layout breaks
           ease: "none",
           scrollTrigger: {
             trigger: ".projects",
             start: "top bottom",
             end: "bottom top",
-            scrub: 2.5, // Buttery smooth drag
+            scrub: 1.2, 
           },
         });
       }
@@ -273,20 +273,19 @@ export default {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: project,
-          start: "top 95%", // Start early for smooth fade
+          start: "top 85%", // Triggers reliably
         },
       });
 
-      // Liquid Card Reveal
+      // Sharp Card Reveal (Removed buggy clipPath)
       tl.fromTo(
         project,
         {
-          y: 200,
+          y: 100,
           opacity: 0,
-          rotationX: 10,
-          scale: 0.85,
-          clipPath: "inset(25% 15% 25% 15% round 60px)",
-          transformPerspective: 2500,
+          rotationX: 8,
+          scale: 0.95,
+          transformPerspective: 1800,
           transformOrigin: "center top",
         },
         {
@@ -294,13 +293,12 @@ export default {
           opacity: 1,
           rotationX: 0,
           scale: 1,
-          clipPath: "inset(0% 0% 0% 0% round 50px)",
-          duration: 2.4, // Massive duration for absolute smoothness
-          ease: "power4.out",
+          duration: 1.2, 
+          ease: "power3.out",
         }
       );
 
-      // Elegant staggered typography sweep
+      // Fast staggered typography sweep
       if (name || title || borders.length) {
         tl.to(
           [name, title, ...borders].filter(Boolean),
@@ -308,34 +306,34 @@ export default {
             y: 0,
             opacity: 1,
             scale: 1,
-            duration: 1.8,
-            stagger: 0.15,
-            ease: "expo.out",
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out",
           },
-          "-=1.8" // Blend deeply into the card opening
+          "-=0.8" 
         );
       }
 
-      // Cinematic Parallax Core
+      // Snappy Parallax Core
       if (img) {
         gsap.fromTo(
           img,
-          { scale: 1.4, yPercent: -12 },
+          { scale: 1.2, yPercent: -8 },
           {
-            scale: 1.02,
-            yPercent: 12,
+            scale: 1,
+            yPercent: 8,
             ease: "none",
             scrollTrigger: {
               trigger: project,
               start: "top bottom",
               end: "bottom top",
-              scrub: 2.5,
+              scrub: 1,
             },
           }
         );
       }
 
-      // Deep Liquid 3D Hover Physics
+      // Responsive 3D Hover Physics
       if (!isMobile) {
         gsap.set(project, { transformStyle: "preserve-3d" });
         if (title) gsap.set(title, { transformStyle: "preserve-3d" });
@@ -349,54 +347,54 @@ export default {
           const centerY = rect.height / 2;
           
           gsap.to(project, {
-            rotationX: ((y - centerY) / centerY) * -10,
-            rotationY: ((x - centerX) / centerX) * 10,
+            rotationX: ((y - centerY) / centerY) * -8,
+            rotationY: ((x - centerX) / centerX) * 8,
             transformPerspective: 2000,
-            ease: "power3.out",
-            duration: 1.2, // Slower follow cursor feels heavier/smoother
+            ease: "power2.out",
+            duration: 0.5, 
             overwrite: "auto"
           });
           
           if (title || name) {
             gsap.to([title, name], {
-              x: ((x - centerX) / centerX) * 18,
-              y: ((y - centerY) / centerY) * 18,
-              z: 60,
-              ease: "power3.out",
-              duration: 1.2,
+              x: ((x - centerX) / centerX) * 12,
+              y: ((y - centerY) / centerY) * 12,
+              z: 40,
+              ease: "power2.out",
+              duration: 0.5,
               overwrite: "auto"
             });
           }
           if (img) {
             gsap.to(img, {
-              x: ((x - centerX) / centerX) * -12,
-              y: ((y - centerY) / centerY) * -12,
-              z: -20,
-              ease: "power3.out",
-              duration: 1.2,
+              x: ((x - centerX) / centerX) * -8,
+              y: ((y - centerY) / centerY) * -8,
+              z: -10,
+              ease: "power2.out",
+              duration: 0.5,
               overwrite: "auto"
             });
           }
         });
 
-        // The absolute liquid reset snap
+        // Fast reset snap
         project.addEventListener("mouseleave", () => {
-          gsap.to(project, { rotationX: 0, rotationY: 0, ease: "power4.out", duration: 2.5, overwrite: "auto" });
-          if (title || name) gsap.to([title, name], { x: 0, y: 0, z: 0, ease: "power4.out", duration: 2.5, overwrite: "auto" });
-          if (img) gsap.to(img, { x: 0, y: 0, z: 0, ease: "power4.out", duration: 2.5, overwrite: "auto" });
+          gsap.to(project, { rotationX: 0, rotationY: 0, ease: "power3.out", duration: 1.2, overwrite: "auto" });
+          if (title || name) gsap.to([title, name], { x: 0, y: 0, z: 0, ease: "power3.out", duration: 1.2, overwrite: "auto" });
+          if (img) gsap.to(img, { x: 0, y: 0, z: 0, ease: "power3.out", duration: 1.2, overwrite: "auto" });
         });
       }
     });
 
-    // Elegant View More Button Entrance
+    // Fast View More Button
     const btnContainer = this.$el.querySelector(".btnn");
     if (btnContainer) {
       gsap.from(btnContainer, {
         opacity: 0,
-        y: 60,
-        scale: 0.8,
-        duration: 2.5,
-        ease: "power4.out",
+        y: 40,
+        scale: 0.9,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: btnContainer,
           start: "top 95%",

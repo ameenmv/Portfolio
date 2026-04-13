@@ -160,47 +160,45 @@ export default {
     const isMobile = window.innerWidth < 800;
 
     // ===============================================
-    // EXTREME FLUID TYPOGRAPHY ENTRANCE
+    // SNAPPY TYPOGRAPHY ENTRANCE
     // ===============================================
-    // Unstitching from hard-scrub allows the text to play full buttery 2.5s timelines gracefully
     const tlText = gsap.timeline({
       scrollTrigger: {
         trigger: ".section2",
-        start: "top 85%", // Triggers slightly before reaching it
+        start: "top 85%", 
       },
     });
 
     tlText.fromTo(".gotproject", 
-      { y: 40, opacity: 0, filter: "blur(10px)" }, 
-      { y: 0, opacity: 1, filter: "blur(0px)", duration: 2.5, ease: "power4.out" }
+      { y: 30, opacity: 0, filter: "blur(5px)" }, 
+      { y: 0, opacity: 1, filter: "blur(0px)", duration: 1, ease: "power3.out" }
     )
     .fromTo([".letswork", ".together"], 
-      { y: 120, opacity: 0, rotationX: 25, transformPerspective: 1000 }, 
-      { y: 0, opacity: 1, rotationX: 0, stagger: 0.15, duration: 2.8, ease: "power4.out" }, 
-      "-=2.2" // Overlaps heavily so it pours down
+      { y: 60, opacity: 0, rotationX: 15, transformPerspective: 1000 }, 
+      { y: 0, opacity: 1, rotationX: 0, stagger: 0.1, duration: 1.2, ease: "power3.out" }, 
+      "-=0.8" 
     )
     .fromTo(".feelfree", 
-      { y: 50, opacity: 0 }, 
-      { y: 0, opacity: 1, duration: 2.5, ease: "power4.out" }, 
-      "-=2.5"
+      { y: 30, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
+      "-=1"
     )
     .fromTo(".links a", 
-      { y: 40, opacity: 0, scale: 0.95 }, 
-      { y: 0, opacity: 1, scale: 1, stagger: 0.1, duration: 2, ease: "power3.out" }, 
-      "-=2"
+      { y: 20, opacity: 0, scale: 0.95 }, 
+      { y: 0, opacity: 1, scale: 1, stagger: 0.05, duration: 0.8, ease: "power2.out" }, 
+      "-=0.8"
     );
 
 
     // ===============================================
     // FORM & ADDRESS BLOCK REVEALS
     // ===============================================
-    // Entire bottom block glides up smoothly
     gsap.fromTo(".form", 
-      { y: 150 },
+      { y: 80 },
       { 
         y: 0, 
-        duration: 3, 
-        ease: "power4.out",
+        duration: 1.5, 
+        ease: "power3.out",
         scrollTrigger: {
           trigger: ".form",
           start: "top 95%",
@@ -210,13 +208,13 @@ export default {
 
     // Inner items sweep stagger
     gsap.fromTo([".left img", ".left .aloo", ".right input", ".right textarea", ".right button"],
-      { y: 60, opacity: 0 },
+      { y: 30, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 2.5,
-        stagger: 0.1,
-        ease: "power4.out",
+        duration: 1,
+        stagger: 0.08,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: ".form",
           start: "top 85%",
@@ -227,23 +225,22 @@ export default {
     // ===============================================
     // CINEMATIC IMAGE PARALLAX
     // ===============================================
-    // Slow drifting float for the 'callme' image
     if (!isMobile) {
       gsap.to(".left img", {
-        yPercent: -25,
-        rotation: 12,
+        yPercent: -15,
+        rotation: 8,
         ease: "none",
         scrollTrigger: {
           trigger: ".form",
           start: "top bottom",
           end: "bottom top",
-          scrub: 2.5,
+          scrub: 1,
         }
       });
     }
 
     // ===============================================
-    // LIQUID MAGNETIC 'SEND' BUTTON
+    // RESPONSIVE MAGNETIC 'SEND' BUTTON
     // ===============================================
     if (!isMobile) {
       const sendBtn = this.$el.querySelector(".right button");
@@ -256,15 +253,14 @@ export default {
           gsap.to(sendBtn, {
             x: x * 0.15, 
             y: y * 0.3, 
-            duration: 1.2, 
-            ease: "power3.out",
+            duration: 0.5, 
+            ease: "power2.out",
             overwrite: "auto"
           });
         });
 
         sendBtn.addEventListener("mouseleave", () => {
-          // Extremely slow rubber-band snap back
-          gsap.to(sendBtn, { x: 0, y: 0, duration: 3, ease: "elastic.out(1, 0.3)", overwrite: "auto" });
+          gsap.to(sendBtn, { x: 0, y: 0, duration: 1.5, ease: "elastic.out(1, 0.4)", overwrite: "auto" });
         });
       }
     }
