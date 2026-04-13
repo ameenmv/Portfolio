@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[white] pb-[70px] about">
+  <div class="bg-[white] pb-[70px] about" ref="aboutSection">
     <div class="containerr">
       <div class="heading">
         <h1 class="header">about ameen</h1>
@@ -62,7 +62,7 @@
       </div>
 
       <div class="w-[100%] flex justify-center">
-        <div class="btnn relative mt-20">
+        <div class="btnn relative mt-20" ref="cvBtn">
           <a href="https://drive.google.com/file/d/1IZAIni6HLAIoZcogVE7WbQBQf_dPkwO9/view?usp=sharing" target="_blank">
             <div class="btn">Preview My CV ?</div>
             <div class="btn2"></div>
@@ -217,54 +217,116 @@ export default {
       },
     });
 
-    // split text
-    const el = this.$refs.animatedText;
-    const words = el.innerText.split(" ");
-    el.innerHTML = words.map((word) => `<span>${word}</span>`).join(" ");
+    this.initTextAnimation();
+    this.initBoxesAnimation();
+    this.initButtonAnimation();
+  },
+  methods: {
 
-    // animate words opacity
-    gsap.fromTo(
-      el.querySelectorAll("span"),
-      { opacity: 0.2 },
-      {
+    /* ── Text: Word-by-word opacity with y-shift ── */
+    initTextAnimation() {
+      const el = this.$refs.animatedText;
+      const words = el.innerText.split(" ");
+      el.innerHTML = words
+        .map((word) => `<span>${word}</span>`)
+        .join(" ");
+
+      const spans = el.querySelectorAll("span");
+
+      // Initial state
+      gsap.set(spans, { opacity: 0.1, y: 8 });
+
+      // Scroll-driven word reveal
+      gsap.to(spans, {
         opacity: 1,
-        stagger: 0.2,
+        y: 0,
+        stagger: 0.15,
         scrollTrigger: {
           trigger: el,
-          start: "top 90%",
-          end: "bottom 75%",
-          scrub: true,
+          start: "top 85%",
+          end: "bottom 65%",
+          scrub: 1.5,
         },
-      }
-    );
-    // animate box opacity
-    gsap.fromTo(
-      ".box",
-      { opacity: 0 },
-      {
+      });
+    },
+
+    /* ── Skill Boxes: staggered entrance from sides ── */
+    initBoxesAnimation() {
+      const leftBoxes = this.$el.querySelectorAll(".box1, .box2, .box3");
+      const rightBoxes = this.$el.querySelectorAll(".box4, .box5, .box6");
+
+      // Initial states
+      gsap.set(leftBoxes, { opacity: 0, x: -60, rotation: -8 });
+      gsap.set(rightBoxes, { opacity: 0, x: 60, rotation: 8 });
+
+      // Left boxes slide in
+      gsap.to(leftBoxes, {
         opacity: 1,
-        stagger: 0.2,
+        x: 0,
+        rotation: -2,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: ".trigger",
-          start: "top 90%",
-          end: "bottom 70%",
-          scrub: true,
+          start: "top 75%",
+          end: "center 60%",
+          scrub: 1,
         },
-      }
-    );
+      });
 
-    Draggable.create(".box", {
-      type: "x,y",
-      inertia: true,
-      onRelease: function () {
-        gsap.to(this.target, {
-          x: 0,
-          y: 0,
-          duration: 0.8,
-          ease: "elastic.out(2.4, 2.4)",
-        });
-      },
-    });
+      // Right boxes slide in
+      gsap.to(rightBoxes, {
+        opacity: 1,
+        x: 0,
+        rotation: 2,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".trigger",
+          start: "top 75%",
+          end: "center 60%",
+          scrub: 1,
+        },
+      });
+
+      // Draggable with snap-back
+      Draggable.create(".box", {
+        type: "x,y",
+        inertia: true,
+        onRelease: function () {
+          gsap.to(this.target, {
+            x: 0,
+            y: 0,
+            duration: 0.8,
+            ease: "elastic.out(2.4, 2.4)",
+          });
+        },
+      });
+    },
+
+    /* ── CV Button: scale entrance ── */
+    initButtonAnimation() {
+      const btn = this.$refs.cvBtn;
+      if (!btn) return;
+
+      gsap.set(btn, { opacity: 0, y: 30, scale: 0.9 });
+
+      gsap.to(btn, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: btn,
+          start: "top 90%",
+          end: "top 70%",
+          scrub: 1,
+        },
+      });
+    },
   },
 };
 </script>
@@ -292,21 +354,25 @@ video {
 }
 
 :deep(.animated-text span) {
-  opacity: 0.5;
   display: inline-block;
   margin-right: 5px;
+  will-change: transform, opacity;
 }
 
 .box {
   font-weight: bold;
   padding: 10px 20px;
-  background: red;
   border-radius: 20px;
   width: fit-content;
   background: var(--white);
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  will-change: transform, opacity;
+  transition: box-shadow 0.3s;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px, rgba(0, 0, 0, 0.08) 0px 8px 24px;
+  }
 }
 
 .btn {
@@ -383,7 +449,7 @@ video {
   }
 
   .header {
-    font-size: 70px !important;
+    font-size: 60px !important;
     letter-spacing: -2px !important;
   }
 }
