@@ -218,7 +218,7 @@ export default {
     /* ── Cinematic entrance timeline ── */
     playHeroEntrance() {
       const master = gsap.timeline({
-        delay: 2.6, // Wait for intro animation to finish
+        delay: 3.8, // Wait for intro clip-reveal + exit to finish
         defaults: { ease: "expo.out" },
       });
 
