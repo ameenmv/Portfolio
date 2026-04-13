@@ -10,9 +10,15 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "@tresjs/cientos": "^5.7.0",
+    "@tresjs/core": "^5.8.0",
+    "@tresjs/post-processing": "^3.7.1",
     "gsap": "^3.13.0",
+    "pinia": "^3.0.4",
     "sass": "^1.90.0",
     "tailwindcss": "^4.1.11",
+    "three": "^0.183.2",
+    "vite-plugin-glsl": "^1.6.0",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
   },

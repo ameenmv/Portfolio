@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--bg)] h-[10vh] flex justify-center items-center kalam footer">
+  <div class="ag-section h-[10vh] flex justify-center items-center kalam footer">
     <p class="text-[16px]  text-[var(--white)] left">
       Ameen Mohamed © All Rights Reserved - 2025
       &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;

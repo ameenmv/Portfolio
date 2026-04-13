@@ -201,7 +201,7 @@ export default {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--bg);
+  background: var(--bg-solid);
   display: flex;
   flex-direction: column;
   align-items: center;

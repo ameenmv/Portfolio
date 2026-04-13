@@ -6,11 +6,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 :root {
-  --bg: #222222;
+  --bg: #0a0a1a;
+  --bg-solid: #0a0a1a;
+  --bg-transparent: rgba(10, 10, 26, 0.75);
+  --bg-glass: rgba(10, 10, 26, 0.45);
   --white: #ffffff;
   --green: rgb(49, 238, 51);
   --sc: #a855f7;
   --black: #000000;
+  --glow-primary: #6644cc;
+  --glow-secondary: #e94560;
+  --glow-tertiary: #00d4ff;
 }
 
 .kalam {
@@ -51,6 +57,8 @@
 
 body {
   font-family: "Oswald", sans-serif;
+  background: var(--bg-solid);
+  overflow-x: hidden;
 }
 
 html,
@@ -59,6 +67,58 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* ═══════════════════════════════════════════
+   ANTI-GRAVITY: WebGL Integration Layer
+   ═══════════════════════════════════════════ */
+
+/* Content layer sits above the fixed WebGL canvas */
+.content-layer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sections with glass-like transparency to reveal particles */
+.ag-section {
+  background: var(--bg-transparent);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Fully transparent sections where particles are the star */
+.ag-section--clear {
+  background: transparent;
+}
+
+/* Dense sections where readability is priority */
+.ag-section--solid {
+  background: var(--bg-solid);
+}
+
+/* Glassmorphism panels */
+.ag-glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Glow effects */
+.ag-glow {
+  box-shadow: 0 0 30px rgba(102, 68, 204, 0.15),
+              0 0 60px rgba(102, 68, 204, 0.05);
+}
+
+/* Reduced motion: disable all WebGL */
+@media (prefers-reduced-motion: reduce) {
+  .webgl-canvas {
+    display: none !important;
+  }
+  .ag-section {
+    background: var(--bg-solid);
+    backdrop-filter: none;
+  }
 }
 html,
 body,

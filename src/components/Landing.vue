@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[100vh] bg-[var(--bg)]">
+  <div class="h-[100vh] ag-section--clear">
     <navbar />
     <div
       class="h-screen w-[100%] flex justify-center items-center relative perspective-[5000px] pt-20"

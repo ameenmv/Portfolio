@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--bg)] min-h-[100vh] color-[var(--white)] pb-[70px]">
+  <div class="ag-section min-h-[100vh] color-[var(--white)] pb-[70px]">
     <Navbar />
     <div class="containerr min-h-[100vh] !pt-[150px]">
       <div class="w-[100%] flex justify-center  flex-col items-center main">

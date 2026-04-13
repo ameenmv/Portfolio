@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-[100vh] bg-[var(--bg)] section2">
+  <div class="min-h-[100vh] ag-section section2">
     <div class="containerr">
       <div class="pt-20 flex flex-col text-center">
         <p class="text-[#ffffff80] font-semibold gotproject">got a project?</p>

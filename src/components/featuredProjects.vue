@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--bg)] pb-10 section relative overflow-hidden">
+  <div class="ag-section pb-10 section relative overflow-hidden">
     <div class="containerr">
       <div class="heading">
         <h1 class="!text-[var(--white)]">
@@ -418,7 +418,10 @@ export default {
 .project {
   max-width: 750px;
   border-radius: 50px;
-  background: var(--black);
+  background: rgba(10, 10, 26, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(102, 68, 204, 0.1);
   color: var(--white);
   transition: 0.3s;
   z-index: 4;
@@ -434,7 +437,7 @@ export default {
     margin-top: 10px;
     margin-left: 20px;
     letter-spacing: 1.2px;
-    background: var(--bg);
+    background: rgba(102, 68, 204, 0.15);
     border-radius: 50px;
     padding: 8px;
     width: fit-content;

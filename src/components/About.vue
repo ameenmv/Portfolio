@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[white] pb-[70px] about" ref="aboutSection">
+  <div class="pb-[70px] about" ref="aboutSection" style="background: rgba(255,255,255,0.92); backdrop-filter: blur(3px);">
     <div class="containerr">
       <div class="heading">
         <h1 class="header">about ameen</h1>
