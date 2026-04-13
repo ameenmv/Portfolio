@@ -159,12 +159,22 @@ export default {
       this.videoSrc = meVideo;
     }
 
-    // header animation
+    const isMobile = window.innerWidth < 800;
+
+    // header animation — use CSS-computed font size so it doesn't clash with responsive overrides
+    const headerEl = this.$el.querySelector(".header");
+    const computedSize = headerEl
+      ? window.getComputedStyle(headerEl).fontSize
+      : "90px";
+    const startSize = Math.round(parseInt(computedSize) * 0.65) + "px";
+    const endSize = computedSize;
+    const endSizeShrink = Math.round(parseInt(computedSize) * 0.95) + "px";
+
     gsap.from(".header", {
-      y: 100,
+      y: isMobile ? 50 : 100,
       opacity: 0.1,
       duration: 2,
-      fontSize: "60px",
+      fontSize: startSize,
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".header",
@@ -179,13 +189,13 @@ export default {
       {
         y: 0,
         opacity: 1,
-        fontSize: "90px",
+        fontSize: endSize,
       },
       {
         duration: 10,
-        y: 150,
+        y: isMobile ? 80 : 150,
         opacity: 0.7,
-        fontSize: "85px",
+        fontSize: endSizeShrink,
         scrollTrigger: {
           trigger: ".header",
           start: "top 70%",
@@ -197,7 +207,7 @@ export default {
 
     // video animations
     gsap.to(".video", {
-      y: -200,
+      y: isMobile ? -80 : -200,
       duration: 5,
       scrollTrigger: {
         trigger: ".video",
@@ -208,7 +218,7 @@ export default {
     });
 
     gsap.to(".video", {
-      scale: 2,
+      scale: isMobile ? 1.3 : 2,
       duration: 5,
       scrollTrigger: {
         trigger: ".video",
@@ -218,7 +228,7 @@ export default {
     });
 
     this.initTextAnimation();
-    this.initBoxesAnimation();
+    this.initBoxesAnimation(isMobile);
     this.initButtonAnimation();
   },
   methods: {
@@ -250,46 +260,64 @@ export default {
       });
     },
 
-    /* ── Skill Boxes: staggered entrance from sides ── */
-    initBoxesAnimation() {
+    /* ── Skill Boxes: responsive animation ── */
+    initBoxesAnimation(isMobile) {
       const leftBoxes = this.$el.querySelectorAll(".box1, .box2, .box3");
       const rightBoxes = this.$el.querySelectorAll(".box4, .box5, .box6");
+      const allBoxes = this.$el.querySelectorAll(".box");
 
-      // Initial states
-      gsap.set(leftBoxes, { opacity: 0, x: -60, rotation: -8 });
-      gsap.set(rightBoxes, { opacity: 0, x: 60, rotation: 8 });
+      if (isMobile) {
+        // On mobile, boxes are repositioned below text — animate from bottom with opacity
+        gsap.set(allBoxes, { opacity: 0, y: 30 });
 
-      // Left boxes slide in
-      gsap.to(leftBoxes, {
-        opacity: 1,
-        x: 0,
-        rotation: -2,
-        stagger: 0.15,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".trigger",
-          start: "top 75%",
-          end: "center 60%",
-          scrub: 1,
-        },
-      });
+        gsap.to(allBoxes, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".trigger",
+            start: "bottom 85%",
+            end: "bottom 50%",
+            scrub: 1,
+          },
+        });
+      } else {
+        // On desktop, boxes are on the sides — animate from x direction
+        gsap.set(leftBoxes, { opacity: 0, x: -60, rotation: -8 });
+        gsap.set(rightBoxes, { opacity: 0, x: 60, rotation: 8 });
 
-      // Right boxes slide in
-      gsap.to(rightBoxes, {
-        opacity: 1,
-        x: 0,
-        rotation: 2,
-        stagger: 0.15,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".trigger",
-          start: "top 75%",
-          end: "center 60%",
-          scrub: 1,
-        },
-      });
+        gsap.to(leftBoxes, {
+          opacity: 1,
+          x: 0,
+          rotation: -2,
+          stagger: 0.15,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".trigger",
+            start: "top 75%",
+            end: "center 60%",
+            scrub: 1,
+          },
+        });
+
+        gsap.to(rightBoxes, {
+          opacity: 1,
+          x: 0,
+          rotation: 2,
+          stagger: 0.15,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".trigger",
+            start: "top 75%",
+            end: "center 60%",
+            scrub: 1,
+          },
+        });
+      }
 
       // Draggable with snap-back
       Draggable.create(".box", {
