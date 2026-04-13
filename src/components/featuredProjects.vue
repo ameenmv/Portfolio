@@ -1,141 +1,69 @@
 <template>
-  <div class="bg-[var(--bg)] pb-10 section h-[fit-content] overflow-x-hidden">
-    <div class="containerr">
-      <div class="heading">
-        <h1 class="!text-[var(--white)]">
-          <span class="relative header2"
-            >FEATURED PROJECTS<img class="image" src="../assets/hat.png" alt=""
-          /></span>
-        </h1>
+  <div class="bg-black section relative overflow-hidden h-[fit-content]" ref="sectionRef">
+    
+    <!-- Mega Background Marquee (Scroll-Linked) -->
+    <div class="absolute top-[30%] left-[-20%] whitespace-nowrap opacity-[0.04] select-none pointer-events-none -rotate-[-8deg] z-0">
+       <h1 class="text-[200px] font-black uppercase text-white font-[angry] marquee-text">
+         SELECTED ARCHIVE WORKS SELECTED ARCHIVE WORKS SELECTED ARCHIVE WORKS
+       </h1>
+    </div>
+
+    <div class="containerr relative z-10 pt-32 pb-[10vh]">
+      
+      <!-- Huge Cinematic Header -->
+      <div class="heading mb-[10vh] relative flex justify-between items-end">
+         <h2 class="text-[8vw] md:text-[5vw] font-bold text-white uppercase leading-none header-title">
+           Selected<br/>
+           <span class="text-transparent border-text ml-[10%] italic text-[#ccc]">Archives</span>
+         </h2>
+         <img class="hidden md:block w-[150px] rotating-hat absolute top-[-50px] right-[10%]" src="../assets/hat.png" alt=""/>
       </div>
-      <div class="w-[100%] flex flex-col gap-40 projects">
-        <div @click="goToProject(project1.name)" class="project m-auto">
-          <div class="overflow-hidden">
-            <img class="projectimage" :src="project1.img" alt="" />
-          </div>
 
-          <div class="name">{{ project1.name }}</div>
-          <div class="title flex justify-between">
-            {{ project1.title }}
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-              <path
-                d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-              />
-            </svg>
-          </div>
-          <div class="one"></div>
-          <div class="two"></div>
-          <div class="three"></div>
-          <div class="four"></div>
-        </div>
+      <!-- Sticky Stacking Cards Track -->
+      <div class="cards-track relative mt-20">
+         <div 
+           v-for="(project, index) in featuredProjects" :key="index"
+           class="stack-card sticky top-[12vh] w-full h-[76vh] flex justify-center items-center mb-[80vh]"
+         >
+           <!-- The visual card that receives scale/fade 3D physics -->
+           <div class="inner-box w-full md:w-[90%] h-full rounded-[30px] md:rounded-[40px] overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.8)] relative cursor-none" @click="goToProject(project.name)">
+              
+              <!-- Parallax Image Layer -->
+              <div class="absolute top-[-20%] left-0 w-full h-[140%] img-parallax">
+                 <img :src="project.img" class="w-full h-full object-cover filter contrast-[1.1] grayscale-[20%] hover:grayscale-0 transition-all duration-700 pointer-events-none" />
+              </div>
 
-        <div @click="goToProject(project2.name)" class="project ml-[30%]">
-          <div class="overflow-hidden">
-            <img class="projectimage" :src="project2.img" alt="" />
-          </div>
+              <!-- Vignette & Glass Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 pointer-events-none"></div>
 
-          <div class="name">{{ project2.name }}</div>
-          <div class="title flex justify-between">
-            {{ project2.title }}
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-              <path
-                d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-              />
-            </svg>
-          </div>
-          <div class="one"></div>
-          <div class="two"></div>
-          <div class="three"></div>
-          <div class="four"></div>
-        </div>
-        <div class="flex gap-10 items-center">
-          <div @click="goToProject(project3.name)" class="project">
-            <div class="overflow-hidden">
-              <img class="projectimage" :src="project3.img" alt="" />
-            </div>
-
-            <div class="name">{{ project3.name }}</div>
-            <div class="title flex justify-between">
-              {{ project3.title }}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                <path
-                  d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-                />
-              </svg>
-            </div>
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
-          </div>
-          <div
-            @click="goToProject(project4.name)"
-            class="project h-[fit-content]"
-          >
-            <div class="overflow-hidden">
-              <img class="projectimage" :src="project4.img" alt="" />
-            </div>
-
-            <div class="name">{{ project4.name }}</div>
-            <div class="title flex justify-between">
-              {{ project4.title }}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                <path
-                  d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-                />
-              </svg>
-            </div>
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
-          </div>
-        </div>
-        <div @click="goToProject(project5.name)" class="project m-auto">
-          <div class="overflow-hidden">
-            <img class="projectimage" :src="project5.img" alt="" />
-          </div>
-
-          <div class="name">{{ project5.name }}</div>
-          <div class="title flex justify-between">
-            {{ project5.title }}
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-              <path
-                d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-              />
-            </svg>
-          </div>
-          <div class="one"></div>
-          <div class="two"></div>
-          <div class="three"></div>
-          <div class="four"></div>
-        </div>
-        <div @click="goToProject(project6.name)" class="project mr-[30%]">
-          <div class="overflow-hidden">
-            <img class="projectimage" :src="project6.img" alt="" />
-          </div>
-
-          <div class="name">{{ project6.name }}</div>
-          <div class="title flex justify-between flex justify-between">
-            {{ project6.title }}
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-              <path
-                d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-              />
-            </svg>
-          </div>
-          <div class="one"></div>
-          <div class="two"></div>
-          <div class="three"></div>
-          <div class="four"></div>
-        </div>
+              <!-- Content Layer -->
+              <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-14 pointer-events-none">
+                 <div class="flex justify-between items-end w-full">
+                    <div>
+                       <span class="text-white font-mono text-[10px] md:text-sm tracking-[0.4em] uppercase opacity-60 block mb-4 border border-white/20 w-fit px-4 py-1 rounded-full backdrop-blur-md">
+                         0{{index+1}} — {{project.name}}
+                       </span>
+                       <h3 class="font-[angry] text-[45px] md:text-[90px] font-black text-white uppercase leading-[0.9] mix-blend-difference title-text">
+                         {{project.title}}
+                       </h3>
+                    </div>
+                    
+                    <div class="hidden md:flex arrow-box w-[80px] h-[80px] rounded-full border border-white/30 items-center justify-center backdrop-blur-md transition-all duration-500">
+                       <svg class="w-[35px] h-[35px] fill-white transform -rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                         <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"/>
+                       </svg>
+                    </div>
+                 </div>
+              </div>
+           </div>
+         </div>
       </div>
-      <div class="w-[100%] flex justify-center items-center">
+      
+      <div class="w-[100%] flex justify-center items-center mt-0 md:-mt-32 relative z-20">
         <router-link to="/projects">
-          <div class="btnn ml-5 relative mt-20">
-            <div class="btn">View More</div>
+          <div class="btnn relative mt-20 cursor-none">
+            <div class="btn outline-none">VIEW ALL ARCHIVES</div>
             <div class="btn2"></div>
-
             <img src="../assets/star.svg" class="onesvg svgg" alt="" />
             <img src="../assets/star.svg" class="twosvg svgg" alt="" />
             <img src="../assets/star.svg" class="threesvg svgg" alt="" />
@@ -145,6 +73,7 @@
           </div>
         </router-link>
       </div>
+
     </div>
   </div>
 </template>
@@ -160,367 +89,190 @@ export default {
   name: "Projects",
   data() {
     return {
-      project1: null,
-      project2: null,
-      project3: null,
-      project4: null,
-      project5: null,
-      project6: null,
+      featuredProjects: [],
     };
   },
   created() {
-    this.project1 = projects.find((p) => p.name === "Exclusive");
-    this.project2 = projects.find((p) => p.name === "MVLib");
-    this.project3 = projects.find((p) => p.name === "MV LMS");
-    this.project4 = projects.find((p) => p.name === "MVClinic");
-
-    this.project5 = projects.find((p) => p.name === "KIIIBS");
-    this.project6 = projects.find((p) => p.name === "Hidaaya");
+    // Dynamic mapping for a pristine template
+    const highlightNames = ["Exclusive", "MVLib", "MV LMS", "MVClinic", "KIIIBS", "Hidaaya"];
+    this.featuredProjects = highlightNames.map(name => projects.find((p) => p.name === name)).filter(Boolean);
   },
   methods: {
     goToProject(name) {
+      if (!name) return;
       this.$router.push(`/projects/${name}`);
     },
   },
   mounted() {
+    // Refresh scroll triggers if layout recalculates
+    window.addEventListener("resize", () => ScrollTrigger.refresh());
+
     const isMobile = window.innerWidth < 800;
 
-    // header2 animation - Reading computed font sizes for responsive override safety
-    const headerEl = this.$el.querySelector(".header2");
-    const computedSize = headerEl
-      ? window.getComputedStyle(headerEl).fontSize
-      : "90px";
-    const startSize = Math.round(parseInt(computedSize) * 0.6) + "px";
-    const endSize = computedSize;
-    const shrinkSize = Math.round(parseInt(computedSize) * 0.8) + "px";
-
-    gsap.from(".header2", {
-      y: isMobile ? 50 : 100,
-      opacity: 0.2,
-      fontSize: startSize,
-      ease: "power2.out",
+    // Header Parallax & Marquee
+    gsap.to(".marquee-text", {
+      xPercent: -30,
+      ease: "none",
       scrollTrigger: {
-        trigger: ".header2",
-        start: "top 100%",
-        end: "top 70%",
-        scrub: 1, // Smooth scrub
-      },
+        trigger: this.$refs.sectionRef,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2,
+      }
     });
 
-    gsap.fromTo(
-      ".header2",
-      {
-        y: 0,
-        opacity: 1,
-        fontSize: endSize,
-      },
-      {
-        y: () => document.querySelector(".section").offsetHeight - (isMobile ? 500 : 1400),
-        opacity: 0.5,
-        fontSize: shrinkSize,
-        scrollTrigger: {
-          trigger: ".section",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.5,
-        },
-      }
+    gsap.fromTo(".header-title", 
+      { y: 100, opacity: 0, clipPath: "inset(100% 0% 0% 0%)" }, 
+      { y: 0, opacity: 1, clipPath: "inset(0% 0% 0% 0%)", ease: "expo.out", duration: 1.5, scrollTrigger: { trigger: ".header-title", start: "top 85%" }}
     );
 
-    // Hat image animation - giving it a bit more spin/bounce character
-    gsap.fromTo(
-      ".image",
-      {
-        y: isMobile ? -300 : -800,
-        opacity: 0,
-        rotation: 0,
-        scale: 0.5,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        rotation: 22,
-        scale: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".section",
-          start: "top 90%",
-          end: "top 10%",
-          scrub: 1.5,
-        },
-      }
+    gsap.fromTo(".rotating-hat",
+      { y: -300, rotation: -45, scale: 0.5, opacity: 0 },
+      { y: 0, rotation: 15, scale: 1, opacity: 1, ease: "back.out(1.5)", duration: 1.5, scrollTrigger: { trigger: ".header-title", start: "top 85%" }}
     );
 
-    // Ultimate Awwwards-Tier Scroll Velocity Skew Wobble
-    let proxy = { skew: 0 };
-    let skewSetter = gsap.quickSetter(".project", "skewY", "deg");
-    let clamp = gsap.utils.clamp(-3.5, 3.5); // Max bend angle
+    // ==========================================
+    // LUSION TIER ENGINE: Depth Stacking Sticky Cards
+    // ==========================================
+    const cards = gsap.utils.toArray(".stack-card");
 
-    ScrollTrigger.create({
-      onUpdate: (self) => {
-        let skew = clamp(self.getVelocity() / -150);
-        // Only trigger the wobble if the momentum is stronger than the current skew
-        if (Math.abs(skew) > Math.abs(proxy.skew)) {
-          proxy.skew = skew;
-          gsap.to(proxy, {
-            skew: 0,
-            duration: 1.2,
-            ease: "elastic.out(1.2, 0.4)", // Jelly snap-back
-            overwrite: true,
-            onUpdate: () => skewSetter(proxy.skew),
+    cards.forEach((card, index) => {
+       const inner = card.querySelector(".inner-box");
+       const img = card.querySelector(".img-parallax");
+       const title = card.querySelector(".title-text");
+       const isLast = index === cards.length - 1;
+
+       // 1. Image Extreme Parallax inside the card
+       if (img && !isMobile) {
+          gsap.to(img, {
+             yPercent: 15,
+             ease: "none",
+             scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+             }
           });
-        }
-      },
+       }
+
+       // 2. Cinematic Title Slide-up
+       if (title) {
+         gsap.fromTo(title, 
+           { y: 80, opacity: 0, rotationX: 15 },
+           { y: 0, opacity: 1, rotationX: 0, ease: "power4.out", duration: 1.4, scrollTrigger: { trigger: card, start: "top 80%" }}
+         );
+       }
+
+       // 3. The 3D Depth Shrink (when next card rolls over this one)
+       if (!isLast) {
+          const nextCard = cards[index + 1];
+          gsap.to(inner, {
+             scale: isMobile ? 0.95 : 0.88,
+             opacity: 0.3, // Darkens deep into the background
+             y: isMobile ? -10 : -30, // Pushes back physically
+             rotateX: isMobile ? 0 : -5,
+             transformPerspective: 1800,
+             transformOrigin: "top center",
+             ease: "none",
+             scrollTrigger: {
+                trigger: nextCard,
+                start: "top bottom", // Starts exactly when the next card appears
+                end: "top 12%", // Ends exactly when the next card finishes pinning over it
+                scrub: true,
+             }
+          });
+       }
     });
 
-    // Premium Card Animations - Mask Expansion + Nested Timelines
-    gsap.utils.toArray(".project").forEach((project) => {
-      const img = project.querySelector(".projectimage");
-      const name = project.querySelector(".name");
-      const title = project.querySelector(".title");
+    // ==========================================
+    // Liquid Magnetic CTA Hover Physics
+    // ==========================================
+    if (!isMobile) {
+      const btnContainerNode = this.$el.querySelector(".btnn");
+      const innerBoxes = document.querySelectorAll(".inner-box");
 
-      // Set initial state for nested text elements so we can animate them
-      if (name) gsap.set(name, { y: 20, opacity: 0 });
-      if (title) gsap.set(title, { y: 20, opacity: 0 });
-
-      // Master entrance timeline for the card
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: project,
-          start: "top 85%", // Trigger when card enters the viewport
-        },
+      // Custom cursor mapping on cards
+      innerBoxes.forEach(box => {
+        box.addEventListener("mousemove", (e) => {
+          gsap.to(box, { cursor: `url('../assets/mini3.png') 64 64, pointer`});
+        });
       });
 
-      // 1. The Super Dramatic Card Base Entrance (Expands + Rotates)
-      tl.fromTo(
-        project,
-        {
-          y: 120,
-          opacity: 0,
-          rotationX: 12,
-          scale: 0.9,
-          clipPath: "inset(15% 10% 15% 10% round 50px)", // Squeezed and masked
-          transformPerspective: 1500,
-          transformOrigin: "center top",
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotationX: 0,
-          scale: 1,
-          clipPath: "inset(0% 0% 0% 0% round 50px)", // Fully open mask
-          duration: 1.4,
-          ease: "expo.out",
-        }
-      );
+      if (btnContainerNode) {
+        const innerBtn = btnContainerNode.querySelector(".btn");
+        
+        btnContainerNode.addEventListener("mousemove", (e) => {
+          const rect = btnContainerNode.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
 
-      // 2. Text Reveal (Name and Title) sweeping up right after card opens
-      if (name || title) {
-        tl.to(
-          [name, title],
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power4.out",
-          },
-          "-=1.1" // overlap animation with the card opening
-        );
+          gsap.to(btnContainerNode, { x: x * 0.4, y: y * 0.4, duration: 0.5, ease: "power2.out" });
+          if (innerBtn) gsap.to(innerBtn, { x: x * 0.2, y: y * 0.2, duration: 0.5, ease: "power2.out" });
+        });
+
+        btnContainerNode.addEventListener("mouseleave", () => {
+          gsap.to(btnContainerNode, { x: 0, y: 0, duration: 1.2, ease: "elastic.out(1, 0.3)" });
+          if (innerBtn) gsap.to(innerBtn, { x: 0, y: 0, duration: 1.2, ease: "elastic.out(1, 0.3)" });
+        });
       }
-
-      // 3. The Deep Internal Image Parallax + Scrub
-      if (img) {
-        gsap.fromTo(
-          img,
-          {
-            scale: 1.35,
-            yPercent: -8,
-          },
-          {
-            scale: 1.05, // keep a slight scale for visual tension
-            yPercent: 8,
-            ease: "none", // essential for smooth scrub
-            scrollTrigger: {
-              trigger: project,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          }
-        );
-      }
-    });
-
-    // View More Button Reveal
-    const btnContainer = this.$el.querySelector(".btnn.relative.mt-20");
-    if (btnContainer) {
-      gsap.from(btnContainer, {
-        opacity: 0,
-        y: 40,
-        scale: 0.9,
-        duration: 1.2,
-        ease: "expo.out",
-        scrollTrigger: {
-          trigger: btnContainer,
-          start: "top 95%",
-        },
-      });
     }
   },
+  beforeUnmount() {
+    ScrollTrigger.getAll().forEach(t => t.kill());
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.header2 {
-  img {
-    width: 200px;
-    position: absolute;
-    top: -120px;
-    right: -100px;
-    transform: rotate(22deg);
-  }
+
+.border-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  color: transparent;
 }
-.project {
-  max-width: 750px;
-  border-radius: 50px;
-  background: var(--black);
+
+/* Custom fonts for this cinematic look */
+.font-\[angry\] {
+  font-family: angry, sans-serif;
+}
+
+/* Base button styles */
+.btn {
+  color: #000;
+  border: 1px solid #000;
+}
+.btn2 {
+  border: 1px solid #eee;
+}
+.btnn:hover .btn {
+  color: #000;
+  background-color: var(--bg);
+  border: 1px solid #000;
   color: var(--white);
-  transition: 0.3s;
-  z-index: 4;
-  position: relative;
-
-  img {
-    width: 100%;
-    border-radius: 50px;
-    transition: 0.3s;
-  }
-  .name {
-    font-size: 12px;
-    margin-top: 10px;
-    margin-left: 20px;
-    letter-spacing: 1.2px;
-    background: var(--bg);
-    border-radius: 50px;
-    padding: 8px;
-    width: fit-content;
-    opacity: 0.9;
-  }
-  .title {
-    font-size: 28px;
-    font-weight: 600;
-    opacity: 0.9;
-    margin-top: 10px;
-    padding-bottom: 15px;
-    margin-left: 20px;
-    font-family: angry;
-    svg {
-      width: 25px;
-      height: 25px;
-      fill: var(--white);
-      margin-right: 25px;
-      transition: 0.3s;
-      transform: rotate(-40deg);
-      transition: 0.3s;
-    }
-  }
-  .one,
-  .two,
-  .three,
-  .four {
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    opacity: 0;
-    transition: 0.3s;
-  }
-  .one {
-    left: 0px;
-    top: 0px;
-    border-left: 1px solid #eee;
-    border-top: 1px solid #eee;
-  }
-  .two {
-    border-right: 1px solid #eee;
-    border-top: 1px solid #eee;
-    right: 0px;
-    top: 0px;
-  }
-  .three {
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    right: 0px;
-    bottom: 0px;
-  }
-  .four {
-    border-left: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    left: 0px;
-    bottom: 0px;
-  }
 }
-.project:hover {
-  border-radius: 0;
-  svg {
-    transform: rotate(0deg);
-  }
-  img {
-    border-radius: 0;
-  }
-  .one {
-    opacity: 1;
-    left: -15px;
-    top: -15px;
-  }
-  .two {
-    opacity: 1;
-    right: -15px;
-    top: -15px;
-  }
-  .three {
-    opacity: 1;
-    right: -15px;
-    bottom: -15px;
-  }
-  .four {
-    opacity: 1;
-    left: -15px;
-    bottom: -15px;
-  }
+.btnn:hover .btn2 {
+  border: 2px solid #000;
 }
-.project:hover,
-.project:hover * {
-  cursor: url("../assets/mini3.png") 64 64, pointer !important;
+.svgg {
+  filter: brightness(0) invert(1);
 }
-
-@media (max-width: 1024px) {
-  .project {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .projectimage {
-    height: auto !important;
-    max-height: 400px;
-    width: 100%;
-    object-fit: cover;
-  }
-
-  .flex.gap-10 {
-    flex-direction: column;
-    gap: 150px;
-  }
+.btnn:hover .svgg {
+  filter: none;
 }
-
-@media (max-width: 991px) {
-  .header2 {
-    font-size: 60px !important;
-    letter-spacing: -1px !important;
-  }
-
-  .projectimage {
-    max-height: 350px;
-  }
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--bg);
+  z-index: -1;
+  transition: width 0.5s ease;
+  border-radius: 50px;
+}
+.btnn:hover .btn::before {
+  width: 100%;
 }
 
 @media (max-width: 767px) {
@@ -528,78 +280,12 @@ export default {
     font-size: 32px !important;
     letter-spacing: 2px !important;
   }
-
-  .heading {
-    height: 50vh;
-  }
-
-  .image {
-    width: 160px !important;
-  }
-
-  .projectimage {
-    max-height: 300px;
-  }
-
-  .projects {
-    gap: 80px !important;
-  }
-  .flex.gap-10 {
-    gap: 80px !important;
-  }
-  .title {
-    font-size: 24px !important;
-  }
 }
 
 @media (max-width: 600px) {
   .header2 {
     font-size: 26px !important;
     letter-spacing: 1px !important;
-  }
-  .heading {
-    height: 40vh;
-  }
-  .image {
-    width: 130px !important;
-    right: -70px !important;
-  }
-
-  .projectimage {
-    max-height: 250px;
-  }
-
-  .projects {
-    gap: 60px !important;
-  }
-  .flex.gap-10 {
-    gap: 40px !important;
-  }
-  .title {
-    font-size: 20px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .header2 {
-    font-size: 26px !important;
-    letter-spacing: 0.5px !important;
-  }
-
-  .image {
-    width: 100px !important;
-    right: -50px !important;
-  }
-
-  .projectimage {
-    max-height: 200px;
-  }
-
-  .projects {
-    gap: 40px !important;
-  }
-  .title {
-    font-size: 20px !important;
   }
 }
 </style>
