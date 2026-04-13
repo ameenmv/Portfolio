@@ -1,0 +1,575 @@
+# 🌌 Anti-Gravity Digital Universe — Elite Implementation Plan
+
+> **Goal:** Refactor Ameen's personal portfolio to compete for an **Awwwards SOTD**.  
+> **Vibe:** *Mad Scientist meets Minimalist Designer*
+
+---
+
+## Executive Summary
+
+Transform the current Vite + Vue 3 SPA portfolio into a **Nuxt 3-powered immersive 3D experience** with a persistent WebGL canvas, 1M+ particle systems, physics-based interactions, custom GLSL shaders, and a camera rig that moves through a 3D spline path controlled by scroll. The result: a portfolio that feels like stepping into a living, breathing digital universe.
+
+```mermaid
+graph LR
+    A["Current State<br/>Vite + Vue 3 SPA<br/>GSAP + ScrollTrigger<br/>Flat 2D Layout"] --> B["Target State<br/>Nuxt 3 + TresJS<br/>Full WebGL Pipeline<br/>Anti-Gravity 3D Universe"]
+    style A fill:#333,color:#fff,stroke:#666
+    style B fill:#0d1117,color:#7ee787,stroke:#7ee787
+```
+
+---
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Framework Migration Decision**: This plan proposes migrating from **Vite + Vue 3** to **Nuxt 3**. While Nuxt provides SSR/SSG for SEO (critical for a portfolio), it adds hydration complexity with GSAP/WebGL. **Alternative**: Stay on Vite + Vue 3 SPA and use prerendering for SEO. This is simpler but sacrifices some SEO features.
+
+> [!WARNING]
+> **Scope & Timeline**: This is an enormous undertaking. The full plan as described would take a senior creative developer **4-8 weeks** of focused work. I recommend a **phased delivery** where each phase produces a deployable, impressive result. We should decide together which phases to tackle first.
+
+> [!CAUTION]
+> **Mobile Performance**: FBO particle systems and GLSL shaders are GPU-intensive. The plan includes a "graceful degradation" strategy for mobile, but this means mobile users will experience a simpler (though still beautiful) version of the site.
+
+---
+
+## Architecture Overview
+
+```mermaid
+graph TD
+    subgraph "Nuxt 3 Application Layer"
+        N[Nuxt 3 App] --> R[Router / Pages]
+        N --> P[Pinia Store]
+        P --> |"Shared WebGL State<br/>Camera, Scroll %, Scene Mode"| WS[WebGL State Store]
+        P --> |"UI State<br/>Active Section, Menu"| US[UI State Store]
+    end
+
+    subgraph "Persistent WebGL Layer (TresJS)"
+        WS --> TC["TresCanvas<br/>(Full-viewport, persistent)"]
+        TC --> SC[Scene Controller]
+        SC --> PS["FBO Particle System<br/>(1M particles)"]
+        SC --> GEO["Generative Geometry<br/>(Morphing Objects)"]
+        SC --> CR["Camera Rig<br/>(Spline Path)"]
+        SC --> PP["Post-Processing<br/>(Bloom, ChromAb, Grain)"]
+    end
+
+    subgraph "GSAP Orchestration Layer"
+        R --> |"Route Changes"| GO[GSAP Observer]
+        GO --> |"Scroll Progress"| WS
+        ST[ScrollTrigger] --> |"Section Triggers"| SC
+        TL[Master Timeline] --> |"Sequence Control"| SC
+    end
+
+    subgraph "HTML Content Layer"
+        R --> HS[Hero Section]
+        R --> AS[About Section]
+        R --> FP[Featured Projects]
+        R --> CS[Contact Section]
+    end
+
+    style TC fill:#1a1a2e,color:#e94560,stroke:#e94560
+    style PS fill:#1a1a2e,color:#0f3460,stroke:#0f3460
+    style CR fill:#1a1a2e,color:#16213e,stroke:#16213e
+```
+
+---
+
+## Proposed Changes
+
+### Phase 0: Foundation — Nuxt 3 Migration & Shared Canvas
+
+This phase establishes the architectural skeleton. Everything else builds on this.
+
+---
+
+#### Nuxt 3 Project Setup
+
+##### [NEW] `nuxt.config.ts`
+Nuxt 3 configuration with TresJS module, GSAP (via Nuxt plugin), Tailwind CSS v4, and custom font loading. Key settings:
+- `ssr: true` with `routeRules` for static generation (SSG) of all portfolio pages
+- TresJS module registered
+- GSAP registered as a client-only plugin
+- Custom `app.head` meta tags (preserve existing SEO)
+
+##### [NEW] `plugins/gsap.client.ts`
+Client-only Nuxt plugin that registers all GSAP plugins globally:
+- `ScrollTrigger`, `ScrollSmoother`, `Observer`, `Flip`, `Draggable`, `CustomEase`
+- Provides `$gsap` via `nuxtApp.provide()` for use in composables
+
+##### [NEW] `plugins/tres.client.ts`
+Client-only plugin for TresJS initialization and any global Three.js configuration.
+
+---
+
+#### Shared WebGL Canvas (The "Continuous Rendering" Architecture)
+
+##### [NEW] `stores/webgl.ts` (Pinia)
+The brain of the 3D experience. Manages:
+```typescript
+interface WebGLState {
+  scrollProgress: number        // 0-1 global scroll %
+  activeSection: string         // 'hero' | 'about' | 'projects' | 'contact'
+  cameraTarget: Vector3         // Where the camera should look
+  cameraPosition: Vector3       // Where the camera is
+  particleMode: string          // 'idle' | 'explode' | 'attract' | 'morph'
+  mousePosition: { x: number, y: number }
+  isTransitioning: boolean
+  scrollVelocity: number        // For post-processing intensity
+  audioReactivity: number       // 0-1 from audio analyzer
+}
+```
+
+##### [NEW] `components/WebGLCanvas.vue`
+- A **full-viewport `<TresCanvas>`** positioned `fixed` behind all HTML content
+- Placed in `app.vue` (NOT inside pages) so it persists across route changes
+- Contains the Scene Controller, Camera Rig, Particle System, Post-Processing
+- Watches the Pinia store reactively to update 3D scene
+
+##### [MODIFY] `app.vue`
+```vue
+<template>
+  <!-- Persistent 3D Layer (never unmounts) -->
+  <ClientOnly>
+    <WebGLCanvas />
+  </ClientOnly>
+  
+  <!-- HTML Content Layer (scrollable, transparent bg) -->
+  <div class="content-layer">
+    <NuxtPage />
+  </div>
+</template>
+```
+
+---
+
+#### Preserve Existing Content & SEO
+
+##### [MIGRATE] All existing components → `components/sections/`
+Move and refactor:
+- `Landing.vue` → `components/sections/HeroSection.vue`
+- `About.vue` → `components/sections/AboutSection.vue`
+- `featuredProjects.vue` → `components/sections/ProjectsSection.vue`
+- `Contact.vue` → `components/sections/ContactSection.vue`
+- `Footer.vue` → `components/sections/FooterSection.vue`
+- `Navbar.vue` → `components/navigation/Navbar.vue`
+- `Intro.vue` → `components/intro/IntroScreen.vue`
+
+All existing GSAP animations are preserved but refactored to use `gsap.context()` for proper cleanup.
+
+##### [MIGRATE] Pages
+- `Pages/Home.vue` → `pages/index.vue`
+- `Pages/Projects.vue` → `pages/projects/index.vue`
+- `Pages/ProjectDetails.vue` → `pages/projects/[name].vue`
+
+---
+
+### Phase 1: Advanced Scene Orchestration
+
+---
+
+#### Camera Rig System (Spline-Based)
+
+##### [NEW] `composables/useCameraRig.ts`
+A composable that:
+1. Defines a 3D **CatmullRom spline path** through the scene
+2. Maps scroll percentage (0→1) to a position on the spline
+3. Uses GSAP to smoothly interpolate the camera along this path
+4. Each "section" (hero, about, projects, contact) corresponds to a segment of the spline
+
+```
+Spline Path Visualization:
+
+  Hero (0%)          About (25%)        Projects (50%)       Contact (100%)
+     ●───────────────●──────────────────●───────────────────●
+    /                 \                /                     \
+   /    (Orbit Out)    \   (Dive In)  /   (Horizontal Pan)   \  (Pull Back)
+  ●                     ●            ●                         ●
+```
+
+##### [NEW] `components/webgl/CameraController.vue`
+TresJS component inside `<TresCanvas>` that:
+- Reads `scrollProgress` from Pinia store
+- Calculates camera position on the spline via `useCameraRig`
+- Adds subtle mouse-parallax offset (like Lusion.co)
+- Implements smooth damping for organic camera feel
+
+---
+
+#### Scene State Machine
+
+##### [NEW] `composables/useSceneOrchestrator.ts`
+Controls what the 3D scene displays based on active section:
+- **Hero**: Particles in "cosmic dust" formation, camera at origin
+- **About**: Particles morph into a portrait silhouette (from your photo), camera orbits
+- **Projects**: Particles scatter to edges, floating 3D project cards enter, camera pans horizontally
+- **Contact**: Particles converge into a pulsing sphere, camera pulls back dramatically
+
+---
+
+### Phase 2: Mathematical & Physics-Based Visuals
+
+---
+
+#### FBO Particle System (1M+ Particles)
+
+##### [NEW] `components/webgl/FBOParticles.vue`
+The crown jewel. Uses **Frame Buffer Objects** (GPGPU) for GPU-computed particle physics:
+
+1. **Simulation Shader** (`simulationMaterial`): Runs on GPU, computes position/velocity for each particle
+2. **Render Shader** (`renderMaterial`): Reads positions from FBO texture, renders as points
+3. **Interactions**:
+   - Cursor attraction/repulsion (via mouse position uniform)
+   - Scroll-driven turbulence (via scroll velocity uniform)
+   - Section-based formations (encode target positions in a texture)
+
+##### [NEW] `shaders/simulation.frag.glsl`
+```glsl
+// GPU particle physics
+uniform float uTime;
+uniform vec2 uMouse;
+uniform float uScrollVelocity;
+uniform sampler2D uTargetPositions;
+uniform float uMorphProgress;
+
+void main() {
+    vec2 uv = gl_FragCoord.xy / resolution.xy;
+    vec4 pos = texture2D(uPositions, uv);
+    vec4 vel = texture2D(uVelocities, uv);
+    vec4 target = texture2D(uTargetPositions, uv);
+    
+    // Morph toward target formation
+    vec3 toTarget = target.xyz - pos.xyz;
+    vel.xyz += toTarget * uMorphProgress * 0.01;
+    
+    // Cursor interaction (repulsion sphere)
+    vec3 toCursor = pos.xyz - vec3(uMouse, 0.0);
+    float dist = length(toCursor);
+    vel.xyz += normalize(toCursor) / (dist * dist + 0.1) * 0.5;
+    
+    // Turbulence from scroll
+    vel.xyz += curl_noise(pos.xyz * 0.5 + uTime * 0.1) * uScrollVelocity * 0.02;
+    
+    // Damping
+    vel.xyz *= 0.98;
+    pos.xyz += vel.xyz;
+    
+    gl_FragColor = pos;
+}
+```
+
+##### [NEW] `shaders/particles.vert.glsl` & `shaders/particles.frag.glsl`
+Vertex shader reads positions from FBO texture; fragment shader renders with:
+- Size attenuation (smaller when farther)
+- Color based on velocity (fast = hot, slow = cool)
+- Soft circular point shape with glow
+
+---
+
+#### Anti-Gravity Physics Engine
+
+##### [NEW] `composables/useAntiGravity.ts`
+Integration of **Rapier.js** (WASM physics engine) with GSAP for deterministic slow-mo:
+
+1. Rapier handles rigid body simulation (floating project cards, skill tags)
+2. GSAP `CustomEase` controls time-scale for "bullet-time" effects
+3. On scroll trigger → objects explode outward → time slows → particles freeze → resume
+
+```typescript
+// Slow-mo explosion sequence
+const explode = () => {
+  const tl = gsap.timeline()
+  tl.to(physics, { timeScale: 1, duration: 0.1 })  // Full speed
+    .call(() => applyExplosionForce(center, 50))      // BOOM
+    .to(physics, { timeScale: 0.05, duration: 0.8 })  // Slow-mo
+    .to(physics, { timeScale: 1, duration: 1.5 })     // Resume
+}
+```
+
+---
+
+#### GLSL Vertex Displacement Shader
+
+##### [NEW] `shaders/morphDisplacement.vert.glsl`
+For making 3D objects feel like they're **melting/morphing** during transitions:
+```glsl
+uniform float uProgress;   // 0→1 transition progress
+uniform float uTime;
+
+void main() {
+    vec3 displaced = position;
+    
+    // Organic noise displacement
+    float noise = snoise(position * 2.0 + uTime * 0.3);
+    
+    // Melt downward with progress
+    displaced.y -= uProgress * noise * position.y * 2.0;
+    
+    // Stretch horizontally as it melts
+    displaced.x *= 1.0 + uProgress * noise * 0.5;
+    displaced.z *= 1.0 + uProgress * noise * 0.3;
+    
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(displaced, 1.0);
+}
+```
+
+---
+
+### Phase 3: Hyper-Flow Interaction
+
+---
+
+#### Raycasting + GSAP Flip Integration
+
+##### [NEW] `composables/useRaycastInteraction.ts`
+Deep interaction system:
+1. **Raycasting** detects which 3D floating object the user clicks
+2. On click → GSAP `Flip` captures the 3D object state
+3. The 3D object transitions into a full-screen HTML content panel
+4. Uses `Flip.from()` to animate the HTML panel opening from the 3D object's screen position
+
+```
+User clicks floating 3D cube
+     ↓
+Raycast identifies "Project: Exclusive"
+     ↓
+GSAP Flip captures cube's screen position
+     ↓
+3D cube fades, HTML project panel appears
+     ↓
+Flip.from() animates panel expanding from cube position
+     ↓
+Full-screen project details with smooth transition
+```
+
+##### [NEW] `components/webgl/FloatingProjects.vue`
+3D project cards that float in space:
+- Each card is a `<TresMesh>` with the project screenshot as texture
+- Cards have subtle rotation, bobbing, and respond to cursor proximity
+- On hover → card glows and pulls toward camera
+- On click → triggers the Flip transition
+
+---
+
+#### Scroll-Driven Scene Sections
+
+##### [NEW] `composables/useHyperScroll.ts`
+Uses GSAP `Observer` for a custom scroll experience:
+- Smooth, normalized scroll (not hijacked — users stay in control)
+- Maps scroll position to scene progression
+- Supports both wheel, touch, and keyboard navigation
+- Provides haptic-like feedback through camera micro-movements
+
+---
+
+### Phase 4: Post-Processing & Polish
+
+---
+
+#### Custom Post-Processing Pipeline
+
+##### [NEW] `components/webgl/PostProcessing.vue`
+Dynamic effects that react to scroll velocity:
+
+| Effect | Trigger | Intensity |
+|--------|---------|-----------|
+| **Bloom** | Always on | Low idle → High on hover |
+| **Chromatic Aberration** | Scroll speed | 0 at rest → Strong at fast scroll |
+| **Film Grain** | Always on | Subtle constant texture |
+| **RGB Shift** | Mouse movement | Directional shift following cursor |
+| **Vignette** | Section transitions | Darkens edges during camera moves |
+
+```typescript
+// In render loop
+const velocity = Math.abs(store.scrollVelocity)
+chromaticAberration.offset = velocity * 0.005
+bloom.intensity = THREE.MathUtils.lerp(bloom.intensity, baseBloom + velocity * 2, 0.05)
+rgbShift.amount = mouseSpeed * 0.001
+```
+
+##### [NEW] `shaders/postprocess/chromaticAberration.glsl`
+Custom fragment shader for chromatic aberration that follows scroll direction.
+
+##### [NEW] `shaders/postprocess/filmGrain.glsl`
+Animated grain overlay with time-based randomization.
+
+---
+
+#### Audio-Reactive Environment
+
+##### [NEW] `composables/useAudioReactive.ts`
+Subtle audio reactivity with a lo-fi ambient track:
+1. Load an ambient audio track (e.g., low drone + pad)
+2. Web Audio API `AnalyserNode` extracts frequency data
+3. Low frequencies → particle system breathing/scale
+4. Mid frequencies → subtle camera FOV oscillation
+5. High frequencies → post-processing bloom spikes
+6. **User-initiated**: Audio only starts after user interaction (click/scroll)
+7. **Mute/volume control** in navbar
+
+---
+
+### Phase 5: Unconventional Layout — "Orbital UI"
+
+---
+
+#### Non-Linear Scroll Architecture
+
+##### The Concept:
+Instead of a traditional vertical scroll, the portfolio uses a **hybrid approach**:
+1. **Vertical scroll** drives camera along the 3D spline (smooth, familiar)
+2. **Each section** is a "station" on the spline where the camera pauses
+3. **Within sections**, content can be explored via horizontal or orbital navigation
+4. The projects section uses a **360° orbital arrangement** — project cards float around a central point, and the user can rotate to browse them
+
+```
+                    ●─── Project 1
+                   / 
+      Contact ●───●──── Project 2
+              |    \
+              |     ●── Project 3
+  About ●─────●
+              |     ●── Project 4
+              |    /
+       Hero ●─●───●──── Project 5
+                   \
+                    ●─── Project 6
+```
+
+##### [NEW] `components/sections/OrbitalProjects.vue`
+Orbital project selector:
+- Projects arranged in a 3D ring
+- Scroll/drag rotates the ring
+- Selected project moves to center and scales up
+- GSAP Flip transitions it to a full-screen detail view
+
+---
+
+## New Dependencies
+
+```json
+{
+  "dependencies": {
+    "nuxt": "^3.16",
+    "@tresjs/core": "^4.0",
+    "@tresjs/cientos": "^4.0",
+    "@tresjs/post-processing": "^1.0",
+    "three": "^0.172",
+    "gsap": "^3.13",
+    "@dimforge/rapier3d-compat": "^0.14",
+    "@pinia/nuxt": "^0.9",
+    "pinia": "^3.0",
+    "@nuxtjs/tailwindcss": "^6.0",
+    "sass": "^1.90"
+  },
+  "devDependencies": {
+    "glslify": "^7.1",
+    "vite-plugin-glsl": "^1.3"
+  }
+}
+```
+
+---
+
+## File Structure (New)
+
+```
+Portfolio/
+├── nuxt.config.ts
+├── app.vue                          # Persistent canvas + content layer
+├── assets/
+│   ├── audio/
+│   │   └── ambient-drone.mp3        # Lo-fi ambient track
+│   ├── fonts/                       # (preserved)
+│   ├── images/                      # (migrated from assets/)
+│   └── models/                      # 3D models (if any)
+├── components/
+│   ├── intro/
+│   │   └── IntroScreen.vue          # Preserved + enhanced
+│   ├── navigation/
+│   │   └── Navbar.vue               # Preserved + glassmorphism
+│   ├── sections/
+│   │   ├── HeroSection.vue          # Migrated Landing.vue
+│   │   ├── AboutSection.vue         # Migrated About.vue
+│   │   ├── ProjectsSection.vue      # NEW: Orbital layout
+│   │   ├── ContactSection.vue       # Migrated Contact.vue
+│   │   └── FooterSection.vue        # Migrated Footer.vue
+│   └── webgl/
+│       ├── WebGLCanvas.vue          # Persistent full-viewport canvas
+│       ├── CameraController.vue     # Spline-based camera rig
+│       ├── FBOParticles.vue         # 1M particle system
+│       ├── FloatingProjects.vue     # 3D project cards
+│       ├── PostProcessing.vue       # Dynamic post-fx
+│       └── SceneEnvironment.vue     # Lighting, fog, environment
+├── composables/
+│   ├── useCameraRig.ts
+│   ├── useSceneOrchestrator.ts
+│   ├── useAntiGravity.ts
+│   ├── useRaycastInteraction.ts
+│   ├── useHyperScroll.ts
+│   ├── useAudioReactive.ts
+│   └── useParticleFormations.ts
+├── pages/
+│   ├── index.vue                    # Home
+│   ├── projects/
+│   │   ├── index.vue                # All projects
+│   │   └── [name].vue               # Project details
+├── plugins/
+│   ├── gsap.client.ts
+│   └── tres.client.ts
+├── shaders/
+│   ├── simulation.frag.glsl         # FBO particle physics
+│   ├── particles.vert.glsl          # Particle rendering
+│   ├── particles.frag.glsl
+│   ├── morphDisplacement.vert.glsl  # Object melting
+│   └── postprocess/
+│       ├── chromaticAberration.glsl
+│       └── filmGrain.glsl
+├── stores/
+│   ├── webgl.ts                     # WebGL state
+│   └── ui.ts                        # UI state
+└── public/
+    ├── mv.png                       # (preserved)
+    └── manifest.json                # (preserved)
+```
+
+---
+
+## Open Questions
+
+> [!IMPORTANT]
+> **1. Framework Decision:** Should we migrate to Nuxt 3 (better SEO, more complex) or stay with Vite + Vue 3 (simpler, full control over animation lifecycle)? Given you already have solid SEO meta tags in `index.html`, staying with Vite is a viable option that avoids hydration headaches.
+
+> [!IMPORTANT]
+> **2. Phased vs Full Implementation:** This is a massive project. I recommend starting with **Phase 0 + Phase 1** (foundation + camera rig + basic particles) to get the skeleton working, then layering complexity. Do you agree with this approach?
+
+> [!WARNING]
+> **3. 3D Assets:** Do you have or want to create custom 3D models (your logo in 3D, abstract geometries), or should we use purely procedural/generative geometry? Procedural is faster to implement and more performant.
+
+> [!IMPORTANT]
+> **4. Audio:** Are you comfortable with the ambient audio feature, or do you prefer to keep the site silent? Audio can be polarizing — some Awwwards judges love it, others find it distracting.
+
+> [!IMPORTANT]
+> **5. Content Preservation:** Your current projects data (`projects.js` with 20 projects) — should all of them appear in the orbital 3D view, or just the featured 6? The orbital view works best with 4-8 items.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- **Performance benchmark**: Lighthouse audit — target score 90+ on Performance
+- **FPS monitoring**: Custom FPS counter in dev mode — target 60fps on desktop, 30fps+ on mobile
+- **Build verification**: `nuxt build && nuxt preview` must complete without errors
+- **Mobile testing**: Browser subagent testing at 375px/768px/1440px viewports
+
+### Manual Verification
+- **Animation smoothness**: Visual review of all scroll-triggered animations
+- **WebGL memory**: Monitor GPU memory usage in Chrome DevTools — no leaks
+- **Cross-browser**: Test in Chrome, Firefox, Safari
+- **Accessibility**: Ensure `prefers-reduced-motion` disables all complex animations
+- **SEO**: Verify all existing meta tags, JSON-LD, and OG tags are preserved
+
+### Awwwards Criteria Checklist
+| Criteria | Target Score | Strategy |
+|----------|-------------|----------|
+| Design | 8+ / 10 | Unconventional layout, premium aesthetics |
+| Usability | 7+ / 10 | Intuitive navigation despite 3D complexity |
+| Creativity | 9+ / 10 | FBO particles, orbital UI, physics slowmo |
+| Content | 7+ / 10 | Real projects, clear messaging |
