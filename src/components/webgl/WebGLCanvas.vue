@@ -19,6 +19,9 @@
       <!-- Floating wireframe geometry -->
       <FloatingGeometry />
 
+      <!-- GPU-computed FBO particle system (desktop only) -->
+      <FBOParticles v-if="enableFBO" />
+
       <!-- Orbital project cards (visible in Projects section) -->
       <FloatingProjects />
 
@@ -34,7 +37,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { TresCanvas } from "@tresjs/core";
 import { useWebGLStore } from "../../stores/webgl.js";
 import CameraController from "./CameraController.vue";
@@ -43,6 +46,7 @@ import CosmicDust from "./CosmicDust.vue";
 import FloatingGeometry from "./FloatingGeometry.vue";
 import FloatingProjects from "./FloatingProjects.vue";
 import EnergyCore from "./EnergyCore.vue";
+import FBOParticles from "./FBOParticles.vue";
 import PostProcessing from "./PostProcessing.vue";
 
 const store = useWebGLStore();
@@ -59,6 +63,9 @@ const reducedMotion =
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+
+// FBO particles only on desktop with good GPU (not mobile, not reduced motion)
+const enableFBO = computed(() => store.quality !== "low" && !reducedMotion);
 
 onMounted(() => {
   store.init();

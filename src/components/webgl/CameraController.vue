@@ -14,12 +14,14 @@ import { ref, reactive } from "vue";
 import { useLoop } from "@tresjs/core";
 import * as THREE from "three";
 import { useCameraRig } from "../../composables/useCameraRig.js";
+import { useSceneOrchestrator } from "../../composables/useSceneOrchestrator.js";
 import { useWebGLStore } from "../../stores/webgl.js";
 
 const store = useWebGLStore();
 const cameraRef = ref(null);
 
 const { currentPosition, currentLookAt, update: updateRig } = useCameraRig();
+const { update: updateScene } = useSceneOrchestrator();
 
 // Initialize positions
 currentPosition.value = new THREE.Vector3(0, 0, 18);
@@ -32,6 +34,9 @@ const cameraPos = reactive({ x: 0, y: 0, z: 18 });
 const { onBeforeRender } = useLoop();
 
 onBeforeRender(({ delta }) => {
+  // Update scene orchestrator (section state machine → particle modes, morph progress)
+  updateScene();
+
   // Update camera rig (spline interpolation + parallax)
   updateRig(delta);
 

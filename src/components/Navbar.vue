@@ -31,9 +31,9 @@
       <button
         class="audio-toggle ml-3"
         @click="toggleAudio"
-        :aria-label="audioEnabled ? 'Mute audio' : 'Enable audio'"
+        :aria-label="isAudioEnabled ? 'Mute audio' : 'Enable audio'"
       >
-        <svg v-if="audioEnabled" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg v-if="isAudioEnabled" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M11 5L6 9H2v6h4l5 4V5z"/>
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
@@ -48,26 +48,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { computed } from "vue";
 import { useAudioReactive } from "../composables/useAudioReactive.js";
 import { useWebGLStore } from "../stores/webgl.js";
 
-export default {
-  name: "Navbar",
-  setup() {
-    const store = useWebGLStore();
-    const audio = useAudioReactive();
-    const audioEnabled = () => store.audioEnabled;
-    const toggleAudio = () => audio.toggle();
-    return { audioEnabled: store.audioEnabled, toggleAudio };
-  },
-  computed: {
-    audioEnabled() {
-      const store = useWebGLStore();
-      return store.audioEnabled;
-    },
-  },
-};
+const store = useWebGLStore();
+const audio = useAudioReactive();
+
+const isAudioEnabled = computed(() => store.audioEnabled);
+const toggleAudio = () => audio.toggle();
 </script>
 
 <style lang="scss" scoped>

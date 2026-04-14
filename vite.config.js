@@ -14,4 +14,28 @@ export default defineConfig({
     glsl(),
   ],
   base: "/",
+  build: {
+    // Target modern browsers for smaller bundles
+    target: "es2020",
+    // Increase chunk size warning limit (Three.js is large)
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split Three.js into its own chunk (~600KB)
+          three: ["three"],
+          // Split TresJS ecosystem
+          tresjs: [
+            "@tresjs/core",
+            "@tresjs/cientos",
+            "@tresjs/post-processing",
+          ],
+          // Split GSAP
+          gsap: ["gsap"],
+          // Split Vue ecosystem
+          vendor: ["vue", "vue-router", "pinia"],
+        },
+      },
+    },
+  },
 });

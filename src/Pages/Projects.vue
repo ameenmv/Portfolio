@@ -83,7 +83,7 @@
   </div>
   <Footer />
 </template>
-//hi
+
 <script>
 import { projects } from "../assets/projects";
 import Footer from "../components/Footer.vue";

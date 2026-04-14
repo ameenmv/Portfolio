@@ -35,7 +35,6 @@ import WebGLCanvas from "./components/webgl/WebGLCanvas.vue";
 import CustomCursor from "./components/CustomCursor.vue";
 import ScrollProgress from "./components/ScrollProgress.vue";
 import { useHyperScroll } from "./composables/useHyperScroll.js";
-import { useSceneOrchestrator } from "./composables/useSceneOrchestrator.js";
 
 gsap.registerPlugin(ScrollSmoother);
 
